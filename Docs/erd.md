@@ -1,7 +1,10 @@
+```mermaid
+
 ---
 title: PastaBIN
 ---
 erDiagram
+
     Cook {
         INT ID PK
         VARCHAR Login
@@ -10,37 +13,51 @@ erDiagram
     }
     PastaInfo {
         INT ID PK
+        INT IDUser FK 
         VARCHAR Key
         DATETIME CreationDate
         DATETIME DeleteTime
         BIT IsActive
     }
-    CookedPastaText {
-        INT ID PK
-        INT IDPastaText FK
-        INT IDUser FK
-    }
+
     PastaImg {
         INT ID PK
         INT IDPastaInfo FK
         BLOB PastaImg
-    }
-    CookedPastaImg {
-        INT ID PK
-        INT IDPastaImg FK
-        INT IDUser FK
-    }
+        }
+
     PastaText {
         INT ID PK
         INT IDPastaInfo FK
         TEXT Pasta
     }
 
+    PastaHistory{
+        INT ID PK
+        INT IDUser FK 
+        INT IDPastaInfo FK
+        DATETIME VisitDate
+    }
 
+    PastaSharingSettings{
+        INT ID PK
+        INT IDUser FK 
+        INT IDPastaInfo FK
+        DATETIME EndSharingDate
+    }
+
+    PastaHistory ||--o{ Cook: ""
+    PastaHistory ||--|{ PastaInfo: ""
 
     PastaInfo ||--o{ PastaText : ""
     PastaInfo ||--o{ PastaImg : ""
-    PastaText ||--o{ CookedPastaText : ""
-    Cook ||--o{ CookedPastaImg : ""
-    Cook ||--o{ CookedPastaText : ""
-    PastaImg ||--o{ CookedPastaImg : ""
+    Cook ||--o{ PastaInfo : ""
+
+
+    PastaSharingSettings ||--|{ Cook: ""
+    PastaSharingSettings ||--|{ PastaInfo: ""
+
+
+
+
+```
