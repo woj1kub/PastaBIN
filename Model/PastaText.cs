@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     [Table("PastaText")]
-    public class PastaText
+    public class PastaText : IEntityTypeConfiguration<PastaText>
     {
         [Key]
         public int ID { get; set; }
@@ -21,5 +21,13 @@ namespace Model
         public string Pasta { get; set; }
 
         public PastaInfo PastaInfo { get; set; }
+
+        public void Configure(EntityTypeBuilder<PastaText> builder)
+        {
+            builder.HasOne(p => p.PastaInfo)
+                   .WithMany(p => p.PastaTexts)
+                   .HasForeignKey(p => p.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }

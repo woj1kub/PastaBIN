@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 namespace Model
 {
     [Table("PastaImg")]
-    public class PastaImg
+    public class PastaImg : IEntityTypeConfiguration<PastaImg>
     {
         [Key]
         public int ID { get; set; }
@@ -20,5 +20,13 @@ namespace Model
         public required byte[] Img { get; set; }
 
         public PastaInfo PastaInfo { get; set; }
+
+        public void Configure(EntityTypeBuilder<PastaImg> builder)
+        {
+            builder.HasOne(p => p.PastaInfo)
+                   .WithMany(p => p.PastaImgs)
+                   .HasForeignKey(p => p.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Cascade);
+        }
     }
 }
