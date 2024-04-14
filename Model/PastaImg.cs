@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +17,7 @@ namespace Model
         [ForeignKey("PastaInfo")]
         public int IDPastaInfo { get; set; }
 
-        public byte[] PastaImg { get; set; }
+        public required byte[] Img { get; set; }
 
         public PastaInfo PastaInfo { get; set; }
     }
