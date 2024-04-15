@@ -28,5 +28,30 @@ namespace Model
         public Cook Cook { get; set; }
         public ICollection<PastaText> PastaTexts { get; set; }
         public ICollection<PastaImg> PastaImgs { get; set; }
+        public ICollection<PastaHistory> PastaHistories { get; set; }
+        public ICollection<PastaSharingSettings> PastaSharingSettings { get; set; }
+
+        public void Configure(EntityTypeBuilder<PastaInfo> builder)
+        {
+            builder.HasOne(pi => pi.Cook)
+                   .WithMany(c => c.PastaInfos)
+                   .HasForeignKey(pi => pi.IDUser);
+
+            builder.HasMany(pi => pi.PastaTexts)
+                   .WithOne(pt => pt.PastaInfo)
+                   .HasForeignKey(pt => pt.IDPastaInfo);
+
+            builder.HasMany(pi => pi.PastaImgs)
+                   .WithOne(pi => pi.PastaInfo)
+                   .HasForeignKey(pi => pi.IDPastaInfo);
+
+            builder.HasMany(pi => pi.PastaHistories)
+                   .WithOne(ph => ph.PastaInfo)
+                   .HasForeignKey(ph => ph.IDPastaInfo);
+
+            builder.HasMany(pi => pi.PastaSharingSettings)
+                   .WithOne(pss => pss.PastaInfo)
+                   .HasForeignKey(pss => pss.IDPastaInfo);
+        }
     }
 }

@@ -24,5 +24,18 @@ namespace Model
 
         public Cook User { get; set; }
         public PastaInfo PastaInfo { get; set; }
+
+        public void Configure(EntityTypeBuilder<PastaSharingSettings> builder)
+        {
+            builder.HasOne(p => p.User)
+                   .WithMany(p => p.PastaSharingSettings)
+                   .HasForeignKey(p => p.IDUser)
+                   .OnDelete(DeleteBehavior.Restrict);
+
+            builder.HasOne(p => p.PastaInfo)
+                   .WithMany(p => p.PastaSharingSettings)
+                   .HasForeignKey(p => p.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Restrict);
+        }
     }
 }
