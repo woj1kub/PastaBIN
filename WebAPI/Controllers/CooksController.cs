@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using BLL.DTO;
-using Interface.Services;
+using BLL;
 
 namespace WebAPI.Controllers
 {
@@ -45,13 +44,7 @@ namespace WebAPI.Controllers
         [HttpPut("{id}")]
         public IActionResult PutCook(int id, CookRequestDTO cookRequest)
         {
-            if (id != cookRequest.Id)
-            {
-                return BadRequest();
-            }
-
             _cookService.PutCook(id, cookRequest);
-
             return NoContent();
         }
 

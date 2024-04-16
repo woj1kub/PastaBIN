@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal interface IPastaHistory
+    public interface IPastaHistory
     {
-        IEnumerable<PastaHistoryResponseDTO> GetPastaHistories();
-        PastaHistoryResponseDTO GetPastaHistory(int id);
-        void PostPastaHistory(PastaHistoryRequestDTO request);
+        public IEnumerable<PastaHistoryResponseDTO> GetPastaHistories();
+        public PastaHistoryResponseDTO GetPastaHistory(int id);
+        public void PostPastaHistory(PastaHistoryRequestDTO request);
     }
 }

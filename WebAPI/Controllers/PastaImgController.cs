@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using BLL.DTO;
-using Interface.Services;
+using BLL;
+
 
 namespace WebAPI.Controllers
 {

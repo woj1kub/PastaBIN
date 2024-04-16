@@ -1,7 +1,7 @@
 ﻿
 namespace BLL
 {
-    internal class CookResponceDTO
+    public class CookResponceDTO
     {
         public int ID { get; set; }
 

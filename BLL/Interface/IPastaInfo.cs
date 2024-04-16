@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal interface IPastaInfo
+    public interface IPastaInfo
     {
-        IEnumerable<PastaInfoResponceDTO> GetPastaInfos();
-        PastaInfoResponceDTO GetPastaInfo(int id);
-        void DeletePastaInfo(int id);
-        void PutPastaInfo(int id, PastaInfoRequestDTO pasta);
-        void PostPastaInfo(PastaInfoRequestDTO pasta);
+        public IEnumerable<PastaInfoResponceDTO> GetPastaInfos();
+        public PastaInfoResponceDTO GetPastaInfo(int id);
+        public void DeletePastaInfo(int id);
+        public void PutPastaInfo(int id, PastaInfoRequestDTO pasta);
+        public void PostPastaInfo(PastaInfoRequestDTO pasta);
 
     }
 }

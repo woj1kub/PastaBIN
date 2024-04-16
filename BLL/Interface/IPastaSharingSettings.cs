@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal interface IPastaSharingSettings
+    public interface IPastaSharingSettings
     {
-        IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettiings();
-        PastaSharingSettiingsResponceDTO GetPastaSharing(int id);
-        void DeletePastaSharing(int id);
-        void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO);
-        void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO);
+        public IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettiings();
+        public  PastaSharingSettiingsResponceDTO GetPastaSharing(int id);
+        public void DeletePastaSharing(int id);
+        public void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO);
+        public void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO);
     }
 }

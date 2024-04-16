@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal interface ICook
+    public interface ICook
     {
-        IEnumerable<CookResponceDTO> GetCooks();
-        CookResponceDTO GetCook(int id);
-        void DeleteCook();
-        void PutCook(int id , CookRequestDTO cookRequest);
-        void PostCook(CookRequestDTO cookRequest);
+        public IEnumerable<CookResponceDTO> GetCooks();
+        public CookResponceDTO GetCook(int id);
+        public void DeleteCook(int id);
+        public void PutCook(int id , CookRequestDTO cookRequest);
+        public void PostCook(CookRequestDTO cookRequest);
     }
 }

@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    internal interface IPastaImg
+    public interface IPastaImg
     {
-        IEnumerable<PastaImgResponceDTO> GetPastaInfos();
-        PastaImgResponceDTO GetPastaInfo(int id);  
-        void DeletePastaImg(int id);
-        void PutPastImg(int id, PastaImgRequestDTO requesteDTO);
-        void PostPastImg(PastaImgRequestDTO requesteDTO);
+        public IEnumerable<PastaImgResponceDTO> GetPastaInfos();
+        public PastaImgResponceDTO GetPastaInfo(int id);  
+        public void DeletePastaImg(int id);
+        public void PutPastImg(int id, PastaImgRequestDTO requesteDTO);
+        public void PostPastImg(PastaImgRequestDTO requesteDTO);
     }
 }
