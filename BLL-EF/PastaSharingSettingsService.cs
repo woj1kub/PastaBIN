@@ -27,11 +27,11 @@ namespace BLL_EF
             }
         }
 
-        public PastaSharingSettiingsResponceDTO GetPastaSharing(int id)
+        public PastaSharingSettingsResponseDTO GetPastaSharing(int id)
         {
             var sharingSetting = _context.PastaSharingSettings
                 .Where(pss => pss.ID == id)
-                .Select(pss => new PastaSharingSettiingsResponceDTO
+                .Select(pss => new PastaSharingSettingsResponseDTO
                 {
                     ID = pss.ID,
                     IDUser = pss.IDUser,
@@ -43,10 +43,10 @@ namespace BLL_EF
             return sharingSetting;
         }
 
-        public IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettiings()
+        public IEnumerable<PastaSharingSettingsResponseDTO> GetPastaSharingSettings()
         {
             return _context.PastaSharingSettings
-            .Select(pss => new PastaSharingSettiingsResponceDTO
+            .Select(pss => new PastaSharingSettingsResponseDTO
             {
                 ID = pss.ID,
                 IDUser = pss.IDUser,
@@ -56,7 +56,7 @@ namespace BLL_EF
             .ToList();
         }
 
-        public void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
+        public void PostPastaSharing(PastaSharingSettingsRequestDTO requestDTO)
         {
             var newSharingSetting = new PastaSharingSettings
             {
@@ -69,7 +69,7 @@ namespace BLL_EF
             _context.SaveChanges();
         }
 
-        public void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO)
+        public void PutPastaSharing(int id, PastaSharingSettingsRequestDTO requestDTO)
         {
             var sharingSetting = _context.PastaSharingSettings.Find(id);
             if (sharingSetting != null)

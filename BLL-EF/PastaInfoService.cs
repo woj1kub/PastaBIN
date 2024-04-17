@@ -27,11 +27,11 @@ namespace BLL_EF
             }
         }
 
-        public PastaInfoResponceDTO GetPastaInfo(int id)
+        public PastaInfoResponseDTO GetPastaInfo(int id)
         {
             var pastaInfo = _context.PastaInfos
             .Where(pi => pi.ID == id)
-            .Select(pi => new PastaInfoResponceDTO
+            .Select(pi => new PastaInfoResponseDTO
             {
                 ID = pi.ID,
                 IDUser = pi.IDUser,
@@ -44,10 +44,10 @@ namespace BLL_EF
             return pastaInfo;
         }
 
-        public IEnumerable<PastaInfoResponceDTO> GetPastaInfos()
+        public IEnumerable<PastaInfoResponseDTO> GetPastaInfos()
         {
             return _context.PastaInfos
-            .Select(pi => new PastaInfoResponceDTO
+            .Select(pi => new PastaInfoResponseDTO
             {
                 ID = pi.ID,
                 IDUser = pi.IDUser,

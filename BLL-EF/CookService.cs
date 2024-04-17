@@ -18,10 +18,10 @@ namespace BLL_EF
             _context = context;
         }
 
-        public IEnumerable<CookResponceDTO> GetCooks()
+        public IEnumerable<CookResponseDTO> GetCooks()
         {
             return _context.Cooks
-                .Select(c => new CookResponceDTO
+                .Select(c => new CookResponseDTO
                 {
                     ID = c.ID,
                     Login = c.Login,
@@ -30,11 +30,11 @@ namespace BLL_EF
                 }).ToList();
         }
 
-        public CookResponceDTO GetCook(int id)
+        public CookResponseDTO GetCook(int id)
         {
             var cook = _context.Cooks
                 .Where(c => c.ID == id)
-                .Select(c => new CookResponceDTO
+                .Select(c => new CookResponseDTO
                 {
                     ID = c.ID,
                     Login = c.Login,

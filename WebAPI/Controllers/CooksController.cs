@@ -15,13 +15,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<CookResponceDTO> GetCooks()
+        public IEnumerable<CookResponseDTO> GetCooks()
         {
             return _cookService.GetCooks();
         }
 
         [HttpGet("{id}")]
-        public CookResponceDTO GetCook(int id)
+        public CookResponseDTO GetCook(int id)
         {
             var cook = _cookService.GetCook(id);
             return cook;

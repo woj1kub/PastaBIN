@@ -27,11 +27,11 @@ namespace BLL_EF
             }
         }
 
-        public PastaImgResponceDTO GetPastaInfo(int id)
+        public PastaImgResponseDTO GetPastaInfo(int id)
         {
             var pastaImg = _context.PastaImgs
             .Where(pi => pi.ID == id)
-            .Select(pi => new PastaImgResponceDTO
+            .Select(pi => new PastaImgResponseDTO
             {
                 ID = pi.ID,
                 IDPastaInfo = pi.IDPastaInfo,
@@ -41,10 +41,10 @@ namespace BLL_EF
             return pastaImg;
         }
 
-        public IEnumerable<PastaImgResponceDTO> GetPastaInfos()
+        public IEnumerable<PastaImgResponseDTO> GetPastaInfos()
         {
             return _context.PastaImgs
-            .Select(pi => new PastaImgResponceDTO
+            .Select(pi => new PastaImgResponseDTO
             {
                 ID = pi.ID,
                 IDPastaInfo = pi.IDPastaInfo,

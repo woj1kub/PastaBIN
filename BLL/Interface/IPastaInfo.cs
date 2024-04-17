@@ -8,8 +8,8 @@ namespace BLL
 {
     public interface IPastaInfo
     {
-        public IEnumerable<PastaInfoResponceDTO> GetPastaInfos();
-        public PastaInfoResponceDTO GetPastaInfo(int id);
+        public IEnumerable<PastaInfoResponseDTO> GetPastaInfos();
+        public PastaInfoResponseDTO GetPastaInfo(int id);
         public void DeletePastaInfo(int id);
         public void PutPastaInfo(int id, PastaInfoRequestDTO pasta);
         public void PostPastaInfo(PastaInfoRequestDTO pasta);

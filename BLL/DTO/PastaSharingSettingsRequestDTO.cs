@@ -1,6 +1,6 @@
 ﻿namespace BLL
 {
-    public class PastaSharingSettiingsRequestDTO
+    public class PastaSharingSettingsRequestDTO
     {
         public int IDUser { get; set; }
         public int IDPastaInfo { get; set; }

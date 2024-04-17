@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class PastaImgResponceDTO
+    public class PastaImgResponseDTO
     {
         public int ID { get; set; }
         public int IDPastaInfo { get; set; }

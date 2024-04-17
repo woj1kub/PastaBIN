@@ -15,13 +15,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PastaInfoResponceDTO> GetPastaInfos()
+        public IEnumerable<PastaInfoResponseDTO> GetPastaInfos()
         {
             return _pastaInfoService.GetPastaInfos();
         }
 
         [HttpGet("{id}")]
-        public PastaInfoResponceDTO GetPastaInfo(int id)
+        public PastaInfoResponseDTO GetPastaInfo(int id)
         {
             var pastaInfo = _pastaInfoService.GetPastaInfo(id);
 

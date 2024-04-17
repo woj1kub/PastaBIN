@@ -8,10 +8,10 @@ namespace BLL
 {
     public interface IPastaSharingSettings
     {
-        public IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettiings();
-        public  PastaSharingSettiingsResponceDTO GetPastaSharing(int id);
+        public IEnumerable<PastaSharingSettingsResponseDTO> GetPastaSharingSettings();
+        public  PastaSharingSettingsResponseDTO GetPastaSharing(int id);
         public void DeletePastaSharing(int id);
-        public void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO);
-        public void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO);
+        public void PutPastaSharing(int id, PastaSharingSettingsRequestDTO requestDTO);
+        public void PostPastaSharing(PastaSharingSettingsRequestDTO requestDTO);
     }
 }

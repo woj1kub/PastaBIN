@@ -16,13 +16,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PastaImgResponceDTO> GetPastaImgs()
+        public IEnumerable<PastaImgResponseDTO> GetPastaImgs()
         {
             return _pastaImgService.GetPastaInfos();
         }
 
         [HttpGet("{id}")]
-        public PastaImgResponceDTO GetPastaImg(int id)
+        public PastaImgResponseDTO GetPastaImg(int id)
         {
             var pastaImg = _pastaImgService.GetPastaInfo(id);
             return pastaImg;

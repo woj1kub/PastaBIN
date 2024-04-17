@@ -15,13 +15,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettings()
+        public IEnumerable<PastaSharingSettingsResponseDTO> GetPastaSharingSettings()
         {
-            return _pastaSharingSettingsService.GetPastaSharingSettiings();
+            return _pastaSharingSettingsService.GetPastaSharingSettings();
         }
 
         [HttpGet("{id}")]
-        public PastaSharingSettiingsResponceDTO GetPastaSharing(int id)
+        public PastaSharingSettingsResponseDTO GetPastaSharing(int id)
         {
             var pastaSharingSetting = _pastaSharingSettingsService.GetPastaSharing(id);
             
@@ -35,13 +35,13 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO)
+        public void PutPastaSharing(int id, PastaSharingSettingsRequestDTO requestDTO)
         {
             _pastaSharingSettingsService.PutPastaSharing(id, requestDTO);
         }
 
         [HttpPost]
-        public void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
+        public void PostPastaSharing(PastaSharingSettingsRequestDTO requestDTO)
         {
             _pastaSharingSettingsService.PostPastaSharing(requestDTO);
         }
