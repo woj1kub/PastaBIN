@@ -15,42 +15,36 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PastaInfoResponceDTO>> GetPastaInfos()
+        public IEnumerable<PastaInfoResponceDTO> GetPastaInfos()
         {
-            return Ok(_pastaInfoService.GetPastaInfos());
+            return _pastaInfoService.GetPastaInfos();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PastaInfoResponceDTO> GetPastaInfo(int id)
+        public PastaInfoResponceDTO GetPastaInfo(int id)
         {
             var pastaInfo = _pastaInfoService.GetPastaInfo(id);
-            if (pastaInfo == null)
-            {
-                return NotFound();
-            }
-            return Ok(pastaInfo);
+
+            return  pastaInfo;
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePastaInfo(int id)
+        public void DeletePastaInfo(int id)
         {
             _pastaInfoService.DeletePastaInfo(id);
-            return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutPastaInfo(int id, PastaInfoRequestDTO pasta)
+        public void PutPastaInfo(int id, PastaInfoRequestDTO pasta)
         {
             _pastaInfoService.PutPastaInfo(id, pasta);
-            return NoContent();
         }
 
-        //[HttpPost]
-        //public IActionResult PostPastaInfo(PastaInfoRequestDTO pasta)
-        //{
-        //    _pastaInfoService.PostPastaInfo(pasta);
-        //    return CreatedAtAction(nameof(GetPastaInfo), new { id = pasta.Id }, pasta);
-        //}
+        [HttpPost]
+        public void PostPastaInfo(PastaInfoRequestDTO pasta)
+        {
+            _pastaInfoService.PostPastaInfo(pasta);
+        }
     }
 
 

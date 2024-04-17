@@ -15,22 +15,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<CookResponceDTO>> GetCooks()
+        public IEnumerable<CookResponceDTO> GetCooks()
         {
-            return Ok(_cookService.GetCooks());
+            return _cookService.GetCooks();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<CookResponceDTO> GetCook(int id)
+        public CookResponceDTO GetCook(int id)
         {
             var cook = _cookService.GetCook(id);
-
-            if (cook == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(cook);
+            return cook;
         }
 
         [HttpPost]
@@ -40,17 +34,15 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutCook(int id, CookRequestDTO cookRequest)
+        public void PutCook(int id, CookRequestDTO cookRequest)
         {
             _cookService.PutCook(id, cookRequest);
-            return NoContent();
         }
 
         [HttpDelete("{id}")]
-        public ActionResult<CookResponceDTO> DeleteCook(int id)
+        public void DeleteCook(int id)
         {
             _cookService.DeleteCook(id);
-            return NoContent();
         }
     }
 }

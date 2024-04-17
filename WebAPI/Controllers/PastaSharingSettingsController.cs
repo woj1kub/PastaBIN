@@ -15,42 +15,36 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PastaSharingSettiingsResponceDTO>> GetPastaSharingSettings()
+        public IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettings()
         {
-            return Ok(_pastaSharingSettingsService.GetPastaSharingSettiings());
+            return _pastaSharingSettingsService.GetPastaSharingSettiings();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PastaSharingSettiingsResponceDTO> GetPastaSharing(int id)
+        public PastaSharingSettiingsResponceDTO GetPastaSharing(int id)
         {
             var pastaSharingSetting = _pastaSharingSettingsService.GetPastaSharing(id);
-            if (pastaSharingSetting == null)
-            {
-                return NotFound();
-            }
-            return Ok(pastaSharingSetting);
+            
+            return pastaSharingSetting;
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePastaSharing(int id)
+        public void DeletePastaSharing(int id)
         {
             _pastaSharingSettingsService.DeletePastaSharing(id);
-            return NoContent();
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO)
+        public void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO)
         {
             _pastaSharingSettingsService.PutPastaSharing(id, requestDTO);
-            return NoContent();
         }
 
-        //[HttpPost]
-        //public IActionResult PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
-        //{
-        //    _pastaSharingSettingsService.PostPastaSharing(requestDTO);
-        //    return CreatedAtAction(nameof(GetPastaSharing), new { id = requestDTO.Id }, requestDTO);
-        //}
+        [HttpPost]
+        public void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
+        {
+            _pastaSharingSettingsService.PostPastaSharing(requestDTO);
+        }
     }
 
 

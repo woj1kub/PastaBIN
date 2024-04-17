@@ -16,42 +16,36 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PastaImgResponceDTO>> GetPastaImgs()
+        public IEnumerable<PastaImgResponceDTO> GetPastaImgs()
         {
-            return Ok(_pastaImgService.GetPastaInfos());
+            return _pastaImgService.GetPastaInfos();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PastaImgResponceDTO> GetPastaImg(int id)
+        public PastaImgResponceDTO GetPastaImg(int id)
         {
             var pastaImg = _pastaImgService.GetPastaInfo(id);
-            if (pastaImg == null)
-            {
-                return NotFound();
-            }
-            return Ok(pastaImg);
+            return pastaImg;
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeletePastaImg(int id)
+        public void DeletePastaImg(int id)
         {
             _pastaImgService.DeletePastaImg(id);
-            return NoContent();
+           
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutPastaImg(int id, PastaImgRequestDTO requestDTO)
+        public void PutPastaImg(int id, PastaImgRequestDTO requestDTO)
         {
             _pastaImgService.PutPastImg(id, requestDTO);
-            return NoContent();
         }
 
-        //[HttpPost]
-        //public IActionResult PostPastaImg(PastaImgRequestDTO requestDTO)
-        //{
-        //    _pastaImgService.PostPastImg(requestDTO);
-        //    return CreatedAtAction(nameof(GetPastaImg), new { id = requestDTO.Id }, requestDTO);
-        //}
+        [HttpPost]
+        public void PostPastaImg(PastaImgRequestDTO requestDTO)
+        {
+            _pastaImgService.PostPastImg(requestDTO);
+        }
     }
 
 }

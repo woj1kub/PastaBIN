@@ -15,28 +15,25 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PastaHistoryResponseDTO>> GetPastaHistories()
+        public IEnumerable<PastaHistoryResponseDTO> GetPastaHistories()
         {
-            return Ok(_pastaHistoryService.GetPastaHistories());
+            return _pastaHistoryService.GetPastaHistories();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PastaHistoryResponseDTO> GetPastaHistory(int id)
+        public PastaHistoryResponseDTO GetPastaHistory(int id)
         {
             var pastaHistory = _pastaHistoryService.GetPastaHistory(id);
-            if (pastaHistory == null)
-            {
-                return NotFound();
-            }
-            return Ok(pastaHistory);
+            
+            return pastaHistory;
         }
 
-        //[HttpPost]
-        //public IActionResult PostPastaHistory(PastaHistoryRequestDTO request)
-        //{
-        //    _pastaHistoryService.PostPastaHistory(request);
-        //    return CreatedAtAction(nameof(GetPastaHistory), new { id = request.Id }, request);
-        //}
+        [HttpPost]
+        public void PostPastaHistory(PastaHistoryRequestDTO request)
+        {
+            _pastaHistoryService.PostPastaHistory(request);
+        }
+
     }
 
 }

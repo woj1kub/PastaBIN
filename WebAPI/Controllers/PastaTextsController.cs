@@ -15,20 +15,17 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<PastaTextResponceDTO>> GetPastaTexts()
+        public  IEnumerable<PastaTextResponceDTO> GetPastaTexts()
         {
-            return Ok(_pastaTextService.GetPastaInfos());
+            return _pastaTextService.GetPastaInfos();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PastaTextResponceDTO> GetPastaText(int id)
+        public PastaTextResponceDTO GetPastaText(int id)
         {
             var pastaText = _pastaTextService.GetPastaInfo(id);
-            if (pastaText == null)
-            {
-                return NotFound();
-            }
-            return Ok(pastaText);
+            
+            return pastaText;
         }
 
         [HttpDelete("{id}")]
@@ -39,18 +36,16 @@ namespace WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult PutPastaText(int id, PastaTextRequestDTO requestDTO)
+        public void PutPastaText(int id, PastaTextRequestDTO requestDTO)
         {
             _pastaTextService.PutPastText(id, requestDTO);
-            return NoContent();
         }
 
-        //[HttpPost]
-        //public IActionResult PostPastaText(PastaTextRequestDTO requestDTO)
-        //{
-        //    _pastaTextService.PostPastText(requestDTO);
-        //    return CreatedAtAction(nameof(GetPastaText), new { id = requestDTO.Id }, requestDTO);
-        //}
+        [HttpPost]
+        public void postpastatext(PastaTextRequestDTO requestdto)
+        {
+            _pastaTextService.PostPastText(requestdto);
+        }
     }
 
 
