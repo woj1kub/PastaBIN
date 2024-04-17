@@ -1,6 +1,7 @@
 ﻿
 using BLL;
 using DAL;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -9,7 +10,7 @@ using System.Text;
 
 namespace BLL_EF
 {
-    internal class PastaHistoryService : IPastaHistory
+    public class PastaHistoryService : IPastaHistory
     {
         private readonly PastaBINContext _context;
 
@@ -20,17 +21,42 @@ namespace BLL_EF
 
         public IEnumerable<PastaHistoryResponseDTO> GetPastaHistories()
         {
-            throw new NotImplementedException();
+            return _context.PastaHistories
+            .Select(ph => new PastaHistoryResponseDTO
+            {
+                ID = ph.ID,
+                IDUser = ph.IDUser,
+                IDPastaInfo = ph.IDPastaInfo,
+                VisitDate = ph.VisitDate
+            }).ToList();
         }
 
         public PastaHistoryResponseDTO GetPastaHistory(int id)
         {
-            throw new NotImplementedException();
+            var pastaHistory = _context.PastaHistories
+            .Where(ph => ph.ID == id)
+            .Select(ph => new PastaHistoryResponseDTO
+            {
+                ID = ph.ID,
+                IDUser = ph.IDUser,
+                IDPastaInfo = ph.IDPastaInfo,
+                VisitDate = ph.VisitDate
+            }).FirstOrDefault();
+
+            return pastaHistory;
         }
 
         public void PostPastaHistory(PastaHistoryRequestDTO request)
         {
-            throw new NotImplementedException();
+            var newPastaHistory = new PastaHistory
+            {
+                IDUser = request.IDUser,
+                IDPastaInfo = request.IDPastaInfo,
+                VisitDate = request.VisitDate
+            };
+
+            _context.PastaHistories.Add(newPastaHistory);
+            _context.SaveChanges();
         }
     }
 }

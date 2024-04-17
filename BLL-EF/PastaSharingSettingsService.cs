@@ -1,4 +1,6 @@
 ﻿using BLL;
+using DAL;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,31 +9,77 @@ using System.Threading.Tasks;
 
 namespace BLL_EF
 {
-    internal class PastaSharingSettingsService : IPastaSharingSettings
+    public class PastaSharingSettingsService : IPastaSharingSettings
     {
+        private readonly PastaBINContext _context;
+
+        public PastaSharingSettingsService(PastaBINContext context)
+        {
+            _context = context;
+        }
         public void DeletePastaSharing(int id)
         {
-            throw new NotImplementedException();
+            var sharingSetting = _context.PastaSharingSettings.Find(id);
+            if (sharingSetting != null)
+            {
+                _context.PastaSharingSettings.Remove(sharingSetting);
+                _context.SaveChanges();
+            }
         }
 
         public PastaSharingSettiingsResponceDTO GetPastaSharing(int id)
         {
-            throw new NotImplementedException();
+            var sharingSetting = _context.PastaSharingSettings
+                .Where(pss => pss.ID == id)
+                .Select(pss => new PastaSharingSettiingsResponceDTO
+                {
+                    ID = pss.ID,
+                    IDUser = pss.IDUser,
+                    IDPastaInfo = pss.IDPastaInfo,
+                    EndSharingDate = pss.EndSharingDate
+                })
+                .FirstOrDefault();
+
+            return sharingSetting;
         }
 
         public IEnumerable<PastaSharingSettiingsResponceDTO> GetPastaSharingSettiings()
         {
-            throw new NotImplementedException();
+            return _context.PastaSharingSettings
+            .Select(pss => new PastaSharingSettiingsResponceDTO
+            {
+                ID = pss.ID,
+                IDUser = pss.IDUser,
+                IDPastaInfo = pss.IDPastaInfo,
+                EndSharingDate = pss.EndSharingDate
+            })
+            .ToList();
         }
 
         public void PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
         {
-            throw new NotImplementedException();
+            var newSharingSetting = new PastaSharingSettings
+            {
+                IDUser = requestDTO.IDUser,
+                IDPastaInfo = requestDTO.IDPastaInfo,
+                EndSharingDate = requestDTO.EndSharingDate
+            };
+
+            _context.PastaSharingSettings.Add(newSharingSetting);
+            _context.SaveChanges();
         }
 
         public void PutPastaSharing(int id, PastaSharingSettiingsRequestDTO requestDTO)
         {
-            throw new NotImplementedException();
+            var sharingSetting = _context.PastaSharingSettings.Find(id);
+            if (sharingSetting != null)
+            {
+                sharingSetting.IDUser = requestDTO.IDUser;
+                sharingSetting.IDPastaInfo = requestDTO.IDPastaInfo;
+                sharingSetting.EndSharingDate = requestDTO.EndSharingDate;
+
+                _context.SaveChanges();
+            }
         }
     }
 }
