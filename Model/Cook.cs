@@ -31,15 +31,18 @@ namespace Model
         {
             builder.HasMany(p => p.PastaInfos)
                    .WithOne(p => p.Cook)
-                   .HasForeignKey(p => p.IDUser);
+                   .HasForeignKey(p => p.IDUser)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(p => p.PastaHistories)
                    .WithOne(p => p.User)
-                   .HasForeignKey(p => p.IDUser);
+                   .HasForeignKey(p => p.IDUser)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(p => p.PastaSharingSettings)
                    .WithOne(p => p.User)
-                   .HasForeignKey(p => p.IDUser);
+                   .HasForeignKey(p => p.IDUser)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

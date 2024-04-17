@@ -31,12 +31,12 @@ namespace WebAPI.Controllers
             return Ok(pastaHistory);
         }
 
-        [HttpPost]
-        public IActionResult PostPastaHistory(PastaHistoryRequestDTO request)
-        {
-            _pastaHistoryService.PostPastaHistory(request);
-            return CreatedAtAction(nameof(GetPastaHistory), new { id = request.Id }, request);
-        }
+        //[HttpPost]
+        //public IActionResult PostPastaHistory(PastaHistoryRequestDTO request)
+        //{
+        //    _pastaHistoryService.PostPastaHistory(request);
+        //    return CreatedAtAction(nameof(GetPastaHistory), new { id = request.Id }, request);
+        //}
     }
 
 }

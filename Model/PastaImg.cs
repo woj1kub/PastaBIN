@@ -11,11 +11,11 @@ namespace Model
         [Key]
         public int ID { get; set; }
 
-        [ForeignKey("PastaInfo")]
+        [Column("PastaInfoID")]
         public int IDPastaInfo { get; set; }
-
-        public required byte[] Img { get; set; }
-
+        [Required]
+        public byte[] Img { get; set; }
+        [ForeignKey(nameof(IDPastaInfo))]
         public PastaInfo PastaInfo { get; set; }
 
         public void Configure(EntityTypeBuilder<PastaImg> builder)

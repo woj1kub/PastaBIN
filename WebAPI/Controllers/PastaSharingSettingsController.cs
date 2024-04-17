@@ -45,12 +45,12 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost]
-        public IActionResult PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
-        {
-            _pastaSharingSettingsService.PostPastaSharing(requestDTO);
-            return CreatedAtAction(nameof(GetPastaSharing), new { id = requestDTO.Id }, requestDTO);
-        }
+        //[HttpPost]
+        //public IActionResult PostPastaSharing(PastaSharingSettiingsRequestDTO requestDTO)
+        //{
+        //    _pastaSharingSettingsService.PostPastaSharing(requestDTO);
+        //    return CreatedAtAction(nameof(GetPastaSharing), new { id = requestDTO.Id }, requestDTO);
+        //}
     }
 
 

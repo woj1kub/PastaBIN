@@ -12,15 +12,16 @@ namespace Model
         [Key]
         public int ID { get; set; }
 
-        [ForeignKey("User")]
+        [Column("UserID")]
         public int IDUser { get; set; }
 
-        [ForeignKey("PastaInfo")]
+        [Column("PastaInfoID")]
         public int IDPastaInfo { get; set; }
 
-        public DateTime? EndSharingDate { get; set; } 
-
+        public DateTime? EndSharingDate { get; set; }
+        [ForeignKey(nameof(IDUser))]
         public Cook User { get; set; }
+        [ForeignKey(nameof(IDPastaInfo))]
         public PastaInfo PastaInfo { get; set; }
 
         public void Configure(EntityTypeBuilder<PastaSharingSettings> builder)

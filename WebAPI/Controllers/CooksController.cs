@@ -34,11 +34,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<CookResponceDTO> PostCook(CookRequestDTO cookRequest)
+        public void PostCook([FromBody] CookRequestDTO cookRequest)
         {
             _cookService.PostCook(cookRequest);
-
-            return CreatedAtAction(nameof(GetCook), new { id = cookRequest.Id }, cookRequest);
         }
 
         [HttpPut("{id}")]

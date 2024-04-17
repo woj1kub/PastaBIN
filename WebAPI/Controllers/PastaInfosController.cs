@@ -45,12 +45,12 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost]
-        public IActionResult PostPastaInfo(PastaInfoRequestDTO pasta)
-        {
-            _pastaInfoService.PostPastaInfo(pasta);
-            return CreatedAtAction(nameof(GetPastaInfo), new { id = pasta.Id }, pasta);
-        }
+        //[HttpPost]
+        //public IActionResult PostPastaInfo(PastaInfoRequestDTO pasta)
+        //{
+        //    _pastaInfoService.PostPastaInfo(pasta);
+        //    return CreatedAtAction(nameof(GetPastaInfo), new { id = pasta.Id }, pasta);
+        //}
     }
 
 

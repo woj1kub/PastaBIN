@@ -11,12 +11,12 @@ namespace Model
         [Key]
         public int ID { get; set; }
 
-        [ForeignKey("PastaInfo")]
+        [Column("PastaInfoID")]
         public int IDPastaInfo { get; set; }
 
         [Required]
         public string Pasta { get; set; }
-
+        [ForeignKey(nameof(IDPastaInfo))]
         public PastaInfo PastaInfo { get; set; }
 
         public void Configure(EntityTypeBuilder<PastaText> builder)

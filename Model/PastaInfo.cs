@@ -12,7 +12,7 @@ namespace Model
         [Key]
         public int ID { get; set; }
 
-        [ForeignKey("Cook")]
+        [Column("UserID")]
         public int IDUser { get; set; }
 
         [MaxLength(255)]
@@ -22,7 +22,7 @@ namespace Model
         public DateTime? DeleteTime { get; set; }
 
         public bool IsActive { get; set; }
-
+        [ForeignKey(nameof(IDUser))]
         public Cook Cook { get; set; }
         public ICollection<PastaText> PastaTexts { get; set; }
         public ICollection<PastaImg> PastaImgs { get; set; }
@@ -33,23 +33,28 @@ namespace Model
         {
             builder.HasOne(pi => pi.Cook)
                    .WithMany(c => c.PastaInfos)
-                   .HasForeignKey(pi => pi.IDUser);
+                   .HasForeignKey(pi => pi.IDUser)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pi => pi.PastaTexts)
                    .WithOne(pt => pt.PastaInfo)
-                   .HasForeignKey(pt => pt.IDPastaInfo);
+                   .HasForeignKey(pt => pt.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pi => pi.PastaImgs)
                    .WithOne(pi => pi.PastaInfo)
-                   .HasForeignKey(pi => pi.IDPastaInfo);
+                   .HasForeignKey(pi => pi.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pi => pi.PastaHistories)
                    .WithOne(ph => ph.PastaInfo)
-                   .HasForeignKey(ph => ph.IDPastaInfo);
+                   .HasForeignKey(ph => ph.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pi => pi.PastaSharingSettings)
                    .WithOne(pss => pss.PastaInfo)
-                   .HasForeignKey(pss => pss.IDPastaInfo);
+                   .HasForeignKey(pss => pss.IDPastaInfo)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

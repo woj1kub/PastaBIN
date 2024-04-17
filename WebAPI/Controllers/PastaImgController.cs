@@ -46,12 +46,12 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost]
-        public IActionResult PostPastaImg(PastaImgRequestDTO requestDTO)
-        {
-            _pastaImgService.PostPastImg(requestDTO);
-            return CreatedAtAction(nameof(GetPastaImg), new { id = requestDTO.Id }, requestDTO);
-        }
+        //[HttpPost]
+        //public IActionResult PostPastaImg(PastaImgRequestDTO requestDTO)
+        //{
+        //    _pastaImgService.PostPastImg(requestDTO);
+        //    return CreatedAtAction(nameof(GetPastaImg), new { id = requestDTO.Id }, requestDTO);
+        //}
     }
 
 }

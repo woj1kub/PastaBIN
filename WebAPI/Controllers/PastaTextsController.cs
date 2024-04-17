@@ -45,12 +45,12 @@ namespace WebAPI.Controllers
             return NoContent();
         }
 
-        [HttpPost]
-        public IActionResult PostPastaText(PastaTextRequestDTO requestDTO)
-        {
-            _pastaTextService.PostPastText(requestDTO);
-            return CreatedAtAction(nameof(GetPastaText), new { id = requestDTO.Id }, requestDTO);
-        }
+        //[HttpPost]
+        //public IActionResult PostPastaText(PastaTextRequestDTO requestDTO)
+        //{
+        //    _pastaTextService.PostPastText(requestDTO);
+        //    return CreatedAtAction(nameof(GetPastaText), new { id = requestDTO.Id }, requestDTO);
+        //}
     }
 
 
