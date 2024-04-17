@@ -23,7 +23,7 @@ namespace Model
             builder.HasOne(p => p.PastaInfo)
                    .WithMany(p => p.PastaImgs)
                    .HasForeignKey(p => p.IDPastaInfo)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

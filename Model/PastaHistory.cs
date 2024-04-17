@@ -29,7 +29,7 @@ namespace Model
             builder.HasOne(p => p.User)
                    .WithMany(p => p.PastaHistories)
                    .HasForeignKey(p => p.IDUser)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasOne(p => p.PastaInfo)
                    .WithMany(p => p.PastaHistories)

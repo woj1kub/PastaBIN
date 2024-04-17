@@ -34,7 +34,7 @@ namespace Model
             builder.HasOne(pi => pi.Cook)
                    .WithMany(c => c.PastaInfos)
                    .HasForeignKey(pi => pi.IDUser)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.NoAction);
 
             builder.HasMany(pi => pi.PastaTexts)
                    .WithOne(pt => pt.PastaInfo)

@@ -9,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace BLL_EF
 {
-    public class PastaTestService : IPastaText
+    public class PastaTextService : IPastaText
     {
         private readonly PastaBINContext _context;
 
-        public PastaTestService(PastaBINContext context)
+        public PastaTextService(PastaBINContext context)
         {
             _context = context;
         }

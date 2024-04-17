@@ -24,7 +24,7 @@ namespace Model
             builder.HasOne(p => p.PastaInfo)
                    .WithMany(p => p.PastaTexts)
                    .HasForeignKey(p => p.IDPastaInfo)
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
