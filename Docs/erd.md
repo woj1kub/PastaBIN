@@ -1,63 +1,68 @@
 ```mermaid
-
----
-title: PastaBIN
----
 erDiagram
-
-    Cook {
-        INT ID PK
-        VARCHAR Login
-        VARCHAR Password
-        VARCHAR Email
-    }
-    PastaInfo {
-        INT ID PK
-        INT IDUser FK 
-        VARCHAR Key
-        DATETIME CreationDate
-        DATETIME DeleteTime
-        BIT IsActive
+    Cooks {
+        int CookID PK "Identity"
+        string Login
+        string Password
+        string Email
     }
 
-    PastaImg {
-        INT ID PK
-        INT IDPastaInfo FK
-        BLOB PastaImg
-        }
-
-    PastaText {
-        INT ID PK
-        INT IDPastaInfo FK
-        TEXT Pasta
+    PastaImage {
+        int ImageID PK "Identity"
+        int PastaBindID FK "PastaBinds"
+        byte[] ImageData
+        string GlobalKey
+        bool IsActive
+        DateTime CreateDate
+        DateTime DeleteDate
     }
 
-    PastaHistory{
-        INT ID PK
-        INT IDUser FK 
-        INT IDPastaInfo FK
-        DATETIME VisitDate
+    PastaTxt {
+        int PastaTxtID PK "Identity"
+        string Content
+        string GlobalKey
+        bool IsActive
+        DateTime CreateDate
+        DateTime DeleteDate
     }
 
-    PastaSharingSettings{
-        INT ID PK
-        INT IDUser FK 
-        INT IDPastaInfo FK
-        DATETIME EndSharingDate
+    PastaBinds {
+        int PastaBindID PK "Identity"
+        int PastaID
+        int CookID FK
+        int SharingSettingsID
     }
 
-    PastaHistory ||--o{ Cook: ""
-    PastaHistory ||--|{ PastaInfo: ""
+    PastaGroupSharing {
+        int GroupSharingID PK "Identity"
+        string GroupKey
+        DateTime CreationDate
+        DateTime EndSharingDate
+        int PastaBindID FK "PastaBinds"
+    }
 
-    PastaInfo ||--o{ PastaText : ""
-    PastaInfo ||--o{ PastaImg : ""
-    Cook ||--o{ PastaInfo : ""
+    PastaHistory {
+        int HistoryID PK "Identity"
+        int CookID FK "Cooks"
+        int PastaBindID FK "PastaBinds"
+        DateTime VisitDate
+    }
 
+    PastaSharingSettings {
+        int SharingSettingsID PK "Identity"
+        int CookID FK "Cooks"
+        int PastaBindID FK "PastaBinds"
+        DateTime EndSharingDate
+    }
 
-    PastaSharingSettings ||--|{ Cook: ""
-    PastaSharingSettings ||--|{ PastaInfo: ""
-
-
+    Cooks ||--o{ PastaBinds : "has"
+    PastaBinds ||--o{ PastaGroupSharing : "shares"
+    PastaBinds ||--|| PastaHistory : "is viewed by"
+    PastaBinds ||--o{ PastaSharingSettings : "has sharing settings"
+    PastaImage |o--|| PastaBinds : "belongs to"
+    PastaTxt |o--|| PastaBinds : "belongs to"
+    PastaHistory ||--O{ Cooks : "is viewed by"
+    PastaSharingSettings ||--O{ Cooks : ""
 
 
 ```

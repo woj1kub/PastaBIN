@@ -1,0 +1,34 @@
+DTO:
+- LoginRequest (Login/email , Has³o) - do autoryzacji, w JWT bêdziemy wysy³aæ type i id
+- CookRequest (Login , email , has³o) - do tworzenia
+- PastaImageResponce( IDBind , image , globalKey, CreationDate,DeleteDate)
+- PastaImageRequst(Image , CookId,DeleteDate)
+- PastaTxtResponce(IDBind , txt, globalKey, CreationDate,DeleteDate)
+- PastaImageRequst(Txt , CookId , DeleteDate)
+- PastaSharingSettingsResponce(CookLogin, EndSharingDate)
+- PastaSharingSettingsRequest(CookLogin,IDPastaBind,EndSharingDate)
+- PastaHistoryResponse(CookLogin,VisitDate)
+- PastaGroupSharingResponse(GroupKey,CreationDate,DeleteDate)
+- PastaGroupSharingRequest(PastaBindID, EndSharingDate)
+
+Interface / implementacje / kontrolery
+- Cook (rejestracja i logowanie)
+	- AddUser()
+	- DeleteUser()
+	- EditUser()
+	- Loguj() - mo¿e tu / zobaczymy / to póŸniej
+- Pasta (image i text)
+	- AddImgPasta()
+	- AddTxtPasta()
+	- Delete() -- to mo¿e byæ wspolne jeœli bêdzie wysy³ane bindPastaID
+	- PastaImgByUser()
+	- PastaTxtByUser()
+- PastaSharing (group i settings)
+	- AddGroupSharing() 
+	- EditGroupSharing()
+	- AddPastaSettings() - dodanie udostêpnianiaa dla pojedynczego u¿ytkownika
+	- EditPastaSettings() 
+	- PastaGroupSharingByPastaBinds() -- mo¿na dodaæ sortowanie 
+	- PastaSettingsByPastaBinds() -- mo¿na dodaæ sortowanie 
+- PastaHistory
+	- PastaHistoryByPastaBinds() -- mo¿na dodaæ sortowanie

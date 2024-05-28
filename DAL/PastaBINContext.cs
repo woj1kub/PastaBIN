@@ -6,12 +6,12 @@ namespace DAL
     public class PastaBINContext : DbContext
     {
         public DbSet<Cook> Cooks { get; set; }
-        public DbSet<PastaInfo> PastaInfos { get; set; }
-        public DbSet<PastaText> PastaTexts { get; set; }
-        public DbSet<PastaImg> PastaImgs { get; set; }
-        public DbSet<PastaHistory> PastaHistories { get; set; }
+        public DbSet<PastaGroupSharing> PastaGroupSharing { get; set; }
+        public DbSet<PastaTxt> Pastas { get; set; }
+        public DbSet<PastaBind> PastaBinds { get; set; }
         public DbSet<PastaSharingSettings> PastaSharingSettings { get; set; }
-
+        public DbSet<PastaImage> PastaImages { get; set; }
+        public DbSet<PastaHistory> PastaHistories { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=TaiibProjekt;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False");
@@ -19,13 +19,13 @@ namespace DAL
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfiguration(new Cook());
-            modelBuilder.ApplyConfiguration(new PastaText());
-            modelBuilder.ApplyConfiguration(new PastaImg());
-            modelBuilder.ApplyConfiguration(new PastaHistory());
+            modelBuilder.ApplyConfiguration(new PastaGroupSharing());
+            modelBuilder.ApplyConfiguration(new PastaTxt());
+            modelBuilder.ApplyConfiguration(new PastaBind());
             modelBuilder.ApplyConfiguration(new PastaSharingSettings());
-            modelBuilder.ApplyConfiguration(new PastaInfo());
+            modelBuilder.ApplyConfiguration(new PastaImage());
+            modelBuilder.ApplyConfiguration(new PastaHistory());
         }
     }
 }

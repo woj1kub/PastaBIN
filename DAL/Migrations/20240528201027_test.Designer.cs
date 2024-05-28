@@ -4,6 +4,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PastaBINContext))]
-    partial class PastaBINContextModelSnapshot : ModelSnapshot
+    [Migration("20240528201027_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,7 +45,17 @@ namespace DAL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("PastaHistoryHistoryID")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PastaSharingSettingsSharingSettingsID")
+                        .HasColumnType("int");
+
                     b.HasKey("CookID");
+
+                    b.HasIndex("PastaHistoryHistoryID");
+
+                    b.HasIndex("PastaSharingSettingsSharingSettingsID");
 
                     b.ToTable("Cooks");
                 });
@@ -58,7 +71,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreationDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeleteTime")
+                    b.Property<DateTime>("DeleteTime")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GroupKey")
@@ -112,7 +125,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GlobalKey")
@@ -145,7 +158,7 @@ namespace DAL.Migrations
                     b.Property<int>("CookID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("EndSharingDate")
+                    b.Property<DateTime>("EndSharingDate")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("PastaBindID")
@@ -210,6 +223,17 @@ namespace DAL.Migrations
                     b.HasIndex("CookID");
 
                     b.ToTable("PastaBinds");
+                });
+
+            modelBuilder.Entity("Model.Cook", b =>
+                {
+                    b.HasOne("Model.PastaHistory", null)
+                        .WithMany("Cooks")
+                        .HasForeignKey("PastaHistoryHistoryID");
+
+                    b.HasOne("Model.PastaSharingSettings", null)
+                        .WithMany("Cooks")
+                        .HasForeignKey("PastaSharingSettingsSharingSettingsID");
                 });
 
             modelBuilder.Entity("Model.PastaGroupSharing", b =>
@@ -295,10 +319,20 @@ namespace DAL.Migrations
                     b.Navigation("SharingSettings");
                 });
 
+            modelBuilder.Entity("Model.PastaHistory", b =>
+                {
+                    b.Navigation("Cooks");
+                });
+
             modelBuilder.Entity("Model.PastaImage", b =>
                 {
                     b.Navigation("PastaBind")
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Model.PastaSharingSettings", b =>
+                {
+                    b.Navigation("Cooks");
                 });
 
             modelBuilder.Entity("Model.PastaTxt", b =>

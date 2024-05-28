@@ -1,6 +1,4 @@
-using BLL;
 using DAL;
-using BLL_EF;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,12 +10,6 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PastaBINContext>();
-builder.Services.AddScoped<ICook, CookService>();
-builder.Services.AddScoped<IPastaHistory, PastaHistoryService>();
-builder.Services.AddScoped<IPastaImg, PastaImgService>();
-builder.Services.AddScoped<IPastaInfo, PastaInfoService>();
-builder.Services.AddScoped<IPastaText, PastaTextService>();
-builder.Services.AddScoped<IPastaSharingSettings, PastaSharingSettingsService>();
 
 
 var app = builder.Build();

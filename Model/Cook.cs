@@ -1,48 +1,47 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
-    [Table("Cook")]
+    [Table("Cooks")]
     public class Cook : IEntityTypeConfiguration<Cook>
     {
-        [Key]
-        public int ID { get; set; }
-
+          [Key]
+        public int CookID { get; set; }
         [Required]
-        [MaxLength(255)]
         public string Login { get; set; }
-
         [Required]
-        [MaxLength(255)]
         public string Password { get; set; }
-
-        [MaxLength(255)]
+        [Required]
         public string Email { get; set; }
 
-        public ICollection<PastaInfo> PastaInfos { get; set; }
-        public ICollection<PastaHistory> PastaHistories { get; set; }
-        public ICollection<PastaSharingSettings> PastaSharingSettings { get; set; }
+    // Navigation properties
+    public ICollection<PastaBind>? PastaBinds { get; set; }
+    public ICollection<PastaSharingSettings>? SharingSettings { get; set; }
+    public ICollection<PastaHistory>? Histories { get; set; }
+    public void Configure(EntityTypeBuilder<Cook> builder)
+    {
+        // Relationships
+        builder.HasMany(c => c.PastaBinds)
+                .WithOne(pb => pb.Cook)
+                .HasForeignKey(pb => pb.CookID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
 
-        public void Configure(EntityTypeBuilder<Cook> builder)
-        {
-            builder.HasMany(p => p.PastaInfos)
-                   .WithOne(p => p.Cook)
-                   .HasForeignKey(p => p.IDUser)
-                   .OnDelete(DeleteBehavior.Cascade);
+            builder.HasMany(c => c.SharingSettings)
+              .WithOne(pss => pss.Cook)
+              .HasForeignKey(pss => pss.CookID)
+              .IsRequired()
+              .OnDelete(DeleteBehavior.Cascade); 
 
-            builder.HasMany(p => p.PastaHistories)
-                   .WithOne(p => p.User)
-                   .HasForeignKey(p => p.IDUser)
-                   .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasMany(p => p.PastaSharingSettings)
-                   .WithOne(p => p.User)
-                   .HasForeignKey(p => p.IDUser)
-                   .OnDelete(DeleteBehavior.Cascade);
-        }
+        builder.HasMany(c => c.Histories)
+                .WithOne(ph => ph.Cook)
+                .HasForeignKey(ph => ph.CookID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade); ;
     }
+    }
+
 }

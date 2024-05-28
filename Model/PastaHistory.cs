@@ -1,8 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Model
 {
@@ -10,31 +9,31 @@ namespace Model
     public class PastaHistory : IEntityTypeConfiguration<PastaHistory>
     {
         [Key]
-        public int ID { get; set; }
-
-        [Column("UserID")]
-        public int IDUser { get; set; }
-
-        [Column("PastaInfoID")]
-        public int IDPastaInfo { get; set; }
-
+        public int HistoryID { get; set; }
+        public int CookID { get; set; }
+        public int PastaBindID { get; set; }
         public DateTime VisitDate { get; set; }
-        [ForeignKey(nameof(IDUser))]
-        public Cook User { get; set; }
-        [ForeignKey(nameof(IDPastaInfo))]
-        public PastaInfo PastaInfo { get; set; }
 
+        // Navigation properties
+        public Cook Cook { get; set; }
+        public PastaBind PastaBind { get; set; }
         public void Configure(EntityTypeBuilder<PastaHistory> builder)
         {
-            builder.HasOne(p => p.User)
-                   .WithMany(p => p.PastaHistories)
-                   .HasForeignKey(p => p.IDUser)
-                   .OnDelete(DeleteBehavior.NoAction);
+            // Relationships
+            builder.HasOne(ph => ph.Cook)
+                   .WithMany(c => c.Histories)
+                   .HasForeignKey(ph => ph.CookID)
+                   .IsRequired()
+                   .OnDelete(DeleteBehavior.ClientSetNull);
 
-            builder.HasOne(p => p.PastaInfo)
-                   .WithMany(p => p.PastaHistories)
-                   .HasForeignKey(p => p.IDPastaInfo)
-                   .OnDelete(DeleteBehavior.NoAction);
+            builder.HasOne(ph => ph.PastaBind)
+                   .WithMany(pb => pb.Histories)
+                   .HasForeignKey(ph => ph.PastaBindID)
+                   .IsRequired()
+                   .OnDelete(DeleteBehavior.ClientSetNull);
+
+
         }
+
     }
 }
