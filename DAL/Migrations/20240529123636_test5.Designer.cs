@@ -4,6 +4,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PastaBINContext))]
-    partial class PastaBINContextModelSnapshot : ModelSnapshot
+    [Migration("20240529123636_test5")]
+    partial class test5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,37 +53,6 @@ namespace DAL.Migrations
                     b.ToTable("Cooks");
                 });
 
-            modelBuilder.Entity("Model.PastaBind", b =>
-                {
-                    b.Property<int>("PastaBindID")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CookID")
-                        .HasColumnType("int");
-
-                    b.Property<string>("GlobalKey")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("ImgID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SharingSettingsID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TxtID")
-                        .HasColumnType("int");
-
-                    b.HasKey("PastaBindID");
-
-                    b.HasIndex("CookID");
-
-                    b.HasIndex("GlobalKey")
-                        .IsUnique();
-
-                    b.ToTable("PastaBinds");
-                });
-
             modelBuilder.Entity("Model.PastaGroupSharing", b =>
                 {
                     b.Property<int>("GroupSharingID")
@@ -97,15 +69,12 @@ namespace DAL.Migrations
 
                     b.Property<string>("GroupKey")
                         .IsRequired()
-                        .HasColumnType("nvarchar(450)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("PastaBindID")
                         .HasColumnType("int");
 
                     b.HasKey("GroupSharingID");
-
-                    b.HasIndex("GroupKey")
-                        .IsUnique();
 
                     b.HasIndex("PastaBindID");
 
@@ -120,8 +89,7 @@ namespace DAL.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HistoryID"));
 
-                    b.Property<int?>("CookID")
-                        .IsRequired()
+                    b.Property<int>("CookID")
                         .HasColumnType("int");
 
                     b.Property<int>("PastaBindID")
@@ -189,7 +157,8 @@ namespace DAL.Migrations
 
                     b.HasIndex("CookID");
 
-                    b.HasIndex("PastaBindID");
+                    b.HasIndex("PastaBindID")
+                        .IsUnique();
 
                     b.ToTable("PastaSharingSettings");
                 });
@@ -209,7 +178,7 @@ namespace DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("DeleteDate")
+                    b.Property<DateTime>("DeleteDate")
                         .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
@@ -220,39 +189,43 @@ namespace DAL.Migrations
 
                     b.HasKey("PastaTxtID");
 
+                    b.HasIndex("PastaBindID")
+                        .IsUnique();
+
                     b.ToTable("PastaTxt");
                 });
 
-            modelBuilder.Entity("Model.PastaBind", b =>
+            modelBuilder.Entity("PastaBind", b =>
                 {
-                    b.HasOne("Model.Cook", "Cook")
-                        .WithMany("PastaBinds")
-                        .HasForeignKey("CookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                    b.Property<int>("PastaBindID")
+                        .HasColumnType("int");
 
-                    b.HasOne("Model.PastaImage", "Image")
-                        .WithOne("PastaBind")
-                        .HasForeignKey("Model.PastaBind", "PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.Property<int>("CookID")
+                        .HasColumnType("int");
 
-                    b.HasOne("Model.PastaTxt", "Txt")
-                        .WithOne("PastaBind")
-                        .HasForeignKey("Model.PastaBind", "PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                    b.Property<string>("GlobalKey")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
-                    b.Navigation("Cook");
+                    b.Property<int?>("PastaID")
+                        .HasColumnType("int");
 
-                    b.Navigation("Image");
+                    b.Property<int?>("SharingSettingsID")
+                        .HasColumnType("int");
 
-                    b.Navigation("Txt");
+                    b.HasKey("PastaBindID");
+
+                    b.HasIndex("CookID");
+
+                    b.HasIndex("GlobalKey")
+                        .IsUnique();
+
+                    b.ToTable("PastaBinds");
                 });
 
             modelBuilder.Entity("Model.PastaGroupSharing", b =>
                 {
-                    b.HasOne("Model.PastaBind", "PastaBind")
+                    b.HasOne("PastaBind", "PastaBind")
                         .WithMany("GroupSharing")
                         .HasForeignKey("PastaBindID")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -269,7 +242,7 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Model.PastaBind", "PastaBind")
+                    b.HasOne("PastaBind", "PastaBind")
                         .WithMany("Histories")
                         .HasForeignKey("PastaBindID")
                         .OnDelete(DeleteBehavior.Restrict)
@@ -288,15 +261,45 @@ namespace DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("Model.PastaBind", "PastaBind")
-                        .WithMany("SharingSettings")
-                        .HasForeignKey("PastaBindID")
+                    b.HasOne("PastaBind", "PastaBind")
+                        .WithOne("SharingSettings")
+                        .HasForeignKey("Model.PastaSharingSettings", "PastaBindID")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cook");
 
                     b.Navigation("PastaBind");
+                });
+
+            modelBuilder.Entity("Model.PastaTxt", b =>
+                {
+                    b.HasOne("PastaBind", "PastaBind")
+                        .WithOne("Txt")
+                        .HasForeignKey("Model.PastaTxt", "PastaBindID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("PastaBind");
+                });
+
+            modelBuilder.Entity("PastaBind", b =>
+                {
+                    b.HasOne("Model.Cook", "Cook")
+                        .WithMany("PastaBinds")
+                        .HasForeignKey("CookID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Model.PastaImage", "Image")
+                        .WithOne("PastaBind")
+                        .HasForeignKey("PastaBind", "PastaBindID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Cook");
+
+                    b.Navigation("Image");
                 });
 
             modelBuilder.Entity("Model.Cook", b =>
@@ -308,25 +311,21 @@ namespace DAL.Migrations
                     b.Navigation("SharingSettings");
                 });
 
-            modelBuilder.Entity("Model.PastaBind", b =>
-                {
-                    b.Navigation("GroupSharing");
-
-                    b.Navigation("Histories");
-
-                    b.Navigation("SharingSettings");
-                });
-
             modelBuilder.Entity("Model.PastaImage", b =>
                 {
                     b.Navigation("PastaBind")
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Model.PastaTxt", b =>
+            modelBuilder.Entity("PastaBind", b =>
                 {
-                    b.Navigation("PastaBind")
-                        .IsRequired();
+                    b.Navigation("GroupSharing");
+
+                    b.Navigation("Histories");
+
+                    b.Navigation("SharingSettings");
+
+                    b.Navigation("Txt");
                 });
 #pragma warning restore 612, 618
         }

@@ -10,22 +10,27 @@ namespace Model
     {
         [Key]
         public int ImageID { get; set; }
+        [Required]
         public int PastaBindID { get; set; }
+        [Required]
         public byte[] ImageData { get; set; }
-        public string GlobalKey { get; set; }
-        public bool IsActive { get; set; }
+        [Required]
+        public bool IsActive { get; set; } = true;
+        [Required]
         public DateTime CreateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
 
 
         // Navigation property
+        [ForeignKey(nameof(PastaBindID))]
         public PastaBind PastaBind { get; set; }
         public void Configure(EntityTypeBuilder<PastaImage> builder)
         {
             // Relationships
             builder.HasOne(pi => pi.PastaBind)
                    .WithOne(pb => pb.Image)
-                   .HasForeignKey<PastaBind>(pi => pi.PastaBindID);
+                   .HasForeignKey<PastaBind>(pi => pi.PastaBindID)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 

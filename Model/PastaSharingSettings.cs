@@ -10,12 +10,16 @@ namespace Model
     {
         [Key]
         public int SharingSettingsID { get; set; }
+        [Required]
         public int CookID { get; set; }
+        [Required]
         public int PastaBindID { get; set; }
         public DateTime? EndSharingDate { get; set; }
 
         // Navigation properties
+        [ForeignKey(nameof(CookID))]
         public Cook Cook { get; set; }
+        [ForeignKey(nameof(PastaBindID))]
         public PastaBind PastaBind { get; set; }
         public void Configure(EntityTypeBuilder<PastaSharingSettings> builder)
         {
@@ -23,13 +27,13 @@ namespace Model
                    .WithMany(c => c.SharingSettings) // Ensure this matches the configuration in Cook
                    .HasForeignKey(pss => pss.CookID)
                    .IsRequired()
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(pss => pss.PastaBind)
-                   .WithOne(pb => pb.SharingSettings)
-                   .HasForeignKey<PastaSharingSettings>(pss => pss.PastaBindID) // Specify the foreign key in PastaSharingSettings
+                   .WithMany(pb => pb.SharingSettings)
+                   .HasForeignKey(pss => pss.PastaBindID) // Specify the foreign key in PastaSharingSettings
                    .IsRequired()
-                   .OnDelete(DeleteBehavior.Cascade);
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }

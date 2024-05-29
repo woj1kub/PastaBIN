@@ -1,19 +1,23 @@
-DTO:
+  DTO:
 - LoginRequest (Login/email , Has³o) - do autoryzacji, w JWT bêdziemy wysy³aæ type i id
 - CookRequest (Login , email , has³o) - do tworzenia
-- PastaImageResponce( IDBind , image , globalKey, CreationDate,DeleteDate)
+- PastaImageResponce( IDBind , image , globalKey,DeleteDate)
 - PastaImageRequst(Image , CookId,DeleteDate)
-- PastaTxtResponce(IDBind , txt, globalKey, CreationDate,DeleteDate)
+- PastaTxtResponce(IDBind , txt, globalKey, DeleteDate)
 - PastaImageRequst(Txt , CookId , DeleteDate)
-- PastaSharingSettingsResponce(CookLogin, EndSharingDate)
+
+- PastaSharingSettingsResponce(PastaSharingID .CookLogin, EndSharingDate)
 - PastaSharingSettingsRequest(CookLogin,IDPastaBind,EndSharingDate)
+
 - PastaHistoryResponse(CookLogin,VisitDate)
+
 - PastaGroupSharingResponse(GroupKey,CreationDate,DeleteDate)
+
 - PastaGroupSharingRequest(PastaBindID, EndSharingDate)
 
 Interface / implementacje / kontrolery
 - Cook (rejestracja i logowanie)
-	- AddUser()
+	- AddUser()Q
 	- DeleteUser()
 	- EditUser()
 	- Loguj() - mo¿e tu / zobaczymy / to póŸniej
@@ -21,14 +25,16 @@ Interface / implementacje / kontrolery
 	- AddImgPasta()
 	- AddTxtPasta()
 	- Delete() -- to mo¿e byæ wspolne jeœli bêdzie wysy³ane bindPastaID
-	- PastaImgByUser()
-	- PastaTxtByUser()
+	- PastaImgByUser() -- tu robimy jak chcemy dla danego u¿ytkownika
+	- PastaTxtByUser() -- tu robimy jak chcemy dla danego u¿ytkownika
+	- PastaTxtByKey() -- tu algorytm który szuka w group i w global keys w binds - mo¿na wielew¹tkowo
+	- PastaImgByKey() -- tu algorytm któryt szuka w group w gloabal keys w binds - mo¿na wielew¹tkowo
+	- PastaHistoryByPastaBinds() -- mo¿na dodaæ sortowanie
 - PastaSharing (group i settings)
 	- AddGroupSharing() 
 	- EditGroupSharing()
 	- AddPastaSettings() - dodanie udostêpnianiaa dla pojedynczego u¿ytkownika
 	- EditPastaSettings() 
-	- PastaGroupSharingByPastaBinds() -- mo¿na dodaæ sortowanie 
-	- PastaSettingsByPastaBinds() -- mo¿na dodaæ sortowanie 
+	- PastaGroupSharingByPastaBind() -- mo¿na dodaæ sortowanie 
+	- PastaSettingsByPastaBind() -- mo¿na dodaæ sortowanie 
 - PastaHistory
-	- PastaHistoryByPastaBinds() -- mo¿na dodaæ sortowanie
