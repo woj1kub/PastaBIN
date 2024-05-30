@@ -16,15 +16,16 @@ namespace WebAPI.Controllers
                 _pastaImgService = pastaImgService ?? throw new ArgumentNullException(nameof(pastaImgService));
             }
 
-            [HttpPost("add")]
-            public IActionResult AddPastaImage([FromBody] PastaImageRequest pastaImageRequest)
+            [HttpPost("add/{cookID}")]
+            public IActionResult AddPastaImage(int? cookID, [FromBody] PastaImageRequest pastaImageRequest)
             {
                 if (pastaImageRequest == null)
                     return BadRequest();
-            string key;
-                if ((key = _pastaImgService.AddImgPasta(pastaImageRequest))!=" ")
+                string key;
+                
+            if ((key = _pastaImgService.AddImgPasta(cookID,pastaImageRequest))!=" ")
                     return Ok(key);
-
+                
                 return BadRequest("Invalid request or missing data.");
             }
 

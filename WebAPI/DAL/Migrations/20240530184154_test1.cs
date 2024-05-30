@@ -27,44 +27,11 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "PastaImage",
-                columns: table => new
-                {
-                    ImageID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PastaBindID = table.Column<int>(type: "int", nullable: false),
-                    ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PastaImage", x => x.ImageID);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PastaTxt",
-                columns: table => new
-                {
-                    PastaTxtID = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    PastaBindID = table.Column<int>(type: "int", nullable: false),
-                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PastaTxt", x => x.PastaTxtID);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "PastaBinds",
                 columns: table => new
                 {
-                    PastaBindID = table.Column<int>(type: "int", nullable: false),
+                    PastaBindID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TxtID = table.Column<int>(type: "int", nullable: true),
                     ImgID = table.Column<int>(type: "int", nullable: true),
                     CookID = table.Column<int>(type: "int", nullable: true),
@@ -80,18 +47,6 @@ namespace DAL.Migrations
                         principalTable: "Cooks",
                         principalColumn: "CookID",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_PastaBinds_PastaImage_PastaBindID",
-                        column: x => x.PastaBindID,
-                        principalTable: "PastaImage",
-                        principalColumn: "ImageID",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_PastaBinds_PastaTxt_PastaBindID",
-                        column: x => x.PastaBindID,
-                        principalTable: "PastaTxt",
-                        principalColumn: "PastaTxtID",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -144,6 +99,29 @@ namespace DAL.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PastaImage",
+                columns: table => new
+                {
+                    ImageID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PastaBindID = table.Column<int>(type: "int", nullable: false),
+                    ImageData = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PastaImage", x => x.ImageID);
+                    table.ForeignKey(
+                        name: "FK_PastaImage_PastaBinds_PastaBindID",
+                        column: x => x.PastaBindID,
+                        principalTable: "PastaBinds",
+                        principalColumn: "PastaBindID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PastaSharingSettings",
                 columns: table => new
                 {
@@ -165,6 +143,29 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PastaSharingSettings_PastaBinds_PastaBindID",
+                        column: x => x.PastaBindID,
+                        principalTable: "PastaBinds",
+                        principalColumn: "PastaBindID",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PastaTxt",
+                columns: table => new
+                {
+                    PastaTxtID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PastaBindID = table.Column<int>(type: "int", nullable: false),
+                    Content = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsActive = table.Column<bool>(type: "bit", nullable: false),
+                    CreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DeleteDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PastaTxt", x => x.PastaTxtID);
+                    table.ForeignKey(
+                        name: "FK_PastaTxt_PastaBinds_PastaBindID",
                         column: x => x.PastaBindID,
                         principalTable: "PastaBinds",
                         principalColumn: "PastaBindID",
@@ -210,6 +211,12 @@ namespace DAL.Migrations
                 column: "PastaBindID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_PastaImage_PastaBindID",
+                table: "PastaImage",
+                column: "PastaBindID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_PastaSharingSettings_CookID",
                 table: "PastaSharingSettings",
                 column: "CookID");
@@ -218,6 +225,12 @@ namespace DAL.Migrations
                 name: "IX_PastaSharingSettings_PastaBindID",
                 table: "PastaSharingSettings",
                 column: "PastaBindID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PastaTxt_PastaBindID",
+                table: "PastaTxt",
+                column: "PastaBindID",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -230,19 +243,19 @@ namespace DAL.Migrations
                 name: "PastaHistory");
 
             migrationBuilder.DropTable(
+                name: "PastaImage");
+
+            migrationBuilder.DropTable(
                 name: "PastaSharingSettings");
+
+            migrationBuilder.DropTable(
+                name: "PastaTxt");
 
             migrationBuilder.DropTable(
                 name: "PastaBinds");
 
             migrationBuilder.DropTable(
                 name: "Cooks");
-
-            migrationBuilder.DropTable(
-                name: "PastaImage");
-
-            migrationBuilder.DropTable(
-                name: "PastaTxt");
         }
     }
 }

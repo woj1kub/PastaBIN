@@ -1,0 +1,19 @@
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 75vh; /* Cała wysokość widoku */
+    gap: 20px; /* Odstęp między elementami */
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 10px; /* Odstęp między przyciskami */
+    margin-bottom: 20px; /* Odstęp poniżej przycisków */
+  }
+  
+  button.selected {
+    font-weight: bold;
+  }
+  

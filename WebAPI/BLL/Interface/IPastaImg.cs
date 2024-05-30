@@ -10,7 +10,7 @@ namespace BLL.Interface
     public interface IPastaImg
     {
         //Dla past img
-        public string AddImgPasta(PastaImageRequest pastaImageRequest);
+        public string AddImgPasta(int? CookID,PastaImageRequest pastaImageRequest);
         public IEnumerable<PastaImageResponse> GetPastaImgByUser(int CookID);
         public PastaImageResponse GetPastaImgByKey(string Key, int CookID);
     }

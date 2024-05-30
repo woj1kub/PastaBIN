@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 
 namespace Model
 {
@@ -20,18 +20,16 @@ namespace Model
         public DateTime CreateDate { get; set; }
         public DateTime? DeleteDate { get; set; }
 
-
         // Navigation property
-        [ForeignKey(nameof(PastaBindID))]
         public PastaBind PastaBind { get; set; }
+
         public void Configure(EntityTypeBuilder<PastaImage> builder)
         {
             // Relationships
             builder.HasOne(pi => pi.PastaBind)
                    .WithOne(pb => pb.Image)
-                   .HasForeignKey<PastaBind>(pi => pi.PastaBindID)
+                   .HasForeignKey<PastaImage>(pi => pi.PastaBindID)
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }
-
 }

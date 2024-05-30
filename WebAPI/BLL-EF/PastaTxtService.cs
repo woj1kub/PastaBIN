@@ -15,7 +15,7 @@ namespace BLL_EF
             this.context = context;
         }
 
-        public string AddTxtPasta(PastaTextRequest pastaTextRequest)
+        public string AddTxtPasta(int? CookID, PastaTextRequest pastaTextRequest)
         {
             if (pastaTextRequest == null || string.IsNullOrEmpty(pastaTextRequest.Content))
                 return "";
@@ -28,7 +28,8 @@ namespace BLL_EF
 
             PastaBind pastaBind = new PastaBind()
             {
-                GlobalKey = globalKey
+                GlobalKey = globalKey,
+                CookID = CookID
             };
             context.PastaBinds.Add(pastaBind);
             context.SaveChanges();

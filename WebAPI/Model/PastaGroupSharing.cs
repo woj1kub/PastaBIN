@@ -17,8 +17,8 @@ namespace Model
         public DateTime? EndSharingDate { get; set; }
         [Required]
         public int PastaBindID { get; set; }
+
         // Navigation property
-        [ForeignKey(nameof(PastaBindID))]
         public PastaBind PastaBind { get; set; }
 
         public void Configure(EntityTypeBuilder<PastaGroupSharing> builder)
@@ -28,7 +28,7 @@ namespace Model
 
             builder.HasOne(pgs => pgs.PastaBind)
                    .WithMany(pb => pb.GroupSharing)
-                   .HasForeignKey(pb => pb.GroupSharingID)
+                   .HasForeignKey(pgs => pgs.PastaBindID)
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }

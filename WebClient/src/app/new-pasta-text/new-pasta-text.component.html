@@ -1,19 +1,21 @@
-<mat-card>
-    <mat-card-content>
-        <form [formGroup]="formPastaText" (ngSubmit)="onSubmit()">
-            <textarea matInput formControlName="content" name="content"></textarea>
+<mat-card class="container">
+  <mat-card-content class="content">
+    <form [formGroup]="formPastaText" (ngSubmit)="onSubmit()">
+      <mat-form-field class="textarea" appearance="fill">
+        <mat-label>Zawartość</mat-label>
+        <textarea matInput formControlName="content" name="content"></textarea>
+      </mat-form-field>
+      <div class="button-container">
+        <mat-form-field appearance="fill">
+            <mat-label>Wybierz datę</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        <button mat-raised-button color="warn" type="submit">Generuj</button>
+      </div>
+    </form>
+    <input type="text" matInput [(ngModel)]="key" readonly class="readonly-input"/>
 
-            <mat-form-field appearance="fill">
-                <mat-label>Wybierz datę</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="date">
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-
-            <div>
-                <button mat-raised-button color="primary" type="submit">Generuj</button>
-                <p>{{key}}</p>
-            </div>
-        </form>
-    </mat-card-content>
+  </mat-card-content>
 </mat-card>

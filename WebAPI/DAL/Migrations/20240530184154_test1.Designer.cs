@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PastaBINContext))]
-    [Migration("20240530171035_test3")]
-    partial class test3
+    [Migration("20240530184154_test1")]
+    partial class test1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -56,7 +56,10 @@ namespace DAL.Migrations
             modelBuilder.Entity("Model.PastaBind", b =>
                 {
                     b.Property<int>("PastaBindID")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PastaBindID"));
 
                     b.Property<int?>("CookID")
                         .HasColumnType("int");
@@ -168,6 +171,9 @@ namespace DAL.Migrations
 
                     b.HasKey("ImageID");
 
+                    b.HasIndex("PastaBindID")
+                        .IsUnique();
+
                     b.ToTable("PastaImage");
                 });
 
@@ -226,6 +232,9 @@ namespace DAL.Migrations
 
                     b.HasKey("PastaTxtID");
 
+                    b.HasIndex("PastaBindID")
+                        .IsUnique();
+
                     b.ToTable("PastaTxt");
                 });
 
@@ -236,23 +245,7 @@ namespace DAL.Migrations
                         .HasForeignKey("CookID")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Model.PastaImage", "Image")
-                        .WithOne("PastaBind")
-                        .HasForeignKey("Model.PastaBind", "PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("Model.PastaTxt", "Txt")
-                        .WithOne("PastaBind")
-                        .HasForeignKey("Model.PastaBind", "PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
                     b.Navigation("Cook");
-
-                    b.Navigation("Image");
-
-                    b.Navigation("Txt");
                 });
 
             modelBuilder.Entity("Model.PastaGroupSharing", b =>
@@ -285,6 +278,17 @@ namespace DAL.Migrations
                     b.Navigation("PastaBind");
                 });
 
+            modelBuilder.Entity("Model.PastaImage", b =>
+                {
+                    b.HasOne("Model.PastaBind", "PastaBind")
+                        .WithOne("Image")
+                        .HasForeignKey("Model.PastaImage", "PastaBindID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PastaBind");
+                });
+
             modelBuilder.Entity("Model.PastaSharingSettings", b =>
                 {
                     b.HasOne("Model.Cook", "Cook")
@@ -304,6 +308,17 @@ namespace DAL.Migrations
                     b.Navigation("PastaBind");
                 });
 
+            modelBuilder.Entity("Model.PastaTxt", b =>
+                {
+                    b.HasOne("Model.PastaBind", "PastaBind")
+                        .WithOne("Txt")
+                        .HasForeignKey("Model.PastaTxt", "PastaBindID")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("PastaBind");
+                });
+
             modelBuilder.Entity("Model.Cook", b =>
                 {
                     b.Navigation("Histories");
@@ -319,19 +334,11 @@ namespace DAL.Migrations
 
                     b.Navigation("Histories");
 
+                    b.Navigation("Image");
+
                     b.Navigation("SharingSettings");
-                });
 
-            modelBuilder.Entity("Model.PastaImage", b =>
-                {
-                    b.Navigation("PastaBind")
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Model.PastaTxt", b =>
-                {
-                    b.Navigation("PastaBind")
-                        .IsRequired();
+                    b.Navigation("Txt");
                 });
 #pragma warning restore 612, 618
         }

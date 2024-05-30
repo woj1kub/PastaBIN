@@ -16,13 +16,13 @@ namespace WebAPI.Controllers
             _pastaTxtService = pastaTxtService ?? throw new ArgumentNullException(nameof(pastaTxtService));
         }
 
-        [HttpPost("add")]
-        public IActionResult AddTxtPasta([FromBody] PastaTextRequest pastaTextRequest)
+        [HttpPost("add/{cookID}")]
+        public IActionResult AddTxtPasta(int? cookID,[FromBody] PastaTextRequest pastaTextRequest)
         {
             if (pastaTextRequest == null)
                 return BadRequest();
             string key;
-            if ((key=_pastaTxtService.AddTxtPasta(pastaTextRequest))!="")
+            if ((key=_pastaTxtService.AddTxtPasta(cookID, pastaTextRequest))!="")
                 return Ok(key);
 
             return BadRequest("Invalid request or missing data.");

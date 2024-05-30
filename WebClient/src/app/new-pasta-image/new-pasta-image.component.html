@@ -1,1 +1,26 @@
-<p>new-pasta-image works!</p>
+<mat-card class="container">
+    <mat-card-content class="content">
+      <form [formGroup]="formPastaImage" (ngSubmit)="onSubmit()">
+        <div class="textarea">
+            <div class="image-container" *ngIf="!imageSrc">
+              <span>Wrzuć zdjęcie</span>
+            </div>
+            <img [src]="imageSrc" alt="Selected Image" *ngIf="imageSrc" class="selected-image" />
+            <input type="file" (change)="onFileSelected($event)" accept="image/*" class="file-input" />
+        </div>
+          
+  
+        <div class="button-container">
+          <mat-form-field appearance="fill">
+            <mat-label>Wybierz datę</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="date">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+          <button mat-raised-button color="warn" type="submit">Generuj</button>
+        </div>
+      </form>
+      <input type="text" matInput [(ngModel)]="key" readonly class="readonly-input"/>
+    </mat-card-content>
+  </mat-card>
+  

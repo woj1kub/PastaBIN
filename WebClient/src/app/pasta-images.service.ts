@@ -11,9 +11,9 @@ export class PastaImagesService {
 
   constructor(private httpClient:HttpClient) { }
   private startURL:string='https://localhost:7023/PastaImg';
-  addPastaImage(pastaImage : PastaImageRequest ):Observable<void>
+  addPastaImage(pastaImage : PastaImageRequest, cookID:number | null ):Observable<string>
   {
-    return this.httpClient.post<void>(this.startURL +'/add/', pastaImage, {
+    return this.httpClient.post<string>(this.startURL +'/add/'+ cookID, pastaImage, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

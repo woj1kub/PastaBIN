@@ -11,9 +11,9 @@ export class PastaTextsService {
 
   constructor(private httpClient:HttpClient) { }
   private startURL:string='https://localhost:7023/PastaTxt';
-  addPastaText(pastaText : PastaTextRequest ):Observable<string>
+  addPastaText(pastaText : PastaTextRequest , cookID:number | null ):Observable<string>
   {
-    return this.httpClient.post<string>(this.startURL +'/add/', pastaText, {
+    return this.httpClient.post<string>(this.startURL +'/add/'+cookID, pastaText, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

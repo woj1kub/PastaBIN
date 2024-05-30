@@ -18,10 +18,14 @@ namespace BLL_EF
         public bool AddSharingSettings(int cookID, PastaSharingSettingsRequest pastaSharingSettingsRequest)
         {
             PastaBind pastaBind = context.PastaBinds
-                .Include(pb => pb.Cook)
-                .SingleOrDefault(pb => pb.PastaBindID == pastaSharingSettingsRequest.PastaBindID && pb.CookID == cookID);
+                .SingleOrDefault(pb => pb.PastaBindID == pastaSharingSettingsRequest.PastaBindID);
 
-            if (pastaBind == null)
+            if (pastaBind == null || cookID!=pastaBind.CookID)
+                return false;
+
+            Cook cook = context.Cooks
+                .SingleOrDefault(c => c.Login == pastaSharingSettingsRequest.CookLogin);
+            if (cook == null) 
                 return false;
 
             context.PastaSharingSettings.Add(new PastaSharingSettings()
@@ -29,6 +33,7 @@ namespace BLL_EF
                 CreationDate = DateTime.Now,
                 EndSharingDate = pastaSharingSettingsRequest.EndSharingDate,
                 PastaBindID = pastaBind.PastaBindID,
+                CookID=cook.CookID
             });
 
             context.SaveChanges();
