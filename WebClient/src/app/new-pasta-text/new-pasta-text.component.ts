@@ -28,11 +28,15 @@ export class NewPastaTextComponent implements OnInit {
         content: formData.content,
         deleteDate: formData.date
       };
-      this.servicePastaText.addPastaText(pastaTextRequest, null).subscribe((response: string) => {
-        this.key = response;
-      }, (error) => {
-        console.error(error);
-      });
+      this.servicePastaText.addPastaText(pastaTextRequest, 0).subscribe({
+        next: (Key: any) => {
+          this.key = Key.key;
+          alert(this.key);
+        },
+        error: (error) => {
+          console.error(error);
+        }
+      });            
     } else {
       console.log('Form is invalid');
     }

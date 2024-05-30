@@ -47,13 +47,18 @@ export class NewPastaImageComponent {
     if (this.formPastaImage.valid) {
       const formData = this.formPastaImage.value;
       const pastaImageRequest: PastaImageRequest = {
+        // W przypadku przesyłania pliku, użyj metody FormData
         image: formData.content,
         deleteDate: formData.date
       };
-      this.servicePastaImage.addPastaImage(pastaImageRequest, null).subscribe((response: string) => {
-        this.key = response;
-      }, (error) => {
-        console.error(error);
+      this.servicePastaImage.addPastaImage(pastaImageRequest, 0).subscribe({
+        next: (Key: any) => {
+          this.key = Key.key;
+          alert(this.key);
+        },
+        error: (error) => {
+          console.error(error);
+        }
       });
     } else {
       console.log('Form is invalid');

@@ -29,7 +29,7 @@ namespace BLL_EF
             PastaBind pastaBind = new PastaBind()
             {
                 GlobalKey = globalKey,
-                CookID = CookID
+                CookID = CookID != 0 ? CookID : null,
             };
             context.PastaBinds.Add(pastaBind);
             context.SaveChanges();

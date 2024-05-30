@@ -24,9 +24,9 @@ namespace WebAPI.Controllers
                 string key;
                 
             if ((key = _pastaImgService.AddImgPasta(cookID,pastaImageRequest))!=" ")
-                    return Ok(key);
-                
-                return BadRequest("Invalid request or missing data.");
+                return Ok(new KeyResponse() { Key = key });
+
+            return BadRequest("Invalid request or missing data.");
             }
 
             [HttpGet("getByKey/{key}/{cookID}")]

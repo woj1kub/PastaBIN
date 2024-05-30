@@ -22,9 +22,11 @@ namespace WebAPI.Controllers
             if (pastaTextRequest == null)
                 return BadRequest();
             string key;
-            if ((key=_pastaTxtService.AddTxtPasta(cookID, pastaTextRequest))!="")
-                return Ok(key);
-
+            if ((key = _pastaTxtService.AddTxtPasta(cookID, pastaTextRequest)) != "")
+            {
+                Console.WriteLine(key);
+                return Ok(new KeyResponse() { Key = key });
+            }
             return BadRequest("Invalid request or missing data.");
         }
 
