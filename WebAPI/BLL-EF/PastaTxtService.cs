@@ -31,7 +31,7 @@ namespace BLL_EF
                 GlobalKey = globalKey
             };
             context.PastaBinds.Add(pastaBind);
-
+            context.SaveChanges();
             context.PastaText.Add(new PastaTxt()
             {
                 CreateDate = DateTime.Now,

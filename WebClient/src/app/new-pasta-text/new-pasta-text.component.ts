@@ -11,7 +11,7 @@ import { PastaTextRequest } from '../model/pastaTextRequst.interface';
 export class NewPastaTextComponent {
 
   formPastaText!: FormGroup;
-  key!:string;
+  key:string = "";
   constructor(private fb: FormBuilder, private servicePastaText:PastaTextsService) { }
 
   ngOnInit(): void {
@@ -20,7 +20,7 @@ export class NewPastaTextComponent {
       date: ['', Validators.required]
     });
   }
-
+  
   onSubmit(): void {
     if (this.formPastaText.valid) {
       const formData = this.formPastaText.value;
@@ -35,7 +35,6 @@ export class NewPastaTextComponent {
         console.error(error)
       }
     );
-      
     } else {
       console.log('Form is invalid');
     }

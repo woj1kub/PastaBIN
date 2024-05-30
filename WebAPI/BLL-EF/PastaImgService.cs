@@ -31,6 +31,7 @@ namespace BLL_EF
                 GlobalKey = globalKey
             };
             context.PastaBinds.Add(pastaBind);
+            context.SaveChanges();
 
             context.PastaImages.Add(new PastaImage()
             {

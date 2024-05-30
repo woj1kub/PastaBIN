@@ -34,7 +34,6 @@ namespace Model
             builder.HasOne(ph => ph.PastaBind)
                    .WithMany(pb => pb.Histories)
                    .HasForeignKey(ph => ph.PastaBindID)
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Restrict);
 
 

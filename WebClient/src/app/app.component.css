@@ -1,0 +1,42 @@
+.mat-elevation-z2 {
+    height: 10vh;
+    width: 100%;
+    z-index: 1000;
+  }
+  
+  .wrapper {
+    display: fixed;
+    display: flex;
+    min-width: 170px;
+
+    }
+  
+  .content {
+    flex: 1;
+  }
+  
+  .router-outlet-wrapper {
+    flex: 5;
+    overflow-y: auto; /* Dodatkowy przewijanie dla obszaru zawartości */
+    padding: 16px;
+  }
+  .buttons_banner {
+    margin: 16px;
+    height: 75vh; 
+    display: flex;
+    flex-direction: column;
+    
+}
+  
+  .button-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .low_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  

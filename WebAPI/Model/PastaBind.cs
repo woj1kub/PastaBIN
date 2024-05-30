@@ -34,19 +34,16 @@ namespace Model{
             builder.HasMany(pb => pb.SharingSettings)
                    .WithOne(pss => pss.PastaBind)
                    .HasForeignKey(pss => pss.PastaBindID) // Specify the foreign key in PastaSharingSettings
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pb => pb.Histories)
                    .WithOne(ph => ph.PastaBind)
                    .HasForeignKey(ph => ph.PastaBindID)
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pb => pb.GroupSharing)
                    .WithOne(pgs => pgs.PastaBind) // Ensure the correct name is used here
                    .HasForeignKey(pgs => pgs.PastaBindID) // Ensure the correct FK property is used here
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Cascade);
         }
     }

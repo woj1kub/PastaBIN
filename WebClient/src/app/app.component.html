@@ -1,30 +1,38 @@
-<div>
-  <div class="banner">
-    <h1>PastaBin</h1>
+<mat-toolbar color="primary" class="mat-elevation-z2">
+    <h1 class="mat-h1">PastaBin</h1>
+</mat-toolbar>
+
+<div class="wrapper" >
+  <div class="content">
+    <div class="buttons_banner">
+      <p>
+        <label>Witaj 🙋‍♀️</label>
+        <!-- Tu będzie się zmieniać -->
+        <label>Nazwa</label>
+      </p>
+      <!-- To zawsze będzie -->
+      <div class="button-column">
+        <button mat-raised-button routerLink="/openPasta">Otwórz paste</button>
+        <button mat-raised-button routerLink="/addPasta">Nowa Pasta</button>
+      </div>
+      <!-- Guziki dla niezalogowanego użytkownika -->
+      <div class="low_buttons">
+        <button mat-raised-button routerLink="/login">Zaloguj</button>
+        <button mat-raised-button routerLink="/signUp">Utwórz Konto</button>
+      </div>
+      <!-- Guziki dla zalogowanego użytkownika -->
+      <!-- <div class="low_buttons">
+        <button mat-raised-button routerLink="/ustawienia">Ustawienia</button>
+        <button mat-raised-button routerLink="/wyloguj">Wyloguj</button>
+      </div> -->
+    </div>
   </div>
-  <div class="buttons_banner">
-    <p>
-      <label>Witaj 🙋‍♀️</label>
-      <!-- Tu będzie się zmieniać -->
-      <label>Nazwa </label>
-    </p>
-    <!-- To zawsze bedzie -->
-    <div>
-      <button> Otwórz paste </button>
-      <button> Nowa Pasta </button>
+
+  <mat-divider [vertical]="true"></mat-divider>
+
+  <div class="router-outlet-wrapper">
+    <div class="router-outlet-content">
+      <router-outlet></router-outlet>
     </div>
-    <!-- Te guziki dla nie zalogowanego użytkownika-->
-    <div class="low_buttons">
-      <button> Zaloguj </button>
-      <button> Utwórz Konto </button>
-    </div>
-    <!-- Te guziki dla zalogowanego użytkownika -->
-    <div class="low_buttons">
-      <button> Ustawienia </button>
-      <button> Wyloguj </button>
-    </div>
-  </div>
-  <div class="page">
-    <router-outlet />
   </div>
 </div>

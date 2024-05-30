@@ -29,7 +29,6 @@ namespace Model
             builder.HasOne(pgs => pgs.PastaBind)
                    .WithMany(pb => pb.GroupSharing)
                    .HasForeignKey(pb => pb.GroupSharingID)
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }

@@ -33,7 +33,6 @@ namespace Model
             builder.HasOne(pss => pss.PastaBind)
                    .WithMany(pb => pb.SharingSettings)
                    .HasForeignKey(pss => pss.PastaBindID) // Specify the foreign key in PastaSharingSettings
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Restrict);
         }
     }
