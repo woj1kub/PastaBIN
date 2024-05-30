@@ -21,9 +21,9 @@ namespace WebAPI.Controllers
         {
             if (pastaTextRequest == null)
                 return BadRequest();
-
-            if (_pastaTxtService.AddTxtPasta(pastaTextRequest))
-                return Ok();
+            string key;
+            if ((key=_pastaTxtService.AddTxtPasta(pastaTextRequest))!="")
+                return Ok(key);
 
             return BadRequest("Invalid request or missing data.");
         }

@@ -15,10 +15,10 @@ namespace BLL_EF
             this.context = context;
         }
 
-        public bool AddImgPasta(PastaImageRequest pastaImageRequest)
+        public string AddImgPasta(PastaImageRequest pastaImageRequest)
         {
             if (pastaImageRequest == null || pastaImageRequest.Image == null || pastaImageRequest.DeleteDate == null)
-                return false;
+                return "";
 
             string globalKey;
             do
@@ -43,7 +43,7 @@ namespace BLL_EF
 
             context.SaveChanges();
 
-            return true;
+            return globalKey;
         }
 
         public PastaImageResponse GetPastaImgByKey(string key, int CookID)

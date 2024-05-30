@@ -1,0 +1,20 @@
+<div>
+    <form [formGroup]="formPastaText" (ngSubmit)="onSubmit()">
+        <textarea formControlName="content" name="content">
+        </textarea>
+
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Wybierz datę</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="date">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </div>
+
+        <div>
+            <button type="submit"> Generuj </button>
+            <label> Keeey</label>
+        </div>
+    </form>
+</div>

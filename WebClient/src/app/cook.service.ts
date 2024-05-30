@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { cookRequest } from './model/CookRequest.interface';
+import { cookRequest } from './model/cookRequest.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,7 @@ export class CookService {
       })
     });
   }
-  
+
   updateCook(cookID:number,cook : cookRequest):Observable<void>
   {
     return this.httpClient.put<void>(this.startURL +'/update/'+cookID , cook, {

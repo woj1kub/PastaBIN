@@ -21,9 +21,9 @@ namespace WebAPI.Controllers
             {
                 if (pastaImageRequest == null)
                     return BadRequest();
-
-                if (_pastaImgService.AddImgPasta(pastaImageRequest))
-                    return Ok();
+            string key;
+                if ((key = _pastaImgService.AddImgPasta(pastaImageRequest))!=" ")
+                    return Ok(key);
 
                 return BadRequest("Invalid request or missing data.");
             }

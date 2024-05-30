@@ -15,10 +15,10 @@ namespace BLL_EF
             this.context = context;
         }
 
-        public bool AddTxtPasta(PastaTextRequest pastaTextRequest)
+        public string AddTxtPasta(PastaTextRequest pastaTextRequest)
         {
             if (pastaTextRequest == null || string.IsNullOrEmpty(pastaTextRequest.Content))
-                return false;
+                return "";
 
             string globalKey;
             do
@@ -43,7 +43,7 @@ namespace BLL_EF
 
             context.SaveChanges();
 
-            return true;
+            return globalKey;
         }
 
         public PastaTextResponse GetPastaTxtByKey(string key, int CookID)
