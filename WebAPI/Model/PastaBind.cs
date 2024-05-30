@@ -9,15 +9,14 @@ namespace Model{
         public int PastaBindID { get; set; }
         public int? TxtID { get; set; }
         public int? ImgID { get; set; }
-        [Required]
-        public int CookID { get; set; }
+        public int? CookID { get; set; }
         public int? SharingSettingsID { get; set; }
         [Required]
         public string GlobalKey { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(CookID))]
-        public Cook Cook { get; set; }
+        public Cook? Cook { get; set; }
         [ForeignKey(nameof(TxtID))]
         public PastaTxt? Txt { get; set; }
         [ForeignKey(nameof(TxtID))]

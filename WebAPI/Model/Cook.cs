@@ -28,7 +28,6 @@ namespace Model
                 builder.HasMany(c => c.PastaBinds)
                     .WithOne(pb => pb.Cook)
                     .HasForeignKey(pb => pb.CookID)
-                    .IsRequired()
                     .OnDelete(DeleteBehavior.Cascade);
 
                 builder.HasMany(c => c.SharingSettings)

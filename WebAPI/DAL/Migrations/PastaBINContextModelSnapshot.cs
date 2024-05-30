@@ -55,7 +55,7 @@ namespace DAL.Migrations
                     b.Property<int>("PastaBindID")
                         .HasColumnType("int");
 
-                    b.Property<int>("CookID")
+                    b.Property<int?>("CookID")
                         .HasColumnType("int");
 
                     b.Property<string>("GlobalKey")
@@ -231,8 +231,7 @@ namespace DAL.Migrations
                     b.HasOne("Model.Cook", "Cook")
                         .WithMany("PastaBinds")
                         .HasForeignKey("CookID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Model.PastaImage", "Image")
                         .WithOne("PastaBind")

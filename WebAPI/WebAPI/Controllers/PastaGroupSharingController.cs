@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class PastaGroupSharingController : ControllerBase
     {
         private readonly IPastaGroupSharing _pastaGroupSharingService;
