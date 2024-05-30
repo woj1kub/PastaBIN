@@ -1,8 +1,7 @@
 ﻿namespace BLL.DTO
 {
-    public class PastaTextRequst
+    public class PastaTextRequest
     {
-        public int IDBind { set; get; }
         public string Content { set; get; }
         public DateTime DeleteDate { set; get; }
     }

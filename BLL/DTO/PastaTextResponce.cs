@@ -1,11 +1,11 @@
 ﻿namespace BLL.DTO
 {
-    public class PastaTextResponce
+    public class PastaTextResponse
     {
         public int IDBind { set; get; }
-        public string Text { set; get; }
-        public string GlobalKy { set; get; }
-        public DateTime DeleteDate { set; get; }
-
+        public string Content { set; get; }
+        public string Key { set; get; }
+        public DateTime? DeleteDate { set; get; }
+        public DateTime CreationDate { set; get; }
     }
 }

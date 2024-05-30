@@ -1,3 +1,4 @@
+using BLL_EF;
 using DAL;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +12,12 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<PastaBINContext>();
 
+builder.Services.AddScoped<PastaGroupSharingService>();
+builder.Services.AddScoped<PastaImgService>();
+builder.Services.AddScoped<PastaTxtService>();
+builder.Services.AddScoped<PastaService>();
+builder.Services.AddScoped<CookService>();
+builder.Services.AddScoped<PastaSharingSettingsService>();
 
 var app = builder.Build();
 

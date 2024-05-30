@@ -1,6 +1,6 @@
 ﻿namespace BLL.DTO
 {
-    public class PastaHistoryResponce
+    public class PastaHistoryResponse
     {
         public int PastaSharingID;
         public string CookLogin { get; set; }

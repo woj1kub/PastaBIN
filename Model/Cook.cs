@@ -41,7 +41,7 @@ namespace Model
                     .WithOne(ph => ph.Cook)
                     .HasForeignKey(ph => ph.CookID)
                     .IsRequired()
-                    .OnDelete(DeleteBehavior.Cascade); ;
+                    .OnDelete(DeleteBehavior.SetNull); ;
         }
     }
 

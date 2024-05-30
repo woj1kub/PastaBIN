@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
-    public class PastaImageResponce
+    public class PastaImageResponse
     {
         public int IDBind {set; get; }
         public byte[] Image { set; get; }
-        public string GlobalKy { set; get; }
-        public DateTime DeleteDate { set; get; }
+        public string Key { set; get; }
+        public DateTime? DeleteDate { set; get; }
+        public DateTime? CreationDate { set; get; }
 
     }
 }

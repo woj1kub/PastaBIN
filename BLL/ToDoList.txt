@@ -1,12 +1,12 @@
-  DTO:
+  DTO: DONE
 - LoginRequest (Login/email , Has³o) - do autoryzacji, w JWT bêdziemy wysy³aæ type i id
 - CookRequest (Login , email , has³o) - do tworzenia
-- PastaImageResponce( IDBind , image , globalKey,DeleteDate)
-- PastaImageRequst(Image , CookId,DeleteDate)
-- PastaTxtResponce(IDBind , txt, globalKey, DeleteDate)
-- PastaImageRequst(Txt , CookId , DeleteDate)
+- PastaImageResponse( IDBind , image , globalKey,DeleteDate)
+- PastaImageRequest(Image , CookId,DeleteDate)
+- PastaTxtResponse(IDBind , txt, globalKey, DeleteDate)
+- PastaImageRequest(Txt , CookId , DeleteDate)
 
-- PastaSharingSettingsResponce(PastaSharingID .CookLogin, EndSharingDate)
+- PastaSharingSettingsResponse(PastaSharingID .CookLogin, EndSharingDate)
 - PastaSharingSettingsRequest(CookLogin,IDPastaBind,EndSharingDate)
 
 - PastaHistoryResponse(CookLogin,VisitDate)
@@ -15,7 +15,7 @@
 
 - PastaGroupSharingRequest(PastaBindID, EndSharingDate)
 
-Interface / implementacje / kontrolery
+Interface / implementacje / kontrolery 
 - Cook (rejestracja i logowanie)
 	- AddUser()Q
 	- DeleteUser()

@@ -7,7 +7,7 @@ namespace DAL
     {
         public DbSet<Cook> Cooks { get; set; }
         public DbSet<PastaGroupSharing> PastaGroupSharing { get; set; }
-        public DbSet<PastaTxt> Pastas { get; set; }
+        public DbSet<PastaTxt> PastaText { get; set; }
         public DbSet<PastaBind> PastaBinds { get; set; }
         public DbSet<PastaSharingSettings> PastaSharingSettings { get; set; }
         public DbSet<PastaImage> PastaImages { get; set; }

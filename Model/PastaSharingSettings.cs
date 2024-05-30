@@ -15,6 +15,7 @@ namespace Model
         [Required]
         public int PastaBindID { get; set; }
         public DateTime? EndSharingDate { get; set; }
+        public DateTime CreationDate { get; set; }
 
         // Navigation properties
         [ForeignKey(nameof(CookID))]

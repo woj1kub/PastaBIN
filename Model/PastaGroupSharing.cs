@@ -14,7 +14,7 @@ namespace Model
         public string GroupKey { get; set; }
         [Required]
         public DateTime CreationDate { get; set; }
-        public DateTime? DeleteTime { get; set; }
+        public DateTime? EndSharingDate { get; set; }
         [Required]
         public int PastaBindID { get; set; }
         // Navigation property

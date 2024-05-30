@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BLL.DTO
 {
-    public class PastaSharingSettingsResponce
+    public class PastaSharingSettingsResponse
     {
         public int PastaSharingID;
         public string CookLogin {  get; set; }
