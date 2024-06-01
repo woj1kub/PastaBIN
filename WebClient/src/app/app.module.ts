@@ -32,6 +32,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { PastaImgComponent } from './pasta-img/pasta-img.component';
+import { PastaTxtComponent } from './pasta-txt/pasta-txt.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +52,8 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
     NewPastaTextComponent,
     NewPastaImageComponent,
     PastaSettingsComponent,
+    PastaImgComponent,
+    PastaTxtComponent,
     
   ],
   imports: [

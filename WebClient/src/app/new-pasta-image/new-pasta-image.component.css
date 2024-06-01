@@ -3,10 +3,10 @@
     margin: 0 auto;
     padding: 20px;
   }
+  
   .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
   }
   
   .textarea {
@@ -18,7 +18,6 @@
     max-width: 100%;
     max-height: 200px; /* maksymalna wysokość obrazu */
     min-height: 200px; /* maksymalna wysokość obrazu */
-
     border: 1px solid #ccc;
     border-radius: 5px;
   }
@@ -35,13 +34,6 @@
   .image-container span {
     font-size: 16px; /* rozmiar czcionki tekstu "Wrzuć zdjęcie" */
     color: #999; /* kolor tekstu "Wrzuć zdjęcie" */
-  }
-  
-  .selected-image {
-    max-width: 100%;
-    max-height: 200px; /* maksymalna wysokość obrazu */
-    border: 1px solid #ccc;
-    border-radius: 5px;
   }
   
   .file-input {
@@ -77,6 +69,6 @@
   }
   
   .readonly-input {
-    width: 90%;
+    width: 100%;
   }
   

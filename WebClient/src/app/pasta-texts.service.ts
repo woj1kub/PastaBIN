@@ -26,6 +26,6 @@ export class PastaTextsService {
   
   getPastaTextByKey( key:string , cookID:number):Observable<PastaTextResponse>
   {
-    return this.httpClient.get<PastaTextResponse>(this.startURL+'/getByUser/'+key+'/'+cookID);
+    return this.httpClient.get<PastaTextResponse>(this.startURL+'/getByKey/'+key+'/'+cookID);
   }
 }

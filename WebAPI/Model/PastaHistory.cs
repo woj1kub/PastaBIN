@@ -28,7 +28,6 @@ namespace Model
             builder.HasOne(ph => ph.Cook)
                    .WithMany(c => c.Histories)
                    .HasForeignKey(ph => ph.CookID)
-                   .IsRequired()
                    .OnDelete(DeleteBehavior.Restrict);
 
             builder.HasOne(ph => ph.PastaBind)

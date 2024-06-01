@@ -47,17 +47,19 @@ namespace BLL_EF
 
                 byteArray[i] = (byte)numbers[i];
             }
-
-
-            context.PastaImages.Add(new PastaImage()
+            PastaImage pastaImage = new PastaImage()
             {
                 CreateDate = DateTime.Now,
                 DeleteDate = pastaImageRequest.DeleteDate,
                 PastaBindID = pastaBind.PastaBindID,
                 ImageData = byteArray,
                 IsActive = true
-            });
+            };
 
+            context.PastaImages.Add(pastaImage);
+
+            context.SaveChanges();
+            pastaBind.ImgID=pastaImage.ImageID;
             context.SaveChanges();
 
             return globalKey;
@@ -80,19 +82,27 @@ namespace BLL_EF
                 {
                     context.PastaHistories.Add(new PastaHistory()
                     {
-                        CookID = CookID,
+                        CookID = CookID == 0 ? null : CookID,
                         VisitDate = DateTime.Now,
                         PastaBindID = pasta.PastaBindID
                     });
                     context.SaveChanges();
+                    return new PastaImageResponse()
+                    {
+                        IDBind = pasta.PastaBindID,
+                        Image = pasta.Image.ImageData,
+                        Key = key
+                    };
                 }
-
                 return new PastaImageResponse()
                 {
                     IDBind = pasta.PastaBindID,
                     Image = pasta.Image.ImageData,
-                    Key = key
+                    Key = key,
+                    CreationDate = pasta.Image.CreateDate,
+                    DeleteDate = pasta.Image.DeleteDate
                 };
+
             }
 
             var pastaGroup = context.PastaGroupSharing

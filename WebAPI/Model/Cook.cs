@@ -39,7 +39,6 @@ namespace Model
             builder.HasMany(c => c.Histories)
                     .WithOne(ph => ph.Cook)
                     .HasForeignKey(ph => ph.CookID)
-                    .IsRequired()
                     .OnDelete(DeleteBehavior.SetNull); ;
         }
     }

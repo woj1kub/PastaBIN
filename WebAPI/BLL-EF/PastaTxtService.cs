@@ -33,15 +33,17 @@ namespace BLL_EF
             };
             context.PastaBinds.Add(pastaBind);
             context.SaveChanges();
-            context.PastaText.Add(new PastaTxt()
+            PastaTxt pastaTxt = new PastaTxt()
             {
                 CreateDate = DateTime.Now,
                 DeleteDate = pastaTextRequest.DeleteDate,
                 PastaBindID = pastaBind.PastaBindID,
                 Content = pastaTextRequest.Content,
                 IsActive = true
-            });
-
+            };
+            context.PastaText.Add(pastaTxt);
+            context.SaveChanges();
+            pastaBind.TxtID=pastaTxt.PastaTxtID;
             context.SaveChanges();
 
             return globalKey;
@@ -64,18 +66,26 @@ namespace BLL_EF
                 {
                     context.PastaHistories.Add(new PastaHistory()
                     {
-                        CookID = CookID,
+                        CookID = CookID== 0 ? null : CookID,
                         VisitDate = DateTime.Now,
                         PastaBindID = pasta.PastaBindID
                     });
                     context.SaveChanges();
+                    return new PastaTextResponse()
+                    {
+                        IDBind = pasta.PastaBindID,
+                        Content = pasta.Txt.Content,
+                        Key = key,
+                    };
                 }
 
                 return new PastaTextResponse()
                 {
                     IDBind = pasta.PastaBindID,
                     Content = pasta.Txt.Content,
-                    Key = key
+                    Key = key,
+                    CreationDate= pasta.Txt.CreateDate,
+                    DeleteDate = pasta.Txt.DeleteDate
                 };
             }
 

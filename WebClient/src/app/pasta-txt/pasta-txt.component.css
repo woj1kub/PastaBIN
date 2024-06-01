@@ -1,0 +1,25 @@
+.container {
+    margin: 20px;
+  }
+  
+  .content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .textarea {
+    width: 100%;
+    max-height: 300px;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .key-input {
+    flex: 1;
+    margin-right: 10px;
+  }
+  

@@ -8,19 +8,18 @@
             <img [src]="imageSrc" alt="Selected Image" *ngIf="imageSrc" class="selected-image" />
             <input type="file" (change)="onFileSelected($event)" accept="image/*" class="file-input" />
         </div>
-          
-  
+
         <div class="button-container">
           <mat-form-field appearance="fill">
             <mat-label>Wybierz datę</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="date">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <input type="datetime-local" color="warn" matInput class="key-input" formControlName="date"/>
           </mat-form-field>
           <button mat-raised-button color="warn" type="submit">Generuj</button>
         </div>
       </form>
+    <mat-form-field appearance="fill">
       <input type="text" matInput [(ngModel)]="key" readonly class="readonly-input"/>
-    </mat-card-content>
-  </mat-card>
+    </mat-form-field> 
+  </mat-card-content>
+</mat-card>
   
