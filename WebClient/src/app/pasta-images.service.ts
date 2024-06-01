@@ -21,7 +21,7 @@ export class PastaImagesService {
   }
   getPastaImageByUser(cookID:number):Observable<PastaImageResponse>
   {
-    return this.httpClient.get<PastaImageResponse>(this.startURL+'/getByUser/'+cookID);
+    return this.httpClient.get<PastaImageResponse>(this.startURL+'/getByUser/' + cookID);
   }
   
   getPastaImageByKey( key:string , cookID:number):Observable<PastaImageResponse>

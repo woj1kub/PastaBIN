@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { PastaImagesService } from '../pasta-images.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -9,12 +9,23 @@ import { PastaImageRequest } from '../model/pastaImageRequst.interface';
   templateUrl: './new-pasta-image.component.html',
   styleUrls: ['./new-pasta-image.component.css']
 })
-export class NewPastaImageComponent {
+export class NewPastaImageComponent implements OnInit  {
   imageSrc: SafeUrl | undefined;
-  
-  formPastaImage!: FormGroup;
   key: string = '';
-  constructor(private servicePastaImage: PastaImagesService, private fb: FormBuilder, private sanitizer: DomSanitizer) {}
+  formPastaImage: FormGroup;
+
+  constructor(
+    private servicePastaImage: PastaImagesService, 
+    private fb: FormBuilder, 
+    private sanitizer: DomSanitizer
+  ) {
+    this.formPastaImage = this.fb.group({
+      content: [null, Validators.required],
+      date: ['', Validators.required]
+    });
+  }
+  
+  ngOnInit(): void {}
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
@@ -26,45 +37,50 @@ export class NewPastaImageComponent {
     }
   }
 
-  loadImage(file: File | undefined) {
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onload = () => {
-        this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
-      };
-    }
+  loadImage(file: File) {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      this.imageSrc = this.sanitizer.bypassSecurityTrustUrl(reader.result as string);
+    };
   }
-
-  ngOnInit(): void {
-    this.formPastaImage = this.fb.group({
-      content: [null, Validators.required],
-      date: ['', Validators.required]
-    });
-  }
-
+  
   onSubmit(): void {
     if (this.formPastaImage.valid) {
       const formData = this.formPastaImage.value;
-      const pastaImageRequest: PastaImageRequest = {
-        // W przypadku przesyłania pliku, użyj metody FormData
-        image: formData.content,
-        deleteDate: formData.date
-      };
-      this.servicePastaImage.addPastaImage(pastaImageRequest, 0).subscribe({
-        next: (Key: any) => {
-          this.key = Key.key;
-          alert(this.key);
-        },
-        error: (error) => {
-          console.error(error);
+      
+      const file: File = formData.content;
+      const reader = new FileReader();
+  
+      reader.onload = () => {
+        const arrayBuffer: ArrayBuffer | null = reader.result as ArrayBuffer;
+        if (arrayBuffer) {
+          const byteArray = new Uint8Array(arrayBuffer);
+          const pastaImageRequest: PastaImageRequest = {
+            image: byteArray.toString(),
+            deleteDate: formData.date
+          };
+          console.log(pastaImageRequest);
+          
+          this.servicePastaImage.addPastaImage(pastaImageRequest, 0).subscribe({
+            next: (Key: any) => {
+              this.key = Key.key;
+            },
+            error: (error) => {
+              console.error(error);
+            }
+          });
+        } else {
+          console.error("Błąd odczytu pliku");
         }
-      });
+      };
+  
+      reader.readAsArrayBuffer(file);
     } else {
-      console.log('Form is invalid');
+      console.log('Formularz jest niepoprawny');
     }
   }
-
+  
   onDragOver(event: DragEvent) {
     event.preventDefault();
   }
@@ -72,8 +88,8 @@ export class NewPastaImageComponent {
   onDrop(event: DragEvent) {
     event.preventDefault();
     const file = event.dataTransfer?.files[0];
-    this.loadImage(file);
     if (file) {
+      this.loadImage(file);
       this.formPastaImage.patchValue({
         content: file
       });

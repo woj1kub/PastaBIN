@@ -3,6 +3,7 @@ using BLL.Interface;
 using DAL;
 using Microsoft.EntityFrameworkCore;
 using Model;
+using System.Text;
 
 namespace BLL_EF
 {
@@ -33,13 +34,27 @@ namespace BLL_EF
             };
             context.PastaBinds.Add(pastaBind);
             context.SaveChanges();
+            string image = pastaImageRequest.Image;
+            string[] parts = image.Split(',');
+            int[] numbers = Array.ConvertAll(parts, int.Parse);
+            byte[] byteArray = new byte[numbers.Length];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                if (numbers[i] < 0 || numbers[i] > 255)
+                {
+                    throw new ArgumentException("Liczba nie mieści się w zakresie bajtów (0-255)");
+                }
+
+                byteArray[i] = (byte)numbers[i];
+            }
+
 
             context.PastaImages.Add(new PastaImage()
             {
                 CreateDate = DateTime.Now,
                 DeleteDate = pastaImageRequest.DeleteDate,
                 PastaBindID = pastaBind.PastaBindID,
-                ImageData = pastaImageRequest.Image,
+                ImageData = byteArray,
                 IsActive = true
             });
 

@@ -2,7 +2,7 @@
 {
     public class PastaImageRequest
     {
-        public byte[] Image { set; get; }
+        public string Image { set; get; }
         public DateTime? DeleteDate { set; get; }
     }
 }
