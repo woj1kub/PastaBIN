@@ -29,21 +29,29 @@ namespace WebAPI.Controllers
             return BadRequest("Invalid request or missing data.");
             }
 
-            [HttpGet("getByKey/{key}/{cookID}")]
-            public IActionResult GetPastaImgByKey(string key, int cookID)
+        [HttpGet("getByKey/{key}/{cookID}")]
+        public async Task<IActionResult> GetPastaImgByKey(string key, int cookID)
+        {
+            try
             {
-                try
-                {
-                    var pastaImageResponse = _pastaImgService.GetPastaImgByKey(key, cookID);
-                    return Ok(pastaImageResponse);
-                }
-                catch (KeyNotFoundException ex)
-                {
-                    return NotFound(ex.Message);
-                }
-            }
+                var stream = await _pastaImgService.GetPastaImgByKey(key, cookID);
+                if (stream == null)
+                    return NotFound("Image not found");
 
-            [HttpGet("getByUser/{cookID}")]
+                return File(stream, "image/png"); // Zwracaj obrazy w formacie PNG
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message); // Zwróć kod odpowiedzi "500 Internal Server Error"
+            }
+        }
+
+
+        [HttpGet("getByUser/{cookID}")]
             public IActionResult GetPastaImgByUser(int cookID)
             {
                 try

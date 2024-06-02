@@ -1,6 +1,5 @@
-export interface PastaImageResponse {
+export interface PastaImageResponseWithoutImage {
     iDBind: number;
-    image: string;
     key: string;
     deleteDate: string | null;
     creationDate: string | null;

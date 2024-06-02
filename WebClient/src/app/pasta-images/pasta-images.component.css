@@ -1,0 +1,6 @@
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 400px); /* Ustaw szerokość kafelka na 200px */
+    gap: 16px; /* Odstęp między kafelkami */
+    justify-content: center; /* Centrowanie kafelków w kontenerze */
+  }

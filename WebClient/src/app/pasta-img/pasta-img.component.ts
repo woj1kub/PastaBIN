@@ -1,6 +1,5 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { PastaImagesService } from '../pasta-images.service';
-import { PastaImageResponse } from '../model/pastaImageResponce.interface';
 
 @Component({
   selector: 'app-pasta-img',
@@ -10,14 +9,13 @@ import { PastaImageResponse } from '../model/pastaImageResponce.interface';
 export class PastaImgComponent {
   imageSrc: string | null = null; // Zmienna przechowująca zdekodowany obraz
 
-  constructor(private servicePastaImage: PastaImagesService,private cdr: ChangeDetectorRef) { }
+  constructor(private servicePastaImage: PastaImagesService, private cdr: ChangeDetectorRef) { }
 
   readPasta() {
     if (this.key.trim() !== '') {
       this.servicePastaImage.getPastaImageByKey(this.key, 0).subscribe({
-        next: (response: PastaImageResponse) => {
-          // Dekodowanie base64 stringa do formatu Data URI
-          this.imageSrc = 'data:image/png;base64,' + response.image;
+        next: (response: Blob) => {
+          this.readFile(response); // Obsługa przetworzonego strumienia binarnego
         },
         error: (error) => {
           console.error('Wystąpił błąd podczas odczytu obrazu:', error);
@@ -26,9 +24,17 @@ export class PastaImgComponent {
     } else {
       console.warn('Klucz nie może być pusty.');
     }
-    this.cdr.detectChanges(); // ręczne odświeżenie widoku
-
   }
 
   key: string = ''; // Klucz pobierany z formularza
+
+  // Funkcja do przetwarzania strumienia binarnego na obraz
+  private readFile(blob: Blob) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageSrc = reader.result as string;
+      this.cdr.detectChanges(); // Ręczne odświeżenie widoku
+    };
+    reader.readAsDataURL(blob);
+  }
 }

@@ -65,75 +65,30 @@ namespace BLL_EF
             return globalKey;
         }
 
-        public PastaImageResponse GetPastaImgByKey(string key, int CookID)
+        public async Task<Stream> GetPastaImgByKey(string key, int CookID)
         {
-            var pasta = context.PastaBinds
+            var pasta = await context.PastaBinds
                 .Include(p => p.Image)
-                .SingleOrDefault(p => p.GlobalKey == key);
+                .SingleOrDefaultAsync(p => p.GlobalKey == key);
 
-            if (pasta != null)
+            if (pasta == null || pasta.Image == null)
             {
-                if (pasta.Image == null)
-                {
-                    throw new KeyNotFoundException("Pasta o takim kluczu nie istnieje.");
-                }
-
-                if (pasta.CookID != CookID)
-                {
-                    context.PastaHistories.Add(new PastaHistory()
-                    {
-                        CookID = CookID == 0 ? null : CookID,
-                        VisitDate = DateTime.Now,
-                        PastaBindID = pasta.PastaBindID
-                    });
-                    context.SaveChanges();
-                    return new PastaImageResponse()
-                    {
-                        IDBind = pasta.PastaBindID,
-                        Image = pasta.Image.ImageData,
-                        Key = key
-                    };
-                }
-                return new PastaImageResponse()
-                {
-                    IDBind = pasta.PastaBindID,
-                    Image = pasta.Image.ImageData,
-                    Key = key,
-                    CreationDate = pasta.Image.CreateDate,
-                    DeleteDate = pasta.Image.DeleteDate
-                };
-
+                throw new KeyNotFoundException("Pasta o podanym kluczu nie istnieje lub nie ma przypisanego obrazu.");
             }
 
-            var pastaGroup = context.PastaGroupSharing
-                .Include(pg => pg.PastaBind)
-                .ThenInclude(pb => pb.Image)
-                .SingleOrDefault(pg => pg.GroupKey == key);
-
-            if (pastaGroup == null || pastaGroup.PastaBind == null || pastaGroup.PastaBind.Image == null)
-            {
-                throw new KeyNotFoundException("Pasta o takim kluczu nie istnieje.");
-            }
-
-            pasta = pastaGroup.PastaBind;
-
+            // Jeśli użytkownik nie jest właścicielem obrazu, zapisz historię
             if (pasta.CookID != CookID)
             {
                 context.PastaHistories.Add(new PastaHistory()
                 {
-                    CookID = CookID,
+                    CookID = CookID == 0? null : CookID,
                     VisitDate = DateTime.Now,
                     PastaBindID = pasta.PastaBindID
                 });
-                context.SaveChanges();
+                await context.SaveChangesAsync();
             }
 
-            return new PastaImageResponse()
-            {
-                IDBind = pasta.PastaBindID,
-                Image = pasta.Image.ImageData,
-                Key = key
-            };
+            return new MemoryStream(pasta.Image.ImageData);
         }
 
         public IEnumerable<PastaImageResponse> GetPastaImgByUser(int CookID)
@@ -161,7 +116,6 @@ namespace BLL_EF
                 {
                     imageResponses.Add(new PastaImageResponse()
                     {
-                        Image = item.Image.ImageData,
                         IDBind = item.PastaBindID,
                         DeleteDate = item.Image.DeleteDate,
                         CreationDate = item.Image.CreateDate,

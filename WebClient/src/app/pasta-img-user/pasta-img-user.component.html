@@ -1,1 +1,25 @@
-<p>pasta-img-user works!</p>
+<mat-card class="pasta-container">
+    <div class="pasta-header">
+      <mat-form-field appearance="outline">
+        <mat-label>Key</mat-label>
+        <input matInput type="text" readonly [(ngModel)]="pastaimg.key">
+      </mat-form-field>
+      <button mat-icon-button matTooltip="Ustawienia pasty" (click)="onSettingsClick()">
+        <mat-icon>settings</mat-icon>
+      </button>
+      <button mat-icon-button color="warn" matTooltip="Usuń paste" (click)="onDeleteClick()">
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button mat-icon-button 
+      aria-hidden="false"
+      [matTooltip]="'Data utworzenia: ' + pastaimg.creationDate + '\n Data usunięcia: ' + pastaimg.deleteDate">
+      <mat-icon>
+        help_outline
+      </mat-icon>
+    </button>
+    </div>
+    <div class="pasta-content">
+        <img [src]="pastaimg.image" alt="Obraz" class="image">
+    </div>      
+</mat-card>
+  
