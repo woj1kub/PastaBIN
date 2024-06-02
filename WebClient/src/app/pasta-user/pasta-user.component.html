@@ -1,0 +1,14 @@
+<div class="main-container">
+    <mat-button-toggle-group [(ngModel)]="showTextComponent" (change)="toggleComponent($event.value)">
+      <mat-button-toggle value="true">Tekst</mat-button-toggle>
+      <mat-button-toggle value="false">Zdjęcie</mat-button-toggle>
+    </mat-button-toggle-group>
+  
+    <ng-container *ngIf="showTextComponent === 'true'">
+      <app-pasta-texts></app-pasta-texts>
+    </ng-container>
+  
+    <ng-container *ngIf="showTextComponent === 'false'" >
+      <app-pasta-images ></app-pasta-images>
+    </ng-container>
+  </div>

@@ -5,13 +5,15 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PastaSettingsComponent } from './pasta-settings/pasta-settings.component';
 import { LoginComponent } from './login/login.component';
 import { PastaComponent } from './pasta/pasta.component';
+import { PastaUserComponent } from './pasta-user/pasta-user.component';
 
 const routes: Routes = [
   {path:'addPasta' , component:PastaAddComponent},
   {path:'signUp', component:RegistrationComponent},
   {path:'settings:/pastaID', component:PastaSettingsComponent},
   {path:'openPasta', component:PastaComponent},
-  {path:'login', component:LoginComponent}
+  {path:'login', component:LoginComponent},
+  {path:'pasty' , component:PastaUserComponent}
 ];
 
 @NgModule({

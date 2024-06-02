@@ -34,6 +34,10 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { PastaImgComponent } from './pasta-img/pasta-img.component';
 import { PastaTxtComponent } from './pasta-txt/pasta-txt.component';
+import { PastaImgUserComponent } from './pasta-img-user/pasta-img-user.component';
+import { PastaTxtUserComponent } from './pasta-txt-user/pasta-txt-user.component';
+import { PastaUserComponent } from './pasta-user/pasta-user.component';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 @NgModule({
   declarations: [
@@ -54,7 +58,9 @@ import { PastaTxtComponent } from './pasta-txt/pasta-txt.component';
     PastaSettingsComponent,
     PastaImgComponent,
     PastaTxtComponent,
-    
+    PastaImgUserComponent,
+    PastaTxtUserComponent,
+    PastaUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +81,8 @@ import { PastaTxtComponent } from './pasta-txt/pasta-txt.component';
     MatIconModule,
     MatToolbarModule,
     FormsModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
