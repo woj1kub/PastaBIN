@@ -31,7 +31,6 @@ export class NewPastaTextComponent implements OnInit {
       this.servicePastaText.addPastaText(pastaTextRequest, 0).subscribe({
         next: (Key: any) => {
           this.key = Key.key;
-          alert(this.key);
         },
         error: (error) => {
           console.error(error);

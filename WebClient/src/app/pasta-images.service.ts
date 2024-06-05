@@ -8,6 +8,9 @@ import { PastaImageResponseWithoutImage } from './model/PastaImageResponseWithou
   providedIn: 'root'
 })
 export class PastaImagesService {
+  getPastaImageByUserFromSharing(cookID: number): Observable<PastaImageResponseWithoutImage[]> {
+    return this.httpClient.get<PastaImageResponseWithoutImage[]>(`${this.startURL}/getByUserFromPastaSharing/${cookID}`);
+  }
 
   constructor(private httpClient: HttpClient) { }
   private startURL: string = 'https://localhost:7023/PastaImg';

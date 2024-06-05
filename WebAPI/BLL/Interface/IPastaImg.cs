@@ -12,6 +12,8 @@ namespace BLL.Interface
         //Dla past img
         public string AddImgPasta(int? CookID,PastaImageRequest pastaImageRequest);
         public IEnumerable<PastaImageResponse> GetPastaImgByUser(int CookID);
+        public IEnumerable<PastaImageResponse> GetPastaImgByUserFromPastaSharing(int CookID);
         public Task<Stream> GetPastaImgByKey(string key, int CookID);
+
     }
 }

@@ -75,9 +75,12 @@ namespace BLL_EF
             {
                 throw new KeyNotFoundException("Pasta o podanym kluczu nie istnieje lub nie ma przypisanego obrazu.");
             }
-
-            // Jeśli użytkownik nie jest właścicielem obrazu, zapisz historię
-            if (pasta.CookID != CookID)
+            var pastaSharing = await context
+                .PastaSharingSettings
+                .Include(pss => pss.PastaBind)
+                .SingleOrDefaultAsync(pss => pss.CookID==CookID && pss.PastaBind.GlobalKey==key);
+            // Jeśli użytkownik nie jest właścicielem obrazu lub nie ma jej udostępnionej, zapisz historię
+            if (pasta.CookID != CookID || pastaSharing!=null)
             {
                 context.PastaHistories.Add(new PastaHistory()
                 {
@@ -93,7 +96,7 @@ namespace BLL_EF
 
         public IEnumerable<PastaImageResponse> GetPastaImgByUser(int CookID)
         {
-            var cook = context.Cooks
+            Cook cook = context.Cooks
                 .Include(c => c.PastaBinds)
                 .ThenInclude(pb => pb.Image)
                 .SingleOrDefault(c => c.CookID == CookID);
@@ -125,6 +128,35 @@ namespace BLL_EF
             }
             return imageResponses;
         }
+
+        public IEnumerable<PastaImageResponse> GetPastaImgByUserFromPastaSharing(int CookID)
+        {
+            var pastaImagesFromSharing = context.PastaSharingSettings
+            .Include(pss => pss.PastaBind)
+                .ThenInclude(pb => pb.Image)
+            .Where(pss => pss.CookID == CookID && pss.PastaBind.Image != null) // Added condition for Image not being null
+            .ToList();
+            if (pastaImagesFromSharing == null)
+            {
+                throw new KeyNotFoundException("Cook o podanym ID nie udostępniono mu żadnych past.");
+            }
+
+            Console.WriteLine(pastaImagesFromSharing.First().PastaBind.GlobalKey);
+            
+            var imageResponses = pastaImagesFromSharing
+                .Where(item => item.PastaBind?.Image != null)
+                .Select(item => new PastaImageResponse
+                {
+                    IDBind = item.PastaBind.PastaBindID,
+                    DeleteDate = item.PastaBind.Image.DeleteDate,
+                    CreationDate = item.PastaBind.Image.CreateDate,
+                    Key = item.PastaBind.GlobalKey
+                })
+                .ToList();
+
+            return imageResponses;
+        }
+
     }
 
 }

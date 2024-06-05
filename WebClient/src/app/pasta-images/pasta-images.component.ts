@@ -11,9 +11,11 @@ import { PastaImageResponseWithoutImage } from '../model/PastaImageResponseWitho
 export class PastaImagesComponent {
   constructor(private servicePastaImage: PastaImagesService, private cdr: ChangeDetectorRef) {     
     this.getData();
+    this.getDataFromSharing();
   }
 
   public data: PastaImageResponse[] = [];
+  public dataFromSharing: PastaImageResponse[] = [];
 
   private getData(): void {
     this.servicePastaImage.getPastaImageByUser(1).subscribe({
@@ -27,15 +29,33 @@ export class PastaImagesComponent {
         }));
 
         // Wczytanie obrazów
-        this.loadImages();
+        this.loadImages(this.data);
+      },
+      error: (err) => console.error(err),
+      complete: () => console.log('complete')
+    });
+  }
+  private getDataFromSharing(): void {
+    this.servicePastaImage.getPastaImageByUserFromSharing(1).subscribe({
+      next: (res: PastaImageResponseWithoutImage[]) => {
+        this.dataFromSharing = res.map(item => ({
+          iDBind: item.iDBind,
+          image: '', // Zostanie uzupełnione później
+          key: item.key,
+          deleteDate: item.deleteDate,
+          creationDate: item.creationDate
+        }));
+
+        // Wczytanie obrazów
+        this.loadImages(this.dataFromSharing);
       },
       error: (err) => console.error(err),
       complete: () => console.log('complete')
     });
   }
 
-  private loadImages(): void {
-    this.data.forEach(item => {
+  private loadImages(data:PastaImageResponse[]): void {
+    data.forEach(item => {
       this.readPasta(item.key, item);
     });
   }

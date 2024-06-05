@@ -1,37 +1,41 @@
 <mat-toolbar color="primary" class="mat-elevation-z2">
-    <h1 class="mat-h1">PastaBin</h1>
+  <h1 class="mat-h1">PastaBin</h1>
 </mat-toolbar>
 
-<div class="wrapper" >
+<div class="wrapper">
   <div class="content">
     <div class="buttons_banner">
       <p>
         <label>Witaj 🙋‍♀️</label>
-        <!-- Tu będzie się zmieniać -->
+        <!-- Placeholder for dynamic content -->
         <label>Nazwa</label>
       </p>
-      <!-- To zawsze będzie -->
+
+      <!-- Always visible buttons -->
       <div class="button-column">
-        <button mat-raised-button routerLink="/openPasta">Otwórz paste</button>
+        <button mat-raised-button routerLink="/openPasta">Otwórz pastę</button>
         <button mat-raised-button routerLink="/addPasta">Nowa Pasta</button>
         <button mat-raised-button routerLink="/pasty">Moje pasty</button>
-
       </div>
-      <!-- Guziki dla niezalogowanego użytkownika -->
+
+      <!-- Buttons for logged-out users -->
       <div class="low_buttons">
         <button mat-raised-button routerLink="/login">Zaloguj</button>
         <button mat-raised-button routerLink="/signUp">Utwórz Konto</button>
       </div>
-      <!-- Guziki dla zalogowanego użytkownika -->
-      <!-- <div class="low_buttons">
+
+      <!-- Buttons for logged-in users -->
+      <!-- 
+      <div class="low_buttons">
         <button mat-raised-button routerLink="/ustawienia">Ustawienia</button>
         <button mat-raised-button routerLink="/wyloguj">Wyloguj</button>
-      </div> -->
+      </div> 
+      -->
     </div>
   </div>
 
-  <mat-divider [vertical]="true"></mat-divider>
 
+  <!-- Placeholder for router outlet -->
   <div class="router-outlet-wrapper">
     <div class="router-outlet-content">
       <router-outlet></router-outlet>

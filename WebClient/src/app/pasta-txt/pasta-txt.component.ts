@@ -13,6 +13,7 @@ export class PastaTxtComponent {
   constructor(private servicePastaText: PastaTextsService) { }
 
   readPasta() {
+    
     if (this.key !== '') {
       this.servicePastaText.getPastaTextByKey(this.key, 0).subscribe({
         next: (response: PastaTextResponse) => {

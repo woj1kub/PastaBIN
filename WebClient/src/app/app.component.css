@@ -19,10 +19,11 @@
     flex: 5;
     overflow-y: auto; /* Dodatkowy przewijanie dla obszaru zawartości */
     padding: 16px;
+    margin-top: 10vh;
   }
   .buttons_banner {
     margin: 16px;
-    height: 75vh; 
+    height: 90vh; 
     display: flex;
     flex-direction: column;
 }

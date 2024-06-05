@@ -12,9 +12,9 @@
         <div class="button-container">
           <mat-form-field appearance="fill">
             <mat-label>Wybierz datę</mat-label>
-            <input type="datetime-local" color="warn" matInput class="key-input" formControlName="date"/>
+            <input type="datetime-local" matInput class="key-input" placeholder="start date" formControlName="date"/>
           </mat-form-field>
-          <button mat-raised-button color="warn" type="submit">Generuj</button>
+          <button mat-raised-button color="warn" type="submit" [disabled]="!formPastaImage.valid">Generuj</button>
         </div>
       </form>
     <mat-form-field appearance="fill">
