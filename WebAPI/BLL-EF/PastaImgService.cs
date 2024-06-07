@@ -2,7 +2,9 @@
 using BLL.Interface;
 using DAL;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model;
+using System.Net;
 using System.Text;
 
 namespace BLL_EF
@@ -63,6 +65,20 @@ namespace BLL_EF
             context.SaveChanges();
 
             return globalKey;
+        }
+
+        public async Task<Stream> GetPastaImgByBindID(int BindID)
+        {
+            var pasta = await context.PastaBinds
+            .Include(p => p.Image)
+                .SingleOrDefaultAsync(p => p.PastaBindID == BindID);
+
+            if (pasta == null || pasta.Image == null)
+            {
+                throw new KeyNotFoundException("Pasta o podanym kluczu nie istnieje lub nie ma przypisanego obrazu.");
+            }
+
+            return new MemoryStream(pasta.Image.ImageData);
         }
 
         public async Task<Stream> GetPastaImgByKey(string key, int CookID)
@@ -134,6 +150,8 @@ namespace BLL_EF
             var pastaImagesFromSharing = context.PastaSharingSettings
             .Include(pss => pss.PastaBind)
                 .ThenInclude(pb => pb.Image)
+            .Include(pss => pss.PastaBind)
+                .ThenInclude(pb => pb.Cook)
             .Where(pss => pss.CookID == CookID && pss.PastaBind.Image != null) // Added condition for Image not being null
             .ToList();
             if (pastaImagesFromSharing == null)
@@ -150,7 +168,7 @@ namespace BLL_EF
                     IDBind = item.PastaBind.PastaBindID,
                     DeleteDate = item.PastaBind.Image.DeleteDate,
                     CreationDate = item.PastaBind.Image.CreateDate,
-                    Key = item.PastaBind.GlobalKey
+                    Key = item.PastaBind.Cook.Login
                 })
                 .ToList();
 

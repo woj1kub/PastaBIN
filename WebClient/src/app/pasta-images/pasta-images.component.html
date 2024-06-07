@@ -1,6 +1,32 @@
-<div class="container">
-    <div *ngFor="let pimg of data" [app-pasta-img-user]="pimg"></div>
-</div>
-<div class="container">
-    <div *ngFor="let pimg of dataFromSharing" [app-pasta-img-user]="pimg"></div>
-</div>
+
+
+<mat-accordion multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Twoje pasty
+        </mat-panel-title>
+        <mat-panel-description>
+          Tutaj znajdują się twoje pasty
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <div class="container">
+        <div *ngFor="let pimg of data" [app-pasta-img-user]="pimg"></div>
+    </div>
+  
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Udostępnione pasty
+          </mat-panel-title>
+          <mat-panel-description>
+            Tutaj znajdują się udostępnione pasty 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        
+        <div class="container">
+            <div *ngFor="let pimg of dataFromSharing" [app-pasta-img-user-from-sharing]="pimg"></div>
+        </div>
+      </mat-expansion-panel>
+</mat-accordion>

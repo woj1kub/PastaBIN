@@ -1,4 +1,29 @@
-<ul>
-    <li *ngFor="let ptxt of data" [app-pasta-txt-user]="ptxt"></li>
-</ul>
+<mat-accordion multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Twoje pasty
+        </mat-panel-title>
+        <mat-panel-description>
+          Tutaj znajdują się twoje pasty
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <ul>
+        <li *ngFor="let ptxt of data" [app-pasta-txt-user]="ptxt"></li>
+    </ul>
   
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Udostępnione pasty
+          </mat-panel-title>
+          <mat-panel-description>
+            Tutaj znajdują się udostępnione pasty 
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <ul>
+          <li *ngFor="let ptxt of dataFromSharing" [app-pasta-txt-user-from-sharing]="ptxt"></li>
+        </ul>
+      </mat-expansion-panel>
+</mat-accordion>

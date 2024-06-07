@@ -61,6 +61,23 @@ namespace WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("getByUserFromSharing/{cookID}")]
+        public IActionResult GetPastaTxtByUserFromSharing(int cookID)
+        {
+            try
+            {
+                var pastaTextResponses = _pastaTxtService.GetPastaTxtByUserFromSharing(cookID);
+                return Ok(pastaTextResponses);
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
 

@@ -1,0 +1,19 @@
+<mat-card class="pasta-container">
+    <div class="pasta-header">
+      <mat-form-field appearance="outline">
+        <mat-label>Cook</mat-label>
+        <input matInput type="text" readonly [(ngModel)]="pastaimg.key">
+      </mat-form-field>
+      <button mat-icon-button 
+      aria-hidden="false"
+      [matTooltip]="'Data udostępnienia: ' + pastaimg.creationDate + '\n Data straty dostępu: ' + pastaimg.deleteDate">
+      <mat-icon>
+        help_outline
+      </mat-icon>
+    </button>
+    </div>
+    <div class="pasta-content">
+        <img [src]="pastaimg.image" alt="Obraz" class="image">
+    </div>      
+</mat-card>
+  

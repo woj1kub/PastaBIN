@@ -38,6 +38,9 @@ import { PastaImgUserComponent } from './pasta-img-user/pasta-img-user.component
 import { PastaTxtUserComponent } from './pasta-txt-user/pasta-txt-user.component';
 import { PastaUserComponent } from './pasta-user/pasta-user.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import { PastaImgUserFromSharingComponent } from './pasta-img-user-from-sharing/pasta-img-user-from-sharing.component';
+import { PastaTxtUserFromSharingComponent } from './pasta-txt-user-from-sharing/pasta-txt-user-from-sharing.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -61,6 +64,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     PastaImgUserComponent,
     PastaTxtUserComponent,
     PastaUserComponent,
+    PastaImgUserFromSharingComponent,
+    PastaTxtUserFromSharingComponent,
   ],
   imports: [
     BrowserModule,
@@ -82,7 +87,8 @@ import {MatTooltipModule} from '@angular/material/tooltip';
     MatToolbarModule,
     FormsModule,
     MatButtonToggleModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

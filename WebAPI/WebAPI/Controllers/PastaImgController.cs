@@ -37,7 +37,6 @@ namespace WebAPI.Controllers
                 var stream = await _pastaImgService.GetPastaImgByKey(key, cookID);
                 if (stream == null)
                     return NotFound("Image not found");
-                Response.Headers.Append("Data", "AAAAAAA");
                 return File(stream, "image/png"); // Zwracaj obrazy w formacie PNG
             }
             catch (KeyNotFoundException ex)
@@ -49,7 +48,25 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message); // Zwróć kod odpowiedzi "500 Internal Server Error"
             }
         }
-
+        [HttpGet("getByBindID/{bindID}")]
+        public async Task<IActionResult> GetPastaImgByBindID(int bindID)
+        {
+            try
+            {
+                var stream = await _pastaImgService.GetPastaImgByBindID(bindID);
+                if (stream == null)
+                    return NotFound("Image not found");
+                return File(stream, "image/png"); // Zwracaj obrazy w formacie PNG
+            }
+            catch (KeyNotFoundException ex)
+            {
+                return NotFound(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message); // Zwróć kod odpowiedzi "500 Internal Server Error"
+            }
+        }
 
         [HttpGet("getByUser/{cookID}")]
         public IActionResult GetPastaImgByUser(int cookID)

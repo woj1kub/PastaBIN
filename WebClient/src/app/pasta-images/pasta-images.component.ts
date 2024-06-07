@@ -21,7 +21,7 @@ export class PastaImagesComponent {
     this.servicePastaImage.getPastaImageByUser(1).subscribe({
       next: (res: PastaImageResponseWithoutImage[]) => {
         this.data = res.map(item => ({
-          iDBind: item.iDBind,
+          idBind: item.idBind,
           image: '', // Zostanie uzupełnione później
           key: item.key,
           deleteDate: item.deleteDate,
@@ -39,7 +39,7 @@ export class PastaImagesComponent {
     this.servicePastaImage.getPastaImageByUserFromSharing(1).subscribe({
       next: (res: PastaImageResponseWithoutImage[]) => {
         this.dataFromSharing = res.map(item => ({
-          iDBind: item.iDBind,
+          idBind: item.idBind,
           image: '', // Zostanie uzupełnione później
           key: item.key,
           deleteDate: item.deleteDate,
@@ -56,13 +56,12 @@ export class PastaImagesComponent {
 
   private loadImages(data:PastaImageResponse[]): void {
     data.forEach(item => {
-      this.readPasta(item.key, item);
+      this.readPasta(item.idBind, item);
     });
   }
 
-  private readPasta(key: string, item: PastaImageResponse): void {
-    if (key.trim() !== '') {
-      this.servicePastaImage.getPastaImageByKey(key, 1).subscribe({
+  private readPasta(bindID: number, item: PastaImageResponse): void {
+      this.servicePastaImage.getPastaImageByBindID(bindID).subscribe({
         next: (response: Blob) => {
           this.readFile(response, item); // Obsługa przetworzonego strumienia binarnego
         },
@@ -70,9 +69,7 @@ export class PastaImagesComponent {
           console.error('Wystąpił błąd podczas odczytu obrazu:', error);
         }
       });
-    } else {
-      console.warn('Klucz nie może być pusty.');
-    }
+    
   }
 
   // Funkcja do przetwarzania strumienia binarnego na obraz

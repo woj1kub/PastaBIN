@@ -23,7 +23,10 @@ export class PastaTextsService {
   {
     return this.httpClient.get<PastaTextResponse[]>(this.startURL+'/getByUser/'+cookID);
   }
-  
+  getPastaTextByUserFromSharing(cookID:number):Observable<PastaTextResponse[]>
+  {
+    return this.httpClient.get<PastaTextResponse[]>(this.startURL+'/getByUserFromSharing/'+cookID);
+  }
   getPastaTextByKey( key:string , cookID:number):Observable<PastaTextResponse>
   {
     return this.httpClient.get<PastaTextResponse>(this.startURL+'/getByKey/'+key+'/'+cookID);

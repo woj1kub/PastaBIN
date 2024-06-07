@@ -1,5 +1,5 @@
 export interface PastaImageResponse {
-  iDBind: number;
+  idBind: number;
   image: string;
   key: string;
   deleteDate: string | null;

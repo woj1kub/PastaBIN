@@ -30,4 +30,7 @@ export class PastaImagesService {
   getPastaImageByKey(key: string, cookID: number): Observable<Blob> {
     return this.httpClient.get(`${this.startURL}/getByKey/${key}/${cookID}`, { responseType: 'blob' });
   }
+  getPastaImageByBindID(bindID: number): Observable<Blob> {
+    return this.httpClient.get(`${this.startURL}/getByBindID/${bindID}`, { responseType: 'blob' });
+  }
 }

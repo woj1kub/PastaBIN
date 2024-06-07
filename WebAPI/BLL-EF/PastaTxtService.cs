@@ -155,6 +155,39 @@ namespace BLL_EF
             }
             return textResponses;
         }
+
+        public IEnumerable<PastaTextResponse> GetPastaTxtByUserFromSharing(int CookID)
+        {
+            var pastaSharing = context.PastaSharingSettings
+                .Include(pss=>pss.PastaBind)
+                    .ThenInclude(pb=>pb.Cook)
+                .Include(pss => pss.PastaBind)
+                    .ThenInclude(pb=>pb.Txt)
+                .Where(pss=>pss.CookID == CookID).ToList();
+
+            if (pastaSharing.Count == 0 || pastaSharing == null)
+            {
+                throw new Exception("Cook nie ma powiązanych udostępnionych past txt.");
+            }
+
+            var textResponses = new List<PastaTextResponse>();
+
+            foreach (var item in pastaSharing)
+            {
+                if (item.PastaBind.Txt != null)
+                {
+                    textResponses.Add(new PastaTextResponse()
+                    {
+                        Content = item.PastaBind.Txt.Content,
+                        IDBind = item.PastaBind.PastaBindID,
+                        DeleteDate = item.EndSharingDate,
+                        CreationDate = item.CreationDate,
+                        Key = item.PastaBind.Cook.Login
+                    });
+                }
+            }
+            return textResponses;
+        }
     }
 
 }
