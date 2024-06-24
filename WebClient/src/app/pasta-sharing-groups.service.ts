@@ -3,37 +3,38 @@ import { Injectable } from '@angular/core';
 import { PastaGroupSharingRequest } from './model/pastaGroupSharingRequest.interface';
 import { Observable } from 'rxjs';
 import { PastaGroupSharingResponse } from './model/pastaGroupSharingResponce.interface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PastaSharingGroupsService {
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient , private authservice:AuthService) { }
   private startURL:string='https://localhost:7023/PastaGroupSharing';
   addPastaGroupSharing(pastagroup : PastaGroupSharingRequest ):Observable<string>
   {
-    return this.httpClient.post<string>(this.startURL +'/add/'+ 1, pastagroup, {
+    return this.httpClient.post<string>(this.startURL +'/add/'+ this.authservice.getUserID(), pastagroup, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
 
-  UpdatePastaGroupSharing(date:string,cookID: number,pastaGroupID:  string|null ):Observable<void>
+  UpdatePastaGroupSharing(date:string,pastaGroupID:  string|null ):Observable<void>
   {
-    return this.httpClient.post<void>(this.startURL +'/update/'+cookID+'/'+pastaGroupID, date, {
+    return this.httpClient.post<void>(this.startURL +'/update/'+this.authservice.getUserID()+'/'+pastaGroupID, date, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
-  deletePastaGroupSharing(cookID: number,pastaGroupID:  string|null):Observable<void>
+  deletePastaGroupSharing(pastaGroupID:  string|null):Observable<void>
   {
-    return this.httpClient.delete<void>(this.startURL+'/delete/'+ cookID +'/'+ pastaGroupID);
+    return this.httpClient.delete<void>(this.startURL+'/delete/'+ this.authservice.getUserID() +'/'+ pastaGroupID);
   }
-  getPastaGroupSharing(cookID: number,pastaBindID: string|null):Observable<PastaGroupSharingResponse[]>
+  getPastaGroupSharing(pastaBindID: string|null):Observable<PastaGroupSharingResponse[]>
   {
-    return this.httpClient.get<PastaGroupSharingResponse[]>(this.startURL+'/get/'+ pastaBindID +'/'+ cookID);
+    return this.httpClient.get<PastaGroupSharingResponse[]>(this.startURL+'/get/'+ pastaBindID +'/'+ this.authservice.getUserID());
   }
 
 }

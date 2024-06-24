@@ -13,7 +13,6 @@
 }
 
 .wrapper {
-    display: fixed;
     display: flex;
     min-width: 170px;
     height: inherit;
@@ -30,7 +29,8 @@
     border-radius: 0 0 20px 0;
     padding: 20px;
     width: 150px;
-    height: 90%;
+    height: 90vh;
+    
     display: flex;
     flex-direction: column;
     align-items: center;

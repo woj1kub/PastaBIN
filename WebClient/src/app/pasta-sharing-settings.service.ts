@@ -3,13 +3,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PastaSharingSettingsRequest } from './model/pastaSharingSettingsRequest';
 import { PastaSharingSettingsResponse } from './model/pastaSharingSettingsResponce.interface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PastaSharingSettingsService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private authservice:AuthService) { }
   private startURL:string='https://localhost:7023/PastaSharingSettings';
   addPastaSharingSettings(pastasharing : PastaSharingSettingsRequest ):Observable<void>
   {
@@ -21,7 +22,7 @@ export class PastaSharingSettingsService {
   }
   UpdatePastaSharingSettings(date:string,cookID: number,pastaGroupID: string|null ):Observable<void>
   {
-    return this.httpClient.post<void>(this.startURL +'/update/'+cookID+'/'+pastaGroupID, date, {
+    return this.httpClient.post<void>(this.startURL +'/update/'+this.authservice.getUserID()+'/'+pastaGroupID, date, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -29,10 +30,10 @@ export class PastaSharingSettingsService {
   }
   deletePastaSharingSettings(cookID: number,pastaGroupID: string|null):Observable<void>
   {
-    return this.httpClient.delete<void>(this.startURL+'/delete/'+ cookID +'/'+ pastaGroupID);
+    return this.httpClient.delete<void>(this.startURL+'/delete/'+ this.authservice.getUserID() +'/'+ pastaGroupID);
   }
   getPastaSharingSettings(cookID: number,pastaBindID: string|null):Observable<PastaSharingSettingsResponse[]>
   {
-    return this.httpClient.get<PastaSharingSettingsResponse[]>(this.startURL+'/get/'+ cookID +'/'+ pastaBindID);
+    return this.httpClient.get<PastaSharingSettingsResponse[]>(this.startURL+'/get/'+ this.authservice.getUserID() +'/'+ pastaBindID);
   }
 }

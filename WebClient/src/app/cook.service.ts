@@ -2,18 +2,19 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { cookRequest } from './model/cookRequest.interface';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CookService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private authservice:AuthService) { }
   private startURL:string='https://localhost:7023/Cook';
 
-  deleteCook(cookID: number):Observable<void>
+  deleteCook():Observable<void>
   {
-    return this.httpClient.delete<void>(this.startURL+'/delete/' + cookID);
+    return this.httpClient.delete<void>(this.startURL+'/delete/' + this.authservice.getUserID());
   }
 
   addCook(cook : cookRequest):Observable<void>
@@ -25,9 +26,9 @@ export class CookService {
     });
   }
 
-  updateCook(cookID:number,cook : cookRequest):Observable<void>
+  updateCook(cook : cookRequest):Observable<void>
   {
-    return this.httpClient.put<void>(this.startURL +'/update/'+cookID , cook, {
+    return this.httpClient.put<void>(this.startURL +'/update/'+this.authservice.getUserID() , cook, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

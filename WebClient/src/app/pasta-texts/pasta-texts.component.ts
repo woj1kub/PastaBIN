@@ -17,7 +17,7 @@ export class PastaTextsComponent {
 
   private getData():void{
     
-    this.servicePastaText.getPastaTextByUser(1).subscribe({
+    this.servicePastaText.getPastaTextByUser().subscribe({
       next: (res) =>{
         this.data=res;
       },
@@ -28,7 +28,7 @@ export class PastaTextsComponent {
 
   private getDataFromSharing():void{
     
-    this.servicePastaText.getPastaTextByUserFromSharing(1).subscribe({
+    this.servicePastaText.getPastaTextByUserFromSharing().subscribe({
       next: (res) =>{
         this.dataFromSharing=res;
       },

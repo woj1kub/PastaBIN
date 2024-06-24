@@ -37,7 +37,7 @@ export class PastaSharingGroupsComponent implements OnInit {
   }
 
   private getData(): void {
-    this.pss.getPastaGroupSharing(1, this.IDBind).subscribe({
+    this.pss.getPastaGroupSharing(this.IDBind).subscribe({
       next: (res) => {
         this.data = res;
       },

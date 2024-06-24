@@ -15,7 +15,7 @@ export class PastaTxtComponent {
   readPasta() {
     
     if (this.key !== '') {
-      this.servicePastaText.getPastaTextByKey(this.key, 0).subscribe({
+      this.servicePastaText.getPastaTextByKey(this.key).subscribe({
         next: (response: PastaTextResponse) => {
           this.text = response.content; // Przypisanie odczytanego tekstu do zmiennej text
         },

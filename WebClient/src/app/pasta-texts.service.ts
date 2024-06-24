@@ -3,32 +3,33 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { PastaTextRequest } from './model/pastaTextRequst.interface';
 import { PastaTextResponse } from './model/pastaTextResponce';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PastaTextsService {
 
-  constructor(private httpClient:HttpClient) { }
+  constructor(private httpClient:HttpClient, private authservice:AuthService) { }
   private startURL:string='https://localhost:7023/PastaTxt';
-  addPastaText(pastaText : PastaTextRequest , cookID:number | null ):Observable<string>
+  addPastaText(pastaText : PastaTextRequest):Observable<string>
   {
-    return this.httpClient.post<string>(this.startURL +'/add/'+cookID, pastaText, {
+    return this.httpClient.post<string>(this.startURL +'/add/'+this.authservice.getUserID(), pastaText, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
-  getPastaTextByUser(cookID:number):Observable<PastaTextResponse[]>
+  getPastaTextByUser():Observable<PastaTextResponse[]>
   {
-    return this.httpClient.get<PastaTextResponse[]>(this.startURL+'/getByUser/'+cookID);
+    return this.httpClient.get<PastaTextResponse[]>(this.startURL+'/getByUser/'+this.authservice.getUserID());
   }
-  getPastaTextByUserFromSharing(cookID:number):Observable<PastaTextResponse[]>
+  getPastaTextByUserFromSharing():Observable<PastaTextResponse[]>
   {
-    return this.httpClient.get<PastaTextResponse[]>(this.startURL+'/getByUserFromSharing/'+cookID);
+    return this.httpClient.get<PastaTextResponse[]>(this.startURL+'/getByUserFromSharing/'+this.authservice.getUserID());
   }
-  getPastaTextByKey( key:string , cookID:number):Observable<PastaTextResponse>
+  getPastaTextByKey( key:string ):Observable<PastaTextResponse>
   {
-    return this.httpClient.get<PastaTextResponse>(this.startURL+'/getByKey/'+key+'/'+cookID);
+    return this.httpClient.get<PastaTextResponse>(this.startURL+'/getByKey/'+key+'/'+this.authservice.getUserID());
   }
 }

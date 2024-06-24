@@ -62,7 +62,7 @@ export class NewPastaImageComponent implements OnInit  {
           };
           console.log(pastaImageRequest);
           
-          this.servicePastaImage.addPastaImage(pastaImageRequest, 0).subscribe({
+          this.servicePastaImage.addPastaImage(pastaImageRequest).subscribe({
             next: (Key: any) => {
               this.key = Key.key;
             },

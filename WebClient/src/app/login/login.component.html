@@ -1,7 +1,21 @@
-<p>login works!</p>
-<form *ngForm ="loginForm">
-    <input type="text">
-    <input type="password">
-    <button>Zaloguj</button>
-    <button>Utwórz konto</button>
-</form>
+<form class="form-signin" #loginForm="ngForm" (ngSubmit)="login(loginForm)" *ngIf="!IsUserAuthenticated()">
+    <mat-card class="login-card">
+      <mat-card-header>
+        <mat-card-title>Login</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="full-width">
+          <mat-label>Login</mat-label>
+          <input matInput type="text" id="login" name="login" ngModel placeholder="User name" required>
+        </mat-form-field>
+        <mat-form-field class="full-width">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" id="password" name="password" ngModel placeholder="Password" required>
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" type="submit">Sign in</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+  

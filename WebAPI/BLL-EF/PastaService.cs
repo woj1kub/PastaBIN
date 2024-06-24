@@ -43,7 +43,7 @@ namespace BLL_EF
                 historyResponses = pasta.Histories
                     .Select(h => new PastaHistoryResponse
                     {
-                        CookLogin = h.Cook != null ? h.Cook.Login : "Gość", // Ustawienie "Gość" gdy Login jest null
+                        CookLogin = h.Cook != null ? h.Cook.Login : "Gość", 
                         VisitDate = h.VisitDate
                     })
                     .ToList();

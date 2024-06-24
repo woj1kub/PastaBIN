@@ -40,6 +40,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { PastaImgUserFromSharingComponent } from './pasta-img-user-from-sharing/pasta-img-user-from-sharing.component';
 import { PastaTxtUserFromSharingComponent } from './pasta-txt-user-from-sharing/pasta-txt-user-from-sharing.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import { JwtModule, JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthInterceptor } from './auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -63,7 +66,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     PastaUserComponent,
     PastaImgUserFromSharingComponent,
     PastaTxtUserFromSharingComponent,
-    PastaSettingsComponent
+    PastaSettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,9 +89,21 @@ import {MatExpansionModule} from '@angular/material/expansion';
     FormsModule,
     MatButtonToggleModule,
     MatTooltipModule,
-    MatExpansionModule
+    MatExpansionModule,
+    JwtModule,
+    
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    JwtHelperService,
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+    }
+  ],  bootstrap: [AppComponent]
 })
 export class AppModule { }

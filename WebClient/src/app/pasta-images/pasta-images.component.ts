@@ -18,7 +18,7 @@ export class PastaImagesComponent {
   public dataFromSharing: PastaImageResponse[] = [];
 
   private getData(): void {
-    this.servicePastaImage.getPastaImageByUser(1).subscribe({
+    this.servicePastaImage.getPastaImageByUser().subscribe({
       next: (res: PastaImageResponseWithoutImage[]) => {
         this.data = res.map(item => ({
           idBind: item.idBind,
@@ -36,7 +36,7 @@ export class PastaImagesComponent {
     });
   }
   private getDataFromSharing(): void {
-    this.servicePastaImage.getPastaImageByUserFromSharing(1).subscribe({
+    this.servicePastaImage.getPastaImageByUserFromSharing().subscribe({
       next: (res: PastaImageResponseWithoutImage[]) => {
         this.dataFromSharing = res.map(item => ({
           idBind: item.idBind,

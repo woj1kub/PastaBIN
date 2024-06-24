@@ -28,7 +28,7 @@ export class NewPastaTextComponent implements OnInit {
         content: formData.content,
         deleteDate: formData.date
       };
-      this.servicePastaText.addPastaText(pastaTextRequest, 0).subscribe({
+      this.servicePastaText.addPastaText(pastaTextRequest).subscribe({
         next: (Key: any) => {
           this.key = Key.key;
         },

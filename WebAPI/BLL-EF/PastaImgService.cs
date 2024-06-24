@@ -158,8 +158,6 @@ namespace BLL_EF
             {
                 throw new KeyNotFoundException("Cook o podanym ID nie udostępniono mu żadnych past.");
             }
-
-            Console.WriteLine(pastaImagesFromSharing.First().PastaBind.GlobalKey);
             
             var imageResponses = pastaImagesFromSharing
                 .Where(item => item.PastaBind?.Image != null)

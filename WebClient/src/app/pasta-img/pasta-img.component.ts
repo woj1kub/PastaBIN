@@ -13,7 +13,7 @@ export class PastaImgComponent {
 
   readPasta() {
     if (this.key.trim() !== '') {
-      this.servicePastaImage.getPastaImageByKey(this.key, 0).subscribe({
+      this.servicePastaImage.getPastaImageByKey(this.key).subscribe({
         next: (response: Blob) => {
           this.readFile(response); // Obsługa przetworzonego strumienia binarnego
         },
