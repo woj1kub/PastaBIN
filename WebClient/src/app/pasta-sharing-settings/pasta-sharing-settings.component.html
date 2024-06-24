@@ -1,14 +1,13 @@
-<p>pasta-sharing-settings works! {{IDBind}}</p>
-<form> 
-    <input type="text" value="cookLogin">
-    <input type="datetime-local" value="endSharingDate">
-    <button type="submit">Dodaj</button>
+<p>pasta-sharing-settings works! {{ IDBind }}</p>
+<form (ngSubmit)="addPastaSharingSetting()">
+  <input type="text" [(ngModel)]="cookLogin" name="cookLogin" placeholder="Cook Login">
+  <input type="datetime-local" [(ngModel)]="endSharingDate" name="endSharingDate">
+  <button type="submit">Dodaj</button>
 </form>
 <ol>
-    <li *ngFor="let pss of data">
-        <p> {{pss.cookLogin}}</p>
-        <p> {{pss.endSharingDate}}</p>
-        <p> {{pss.pastaSharingID}}</p>
-        
-    </li>
+  <li *ngFor="let pss of data">
+    <p>{{ pss.cookLogin }}</p>
+    <p>{{ pss.endSharingDate }}</p>
+    <p>{{ pss.pastaSharingID }}</p>
+  </li>
 </ol>

@@ -30,6 +30,8 @@ namespace WebAPI.Controllers
             try
             {
                 var historyResponses = _pastaService.PastaHistoryByBindID(bindID);
+                if (historyResponses == null)
+                    return NotFound("Brak histori dla pasty");
                 return Ok(historyResponses);
             }
             catch (KeyNotFoundException ex)

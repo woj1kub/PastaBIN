@@ -10,14 +10,15 @@ import { PastaGroupSharingResponse } from './model/pastaGroupSharingResponce.int
 export class PastaSharingGroupsService {
   constructor(private httpClient:HttpClient) { }
   private startURL:string='https://localhost:7023/PastaGroupSharing';
-  addPastaGroupSharing(pastaImage : PastaGroupSharingRequest ):Observable<void>
+  addPastaGroupSharing(pastagroup : PastaGroupSharingRequest ):Observable<string>
   {
-    return this.httpClient.post<void>(this.startURL +'/add/', pastaImage, {
+    return this.httpClient.post<string>(this.startURL +'/add/'+ 1, pastagroup, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
+
   UpdatePastaGroupSharing(date:string,cookID: number,pastaGroupID:  string|null ):Observable<void>
   {
     return this.httpClient.post<void>(this.startURL +'/update/'+cookID+'/'+pastaGroupID, date, {
@@ -32,7 +33,7 @@ export class PastaSharingGroupsService {
   }
   getPastaGroupSharing(cookID: number,pastaBindID: string|null):Observable<PastaGroupSharingResponse[]>
   {
-    return this.httpClient.get<PastaGroupSharingResponse[]>(this.startURL+'/get/'+ cookID +'/'+ pastaBindID);
+    return this.httpClient.get<PastaGroupSharingResponse[]>(this.startURL+'/get/'+ pastaBindID +'/'+ cookID);
   }
 
 }

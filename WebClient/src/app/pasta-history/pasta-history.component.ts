@@ -8,11 +8,18 @@ import { PastaService } from '../pasta.service';
   styleUrl: './pasta-history.component.css'
 })
 export class PastaHistoryComponent {
-  @Input() IDBind!:string|null;
-  data:PastaHistoryResponse[]=[];
-  constructor(private ps:PastaService){
+  @Input() IDBind!: string | null;
+  cookLogin: string = '';
+  endSharingDate: string = '';
+
+  data: PastaHistoryResponse[] = [];
+
+  constructor(private ps: PastaService) {}
+
+  ngOnInit(): void {
     this.getData();
   }
+  
 
   private getData():void{
     

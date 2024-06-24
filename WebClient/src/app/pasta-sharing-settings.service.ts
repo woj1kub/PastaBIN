@@ -11,9 +11,9 @@ export class PastaSharingSettingsService {
 
   constructor(private httpClient:HttpClient) { }
   private startURL:string='https://localhost:7023/PastaSharingSettings';
-  addPastaSharingSettings(pastaImage : PastaSharingSettingsRequest ):Observable<void>
+  addPastaSharingSettings(pastasharing : PastaSharingSettingsRequest ):Observable<void>
   {
-    return this.httpClient.post<void>(this.startURL +'/add/', pastaImage, {
+    return this.httpClient.post<void>(this.startURL +'/add/', pastasharing, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
@@ -31,8 +31,8 @@ export class PastaSharingSettingsService {
   {
     return this.httpClient.delete<void>(this.startURL+'/delete/'+ cookID +'/'+ pastaGroupID);
   }
-  getPastaSharingSettings(cookID: number,pastaGroupID: string|null):Observable<PastaSharingSettingsResponse[]>
+  getPastaSharingSettings(cookID: number,pastaBindID: string|null):Observable<PastaSharingSettingsResponse[]>
   {
-    return this.httpClient.get<PastaSharingSettingsResponse[]>(this.startURL+'/get/'+ cookID +'/'+ pastaGroupID);
+    return this.httpClient.get<PastaSharingSettingsResponse[]>(this.startURL+'/get/'+ cookID +'/'+ pastaBindID);
   }
 }
