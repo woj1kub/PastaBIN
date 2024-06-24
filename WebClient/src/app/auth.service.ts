@@ -35,7 +35,7 @@ export class AuthService {
     const decodedToken = this.getDecodedToken();
     return decodedToken && decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
       ? decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']!
-      : '';
+      : '0';
   }
 
   getUserName(): string {

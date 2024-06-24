@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Interface;
 using BLL_EF;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -16,7 +17,8 @@ namespace WebAPI.Controllers
             _pastaSharingSettingsService = pastaSharingSettingsService ?? throw new ArgumentNullException(nameof(pastaSharingSettingsService));
         }
 
-        [HttpPost("add")]
+        [Authorize]
+        [HttpPost("add/{cookID}")]
         public IActionResult AddSharingSettings(int cookID, [FromBody] PastaSharingSettingsRequest pastaSharingSettingsRequest)
         {
             if (pastaSharingSettingsRequest == null)
@@ -27,7 +29,7 @@ namespace WebAPI.Controllers
 
             return NotFound("Invalid PastaBindID or user doesn't have access to it.");
         }
-
+        [Authorize]
         [HttpPut("update/{cookID}/{pastaSharingSettingsID}")]
         public IActionResult UpdateSharingSettings(int cookID, int pastaSharingSettingsID, [FromBody] DateTime endSharingDate)
         {
@@ -36,7 +38,7 @@ namespace WebAPI.Controllers
 
             return NotFound();
         }
-
+        [Authorize]
         [HttpDelete("delete/{cookID}/{pastaSharingSettingsID}")]
         public IActionResult DeleteSharingSettings(int cookID, int pastaSharingSettingsID)
         {
@@ -45,7 +47,7 @@ namespace WebAPI.Controllers
 
             return NotFound();
         }
-
+        [Authorize]
         [HttpGet("get/{cookID}/{bindID}")]
         public IActionResult GetPastaSharingSettingsByBindID(int cookID, int bindID)
         {

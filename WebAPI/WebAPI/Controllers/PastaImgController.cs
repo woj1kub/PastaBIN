@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Interface;
 using BLL_EF;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -48,6 +49,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message); // Zwróć kod odpowiedzi "500 Internal Server Error"
             }
         }
+        [Authorize]
         [HttpGet("getByBindID/{bindID}")]
         public async Task<IActionResult> GetPastaImgByBindID(int bindID)
         {
@@ -67,7 +69,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message); // Zwróć kod odpowiedzi "500 Internal Server Error"
             }
         }
-
+        [Authorize]
         [HttpGet("getByUser/{cookID}")]
         public IActionResult GetPastaImgByUser(int cookID)
         {
@@ -85,7 +87,7 @@ namespace WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
+        [Authorize]
         [HttpGet("getByUserFromPastaSharing/{cookID}")]
         public IActionResult GetPastaImgByUserFromPastaSharing(int cookID)
         {

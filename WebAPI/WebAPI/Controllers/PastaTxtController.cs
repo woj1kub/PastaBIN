@@ -1,6 +1,7 @@
 ﻿using BLL.DTO;
 using BLL.Interface;
 using BLL_EF;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers
@@ -44,6 +45,7 @@ namespace WebAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpGet("getByUser/{cookID}")]
         public IActionResult GetPastaTxtByUser(int cookID)
         {
@@ -61,6 +63,7 @@ namespace WebAPI.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [Authorize]
         [HttpGet("getByUserFromSharing/{cookID}")]
         public IActionResult GetPastaTxtByUserFromSharing(int cookID)
         {
