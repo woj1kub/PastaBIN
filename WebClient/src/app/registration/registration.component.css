@@ -1,0 +1,34 @@
+.registration {
+  text-align: center;
+  border-radius: 20px;
+  background: linear-gradient(to right, #b9fdff, #3ac4fa);
+  width: 40%;
+  padding: 20px;
+  margin-left: 30%;
+  margin-top: 7%;
+}
+
+.registration input {
+  padding: 10px;
+  border-radius: 20px;
+  margin: 10px;
+  width: 50%;
+  text-align: center;
+
+}
+.registration button{
+  margin: 10px;
+  padding: 10px;
+  border-radius: 20px;
+  width: 55%;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  min-width: 70px;
+  background: linear-gradient(to right, #fcffd3, #e2aaf8);
+}
+
+.registration button:hover {
+  background: linear-gradient(to right, #e2aaf8, #fcffd3);
+}
+
