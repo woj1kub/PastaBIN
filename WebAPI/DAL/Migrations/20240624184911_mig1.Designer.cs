@@ -4,6 +4,7 @@ using DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PastaBINContext))]
-    partial class PastaBINContextModelSnapshot : ModelSnapshot
+    [Migration("20240624184911_mig1")]
+    partial class mig1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -265,7 +268,7 @@ namespace DAL.Migrations
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithMany("Histories")
                         .HasForeignKey("PastaBindID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cook");
@@ -295,7 +298,7 @@ namespace DAL.Migrations
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithMany("SharingSettings")
                         .HasForeignKey("PastaBindID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cook");

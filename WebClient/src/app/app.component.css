@@ -2,7 +2,7 @@
     height: 5%;
     width: 100%;
     text-align: left;
-    font-size: 18px; /* Zwiększony rozmiar tekstu */
+    font-size: 18px;
     font-weight: bold;
     background: linear-gradient(to right, #6f00ff, #6bdcff);
     color: #fff;
@@ -20,7 +20,7 @@
 
 .router-outlet-wrapper {
     flex: 5;
-    overflow-y: auto; /* Dodatkowy przewijanie dla obszaru zawartości */
+    overflow-y: auto; 
     padding: 16px;
     margin-top: 10vh;
 }

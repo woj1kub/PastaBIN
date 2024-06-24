@@ -1,7 +1,7 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { PastaImageResponse } from '../model/pastaImageResponce.interface';
 import { PastaImagesService } from '../pasta-images.service';
 import { PastaImageResponseWithoutImage } from '../model/PastaImageResponseWithoutImage.interface';
+import { PastaImageResponse } from '../model/pastaImageResponce.interface';
 
 @Component({
   selector: 'app-pasta-images',
@@ -22,63 +22,65 @@ export class PastaImagesComponent {
       next: (res: PastaImageResponseWithoutImage[]) => {
         this.data = res.map(item => ({
           idBind: item.idBind,
-          image: '', // Zostanie uzupełnione później
+          image: '',
           key: item.key,
           deleteDate: item.deleteDate,
           creationDate: item.creationDate
         }));
 
-        // Wczytanie obrazów
         this.loadImages(this.data);
       },
       error: (err) => console.error(err),
-      complete: () => console.log('complete')
+      complete: () => console.log('Complete')
     });
   }
+
   private getDataFromSharing(): void {
     this.servicePastaImage.getPastaImageByUserFromSharing().subscribe({
       next: (res: PastaImageResponseWithoutImage[]) => {
         this.dataFromSharing = res.map(item => ({
           idBind: item.idBind,
-          image: '', // Zostanie uzupełnione później
+          image: '',
           key: item.key,
           deleteDate: item.deleteDate,
           creationDate: item.creationDate
         }));
-
-        // Wczytanie obrazów
         this.loadImages(this.dataFromSharing);
       },
       error: (err) => console.error(err),
-      complete: () => console.log('complete')
+      complete: () => console.log('Complete')
     });
   }
 
-  private loadImages(data:PastaImageResponse[]): void {
+  private loadImages(data: PastaImageResponse[]): void {
     data.forEach(item => {
       this.readPasta(item.idBind, item);
     });
   }
 
   private readPasta(bindID: number, item: PastaImageResponse): void {
-      this.servicePastaImage.getPastaImageByBindID(bindID).subscribe({
-        next: (response: Blob) => {
-          this.readFile(response, item); // Obsługa przetworzonego strumienia binarnego
-        },
-        error: (error) => {
-          console.error('Wystąpił błąd podczas odczytu obrazu:', error);
-        }
-      });
-    
+    this.servicePastaImage.getPastaImageByBindID(bindID).subscribe({
+      next: (response: Blob) => {
+        this.readFile(response, item);
+      },
+      error: (error) => {
+        console.error('Error reading image:', error);
+      }
+    });
   }
 
-  // Funkcja do przetwarzania strumienia binarnego na obraz
   private readFile(blob: Blob, item: PastaImageResponse): void {
     const reader = new FileReader();
     reader.onload = () => {
       item.image = reader.result as string;
-      this.cdr.detectChanges(); // Ręczne odświeżenie widoku
+      this.cdr.detectChanges();
     };
     reader.readAsDataURL(blob);
+  }
+  
+  public handlePastaDeleted(): void {
+    // Re-fetch data after deletion
+    this.getData();
+    this.getDataFromSharing();
   }
 }

@@ -25,15 +25,15 @@ namespace Model
         public void Configure(EntityTypeBuilder<PastaSharingSettings> builder)
         {
             builder.HasOne(pss => pss.Cook)
-                   .WithMany(c => c.SharingSettings) // Ensure this matches the configuration in Cook
-                   .HasForeignKey(pss => pss.CookID)
-                   .IsRequired()
-                   .OnDelete(DeleteBehavior.Restrict);
+                .WithMany(c => c.SharingSettings)
+                .HasForeignKey(pss => pss.CookID)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);  // Ensure Restrict deletion for Cook
 
             builder.HasOne(pss => pss.PastaBind)
                    .WithMany(pb => pb.SharingSettings)
-                   .HasForeignKey(pss => pss.PastaBindID) // Specify the foreign key in PastaSharingSettings
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .HasForeignKey(pss => pss.PastaBindID)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

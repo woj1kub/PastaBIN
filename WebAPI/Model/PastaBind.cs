@@ -30,19 +30,19 @@ namespace Model
                 .IsUnique();
 
             builder.HasMany(pb => pb.SharingSettings)
-                   .WithOne(pss => pss.PastaBind)
-                   .HasForeignKey(pss => pss.PastaBindID)
-                   .OnDelete(DeleteBehavior.Cascade);
+               .WithOne(pss => pss.PastaBind)
+               .HasForeignKey(pss => pss.PastaBindID)
+               .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pb => pb.Histories)
-                   .WithOne(ph => ph.PastaBind)
-                   .HasForeignKey(ph => ph.PastaBindID)
-                   .OnDelete(DeleteBehavior.Cascade);
+                .WithOne(ph => ph.PastaBind)
+                .HasForeignKey(ph => ph.PastaBindID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(pb => pb.GroupSharing)
-                   .WithOne(pgs => pgs.PastaBind)
-                   .HasForeignKey(pgs => pgs.PastaBindID)
-                   .OnDelete(DeleteBehavior.Cascade);
+                .WithOne(pgs => pgs.PastaBind)
+                .HasForeignKey(pgs => pgs.PastaBindID)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

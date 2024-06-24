@@ -8,7 +8,7 @@
   
   .pasta-header {
     display: flex;
-    align-items: center; /* Centrowanie zawartości w pionie */
+    align-items: center; 
     justify-content: space-between;
     margin-bottom: 10px;
   }
@@ -20,7 +20,7 @@
   
   .pasta-header button {
     display: flex;
-    align-items: center; /* Centrowanie zawartości w pionie */
+    align-items: center; 
     margin-left: 5px;
   }
   

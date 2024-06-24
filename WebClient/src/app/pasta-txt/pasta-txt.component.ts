@@ -8,7 +8,7 @@ import { PastaTextResponse } from '../model/pastaTextResponce';
   styleUrl: './pasta-txt.component.css'
 })
 export class PastaTxtComponent {
-  text: string = ''; // Zmienna przechowująca odczytany tekst
+  text: string = '';
 
   constructor(private servicePastaText: PastaTextsService) { }
 
@@ -17,7 +17,7 @@ export class PastaTxtComponent {
     if (this.key !== '') {
       this.servicePastaText.getPastaTextByKey(this.key).subscribe({
         next: (response: PastaTextResponse) => {
-          this.text = response.content; // Przypisanie odczytanego tekstu do zmiennej text
+          this.text = response.content; 
         },
         error: (error) => {
           console.error(error);
@@ -26,5 +26,5 @@ export class PastaTxtComponent {
     }
   }
 
-  key: string = ''; // Klucz pobierany z formularza
+  key: string = '';
 }

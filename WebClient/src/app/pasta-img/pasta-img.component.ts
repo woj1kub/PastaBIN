@@ -7,7 +7,7 @@ import { PastaImagesService } from '../pasta-images.service';
   styleUrls: ['./pasta-img.component.css']
 })
 export class PastaImgComponent {
-  imageSrc: string | null = null; // Zmienna przechowująca zdekodowany obraz
+  imageSrc: string | null = null;
 
   constructor(private servicePastaImage: PastaImagesService, private cdr: ChangeDetectorRef) { }
 
@@ -15,7 +15,7 @@ export class PastaImgComponent {
     if (this.key.trim() !== '') {
       this.servicePastaImage.getPastaImageByKey(this.key).subscribe({
         next: (response: Blob) => {
-          this.readFile(response); // Obsługa przetworzonego strumienia binarnego
+          this.readFile(response);
         },
         error: (error) => {
           console.error('Wystąpił błąd podczas odczytu obrazu:', error);
@@ -26,14 +26,14 @@ export class PastaImgComponent {
     }
   }
 
-  key: string = ''; // Klucz pobierany z formularza
+  key: string = '';
 
-  // Funkcja do przetwarzania strumienia binarnego na obraz
+
   private readFile(blob: Blob) {
     const reader = new FileReader();
     reader.onload = () => {
       this.imageSrc = reader.result as string;
-      this.cdr.detectChanges(); // Ręczne odświeżenie widoku
+      this.cdr.detectChanges();
     };
     reader.readAsDataURL(blob);
   }

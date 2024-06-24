@@ -2,6 +2,6 @@ export interface PastaImageResponse {
   idBind: number;
   image: string;
   key: string;
-  deleteDate: string | null;
+  deleteDate: Date | null;
   creationDate: string | null;
 }

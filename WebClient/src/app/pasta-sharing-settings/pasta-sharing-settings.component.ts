@@ -20,26 +20,34 @@ export class PastaSharingSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
-  
+
   addPastaSharingSetting() {
+    const dateObject = new Date(this.endSharingDate);
+    if (isNaN(dateObject.getTime())) {
+      console.error('Invalid date format');
+      return;
+    }
+
     const newPastaSharingSetting: PastaSharingSettingsRequest = {
       cookLogin: this.cookLogin,
-      endSharingDate: this.endSharingDate,
+      endSharingDate: dateObject,
       pastaBindID: Number(this.IDBind)
     };
-    this.pss.addPastaSharingSettings(newPastaSharingSetting).subscribe;
-    this.cookLogin = '';
-    this.endSharingDate = '';
+
+    this.pss.addPastaSharingSettings(newPastaSharingSetting).subscribe(() => {
+      this.cookLogin = '';
+      this.endSharingDate = '';
+      this.getData();
+    });
   }
-  
-  private getData():void{
-    
-    this.pss.getPastaSharingSettings(1 , this.IDBind).subscribe({
-      next: (res) =>{
-        this.data=res;
+
+  private getData(): void {
+    this.pss.getPastaSharingSettings(1, this.IDBind).subscribe({
+      next: (res) => {
+        this.data = res;
       },
       error: (err) => console.error(err),
-      complete:()=> console.log('complete')
+      complete: () => console.log('complete')
     });
   }
   

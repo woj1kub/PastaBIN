@@ -2,7 +2,6 @@
 <ol>
     <li *ngFor="let pss of data">
         <p> {{pss.cookLogin}}</p>
-        <p> {{pss.pastaSharingID}}</p>
-        <p> {{pss.visitDate}}</p>
+        <p> {{pss.visitDate | date: 'dd.MM.yyyy HH:mm'}}</p>
     </li>
 </ol>

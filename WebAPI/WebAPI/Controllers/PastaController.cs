@@ -15,7 +15,7 @@ namespace WebAPI.Controllers
         {
             _pastaService = pastaService ?? throw new ArgumentNullException(nameof(pastaService));
         }
-        [Authorize]
+        //[Authorize]
         [HttpDelete("delete/{bindID}")]
         public IActionResult DeletePasta(int bindID)
         {

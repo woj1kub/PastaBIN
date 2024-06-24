@@ -10,7 +10,7 @@ export class PastaUserComponent {
   showTextComponent: string = 'true';
   toggleComponent(value: string) {
     this.showTextComponent = value;
-    this.cdr.detectChanges(); // ręczne odświeżenie widoku
+    this.cdr.detectChanges();
   }
 }
 

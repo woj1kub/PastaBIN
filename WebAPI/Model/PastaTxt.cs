@@ -28,7 +28,7 @@ namespace Model
             builder.HasOne(pt => pt.PastaBind)
                    .WithOne(pb => pb.Txt)
                    .HasForeignKey<PastaTxt>(pt => pt.PastaBindID)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

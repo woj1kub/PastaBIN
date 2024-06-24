@@ -1,12 +1,13 @@
-<form class="registration">
-    <input type="text" placeholder="Login">
+<form class="registration" (ngSubmit)="submitRegistration()">
+    <input type="text" placeholder="Login" [(ngModel)]="login" name="login" required>
     <br />
-    <input type="email" placeholder="Adres email">
+    <input type="email" placeholder="Adres email" [(ngModel)]="email" name="email" required>
     <br />
-    <input type="password" name="" id="" placeholder="Hasło">
+    <input type="password" placeholder="Hasło" [(ngModel)]="password" name="password" required>
     <br />
-    <input type="password" name="" id="" placeholder="Powtórz hasło">
+    <input type="password" placeholder="Powtórz hasło" [(ngModel)]="confirmPassword" name="confirmPassword" required>
     <br />
     <button type="submit">Utwórz konto</button>
     <br />
-</form>
+  </form>
+  

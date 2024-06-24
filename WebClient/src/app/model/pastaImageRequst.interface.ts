@@ -1,4 +1,4 @@
 export interface PastaImageRequest {
     image: string;
-    deleteDate: string | null;
+    deleteDate: Date | null;
 }

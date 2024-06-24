@@ -9,12 +9,5 @@ import { PastaImageResponse } from '../model/pastaImageResponce.interface';
 })
 export class PastaImgUserFromSharingComponent {
   @Input('app-pasta-img-user-from-sharing') pastaimg!: PastaImageResponse;
-  onSettingsClick() {
-    throw new Error('Method not implemented.');
-  }
-  onDeleteClick() {
-    throw new Error('Method not implemented.');
-  }
-  constructor(private servicePastaImage: PastaImagesService,private cdr: ChangeDetectorRef) { }
 
 }

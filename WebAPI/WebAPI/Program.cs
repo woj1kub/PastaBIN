@@ -2,7 +2,14 @@ using BLL_EF;
 using DAL;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Quartz;
+using Quartz.Impl;
+using Quartz.Spi;
+using System;
 using System.Text;
+using System.Threading.Tasks;
+using WebAPI;
+using static Quartz.Logging.OperationName;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -49,6 +56,63 @@ builder.Services.AddScoped<PastaTxtService>();
 builder.Services.AddScoped<PastaService>();
 builder.Services.AddScoped<CookService>();
 builder.Services.AddScoped<PastaSharingSettingsService>();
+
+// Add Quartz.NET
+builder.Services.AddQuartz(q =>
+{
+    q.UseMicrosoftDependencyInjectionJobFactory();
+
+    q.AddJob<DeleteExpiredSharingJob>(group => group
+        .WithIdentity("deleteExpiredSharingJob"));
+
+    q.AddJob<DeleteExpiredPastaTxt>(group => group
+        .WithIdentity("deleteExpiredPastaTxtJob"));
+
+    q.AddJob<DeleteExpiredPastaGroups>(group => group
+        .WithIdentity("deleteExpiredPastaGroupsJob"));
+
+    q.AddJob<DeleteExpiredPastaImg>(group => group
+       .WithIdentity("deleteExpiredPastaImgJob"));
+
+    q.AddTrigger(trigger => trigger
+        .WithIdentity("deleteExpiredPastaGroupsJobTrigger")
+        .ForJob("deleteExpiredPastaGroupsJob")
+        .StartNow()
+        .WithSimpleSchedule(schedule => schedule
+            .WithIntervalInMinutes(15)
+            .RepeatForever())); 
+
+    q.AddTrigger(trigger => trigger
+        .WithIdentity("deleteExpiredPastaImgJobTrigger")
+        .ForJob("deleteExpiredPastaImgJob")
+        .StartNow()
+        .WithSimpleSchedule(schedule => schedule
+            .WithIntervalInMinutes(15)
+            .RepeatForever())); 
+
+    q.AddTrigger(trigger => trigger
+        .WithIdentity("deleteExpiredSharingJobTrigger")
+        .ForJob("deleteExpiredSharingJob")
+        .StartNow()
+        .WithSimpleSchedule(schedule => schedule
+            .WithIntervalInMinutes(15)
+            .RepeatForever()));
+
+    q.AddTrigger(trigger => trigger
+        .WithIdentity("deleteExpiredPastaTxtJobTrigger")
+        .ForJob("deleteExpiredPastaTxtJob")
+        .StartNow()
+        .WithSimpleSchedule(schedule => schedule
+            .WithIntervalInMinutes(15)
+            .RepeatForever()));
+    
+});
+
+
+builder.Services.AddQuartzHostedService(options =>
+{
+    options.WaitForJobsToComplete = true;
+});
 
 var app = builder.Build();
 

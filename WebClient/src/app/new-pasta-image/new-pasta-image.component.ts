@@ -49,6 +49,11 @@ export class NewPastaImageComponent implements OnInit  {
     if (this.formPastaImage.valid) {
       const formData = this.formPastaImage.value;
       
+      const dateObject = new Date(formData.date);
+      if (isNaN(dateObject.getTime())) {
+        console.error('Invalid date format');
+        return;
+      }
       const file: File = formData.content;
       const reader = new FileReader();
   
@@ -58,7 +63,7 @@ export class NewPastaImageComponent implements OnInit  {
           const byteArray = new Uint8Array(arrayBuffer);
           const pastaImageRequest: PastaImageRequest = {
             image: byteArray.toString(),
-            deleteDate: formData.date
+            deleteDate: dateObject
           };
           console.log(pastaImageRequest);
           

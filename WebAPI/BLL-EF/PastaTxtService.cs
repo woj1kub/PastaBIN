@@ -42,6 +42,7 @@ namespace BLL_EF
                 IsActive = true
             };
             context.PastaText.Add(pastaTxt);
+            Console.WriteLine(pastaTxt.DeleteDate);
             context.SaveChanges();
             pastaBind.TxtID=pastaTxt.PastaTxtID;
             context.SaveChanges();

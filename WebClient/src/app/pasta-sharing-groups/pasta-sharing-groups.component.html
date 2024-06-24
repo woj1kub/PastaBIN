@@ -1,15 +1,16 @@
-<p>pasta-sharing-groups works! {{ IDBind }}</p>
 <form (ngSubmit)="addGroupSharing()"> 
-    <input type="datetime-local" name="endSharingDate">
+    <input type="datetime-local" name="endSharingDate" [(ngModel)]="endSharingDate">
     <button type="submit">Dodaj</button>
 </form>
+
 <input type="text" name="newGroupKey" [(ngModel)]="groupKey" readonly>
+
 
 <ol>
     <li *ngFor="let psg of data">
         <p> {{psg.groupKey}}</p>
-        <p> {{psg.creationDate}}</p>
-        <p> {{psg.endSharingDate}}</p>
+        <p>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+        <p> {{psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
         <p> {{psg.pastaGroupID}}</p>
     </li>
 </ol>

@@ -1,4 +1,4 @@
 export interface PastaGroupSharingRequest {
     pastaBindID: number;
-    endSharingDate?: string | null;
+    endSharingDate: Date | null;
 }

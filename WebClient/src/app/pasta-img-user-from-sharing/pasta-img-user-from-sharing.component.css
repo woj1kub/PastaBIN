@@ -1,31 +1,26 @@
-/* Stylizacja kontenera pasty */
 .pasta-container {
     margin: 20px;
     padding: 10px;
-    width: 400px; /* Możesz dostosować szerokość według potrzeb */
+    width: 400px; 
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
   
-  /* Stylizacja nagłówka pasty */
   .pasta-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
   
-  /* Stylizacja przycisków w nagłówku */
   .pasta-header button {
     margin-left: 5px;
   }
   
-  /* Stylizacja zawartości pasty */
   .pasta-content {
     margin-top: 10px;
   }
   
-  /* Stylizacja obrazu */
   .image {
     width: 100%;
     height: auto;

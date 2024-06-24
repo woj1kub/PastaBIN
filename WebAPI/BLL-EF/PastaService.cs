@@ -16,11 +16,13 @@ namespace BLL_EF
         }
         public bool DeletePasta(int BindID)
         {
-            PastaBind pasta = context.PastaBinds.Single(p => p.PastaBindID == BindID);
+            PastaBind pasta = context.PastaBinds.SingleOrDefault(p => p.PastaBindID == BindID);
+            Console.WriteLine(pasta.PastaBindID);
             if (pasta == null)
                 return false;
 
             context.PastaBinds.Remove(pasta);
+            context.SaveChanges();
             return true;
         }
 
@@ -29,7 +31,7 @@ namespace BLL_EF
             var pasta = context.PastaBinds
                 .Include(p => p.Histories)
                     .ThenInclude(h => h.Cook)
-                .FirstOrDefault(p => p.PastaBindID == BindID);
+                .SingleOrDefault(p => p.PastaBindID == BindID);
 
             if (pasta == null)
             {

@@ -10,6 +10,6 @@ export class SettingsComponent {
   showTextComponent: string = '0';
   toggleComponent(value: string) {
     this.showTextComponent = value;
-    this.cdr.detectChanges(); // ręczne odświeżenie widoku
+    this.cdr.detectChanges();
   }
 }

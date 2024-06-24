@@ -6,10 +6,8 @@
         <textarea matInput formControlName="content" name="content"></textarea>
       </mat-form-field>
       <div class="button-container">
-        <mat-form-field appearance="fill">
           <mat-label>Wybierz datę</mat-label>
-          <input type="datetime-local" matInput class="key-input" formControlName="date"/>
-        </mat-form-field>
+          <input type="datetime-local" class="key-input" formControlName="date"/>
         <button mat-raised-button color="warn" type="submit">Generuj</button>
       </div>
     </form>

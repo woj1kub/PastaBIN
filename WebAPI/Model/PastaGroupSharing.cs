@@ -27,9 +27,9 @@ namespace Model
                 .IsUnique();
 
             builder.HasOne(pgs => pgs.PastaBind)
-                   .WithMany(pb => pb.GroupSharing)
-                   .HasForeignKey(pgs => pgs.PastaBindID)
-                   .OnDelete(DeleteBehavior.Restrict);
+               .WithMany(pb => pb.GroupSharing)
+               .HasForeignKey(pgs => pgs.PastaBindID)
+               .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

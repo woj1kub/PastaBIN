@@ -8,10 +8,4 @@ import { PastaTextResponse } from '../model/pastaTextResponce';
 })
 export class PastaTxtUserFromSharingComponent {
   @Input('app-pasta-txt-user-from-sharing') pastatxt!: PastaTextResponse;
-  public onSettingsClick():void {
-    
-  }
-  public onDeleteClick():void {
-
-  }
 }

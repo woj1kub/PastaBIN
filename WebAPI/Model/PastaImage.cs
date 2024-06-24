@@ -29,7 +29,7 @@ namespace Model
             builder.HasOne(pi => pi.PastaBind)
                    .WithOne(pb => pb.Image)
                    .HasForeignKey<PastaImage>(pi => pi.PastaBindID)
-                   .OnDelete(DeleteBehavior.Restrict);
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

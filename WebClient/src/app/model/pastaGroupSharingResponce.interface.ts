@@ -1,6 +1,7 @@
 export interface PastaGroupSharingResponse {
     pastaGroupID: number;
     groupKey: string;
-    endSharingDate: string | null;
+    endSharingDate: Date | null;
     creationDate: string;
-}
+  }
+  

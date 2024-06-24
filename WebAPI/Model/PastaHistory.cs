@@ -25,15 +25,15 @@ namespace Model
         public void Configure(EntityTypeBuilder<PastaHistory> builder)
         {
             // Relationships
-            builder.HasOne(ph => ph.Cook)
-                   .WithMany(c => c.Histories)
-                   .HasForeignKey(ph => ph.CookID)
-                   .OnDelete(DeleteBehavior.Restrict);
+           builder.HasOne(ph => ph.Cook)
+               .WithMany(c => c.Histories)
+               .HasForeignKey(ph => ph.CookID)
+               .OnDelete(DeleteBehavior.Restrict);  // Ensure Restrict deletion for Cook
 
-            builder.HasOne(ph => ph.PastaBind)
-                   .WithMany(pb => pb.Histories)
-                   .HasForeignKey(ph => ph.PastaBindID)
-                   .OnDelete(DeleteBehavior.Restrict);
+        builder.HasOne(ph => ph.PastaBind)
+               .WithMany(pb => pb.Histories)
+               .HasForeignKey(ph => ph.PastaBindID)
+               .OnDelete(DeleteBehavior.Cascade);
 
 
         }

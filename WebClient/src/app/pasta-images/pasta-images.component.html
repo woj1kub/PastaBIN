@@ -11,7 +11,7 @@
         </mat-panel-description>
       </mat-expansion-panel-header>
       <div class="container">
-        <div *ngFor="let pimg of data" [app-pasta-img-user]="pimg"></div>
+        <div *ngFor="let pimg of data" [app-pasta-img-user]="pimg" (pastaDeleted)="handlePastaDeleted()"></div>
     </div>
   
     </mat-expansion-panel>

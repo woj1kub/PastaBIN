@@ -14,6 +14,7 @@ export class PastaSharingGroupsComponent implements OnInit {
   endSharingDate: string = '';
 
   data: PastaGroupSharingResponse[] = [];
+
   constructor(private pss: PastaSharingGroupsService) {}
 
   ngOnInit(): void {
@@ -21,18 +22,27 @@ export class PastaSharingGroupsComponent implements OnInit {
   }
 
   addGroupSharing() {
+    const dateObject = new Date(this.endSharingDate);
+    if (isNaN(dateObject.getTime())) {
+      console.error('Invalid date format');
+      return;
+    }
+
     const newPastagroup: PastaGroupSharingRequest = {
-      endSharingDate: this.endSharingDate ? new Date(this.endSharingDate).toISOString() : null,
+      endSharingDate: dateObject,
       pastaBindID: Number(this.IDBind)
     };
+
     this.pss.addPastaGroupSharing(newPastagroup).subscribe({
       next: (Key: any) => {
         this.groupKey = Key.key;
+        this.getData();
       },
       error: (error) => {
         console.error(error);
       }
     });
+
     this.endSharingDate = '';
   }
 
