@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { PastaHistoryResponse } from '../model/pastaHistoryResponce.interface';
+import { PastaService } from '../pasta.service';
 
 @Component({
   selector: 'app-pasta-history',
@@ -6,5 +8,27 @@ import { Component } from '@angular/core';
   styleUrl: './pasta-history.component.css'
 })
 export class PastaHistoryComponent {
+  @Input() IDBind!: string | null;
+  cookLogin: string = '';
+  endSharingDate: string = '';
 
+  data: PastaHistoryResponse[] = [];
+
+  constructor(private ps: PastaService) {}
+
+  ngOnInit(): void {
+    this.getData();
+  }
+  
+
+  private getData():void{
+    
+    this.ps.getPastaHistory(this.IDBind).subscribe({
+      next: (res) =>{
+        this.data=res;
+      },
+      error: (err) => console.error(err),
+      complete:()=> console.log('complete')
+    });
+  }
 }

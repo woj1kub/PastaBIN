@@ -72,17 +72,23 @@ namespace BLL_EF
         {
             PastaBind pastaBind = context.PastaBinds
                 .Include(pb => pb.SharingSettings)
+                    .ThenInclude(ss => ss.Cook)
                 .SingleOrDefault(pb => pb.PastaBindID == bindID && pb.CookID == cookID);
 
             if (pastaBind == null)
                 return Enumerable.Empty<PastaSharingSettingsRequest>();
 
-            return pastaBind.SharingSettings.Select(ps => new PastaSharingSettingsRequest()
+            var sharingSettingsRequests = pastaBind.SharingSettings.Select(ps => new PastaSharingSettingsRequest()
             {
                 PastaBindID = ps.PastaBindID,
-                EndSharingDate = ps.EndSharingDate
-            });
+                EndSharingDate = ps.EndSharingDate,
+                CookLogin = ps.Cook?.Login,
+                CookID = ps.CookID
+            }).ToList();
+
+            return sharingSettingsRequests;
         }
+
     }
 
 }

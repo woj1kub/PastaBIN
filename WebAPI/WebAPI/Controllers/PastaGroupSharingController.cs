@@ -16,14 +16,14 @@ namespace WebAPI.Controllers
             _pastaGroupSharingService = pastaGroupSharingService ?? throw new ArgumentNullException(nameof(pastaGroupSharingService));
         }
 
-        [HttpPost("add")]
+        [HttpPost("add/{cookID}")]
         public IActionResult AddGroupSharing(int cookID, [FromBody] PastaGroupSharingRequest pastaGroupSharingRequest)
         {
             if (pastaGroupSharingRequest == null)
                 return BadRequest();
-
-            if (_pastaGroupSharingService.AddGrupSharing(cookID, pastaGroupSharingRequest))
-                return Ok();
+            string key = _pastaGroupSharingService.AddGrupSharing(cookID, pastaGroupSharingRequest);
+            if (key != "")
+                return Ok(new KeyResponse() { Key = key });
 
             return NotFound("Invalid PastaBindID or user doesn't have access to it.");
         }

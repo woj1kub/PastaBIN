@@ -10,15 +10,16 @@ import { PastaGroupSharingResponse } from './model/pastaGroupSharingResponce.int
 export class PastaSharingGroupsService {
   constructor(private httpClient:HttpClient) { }
   private startURL:string='https://localhost:7023/PastaGroupSharing';
-  addPastaGroupSharing(pastaImage : PastaGroupSharingRequest ):Observable<void>
+  addPastaGroupSharing(pastagroup : PastaGroupSharingRequest ):Observable<string>
   {
-    return this.httpClient.post<void>(this.startURL +'/add/', pastaImage, {
+    return this.httpClient.post<string>(this.startURL +'/add/'+ 1, pastagroup, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
-  UpdatePastaGroupSharing(date:string,cookID: number,pastaGroupID: number ):Observable<void>
+
+  UpdatePastaGroupSharing(date:string,cookID: number,pastaGroupID:  string|null ):Observable<void>
   {
     return this.httpClient.post<void>(this.startURL +'/update/'+cookID+'/'+pastaGroupID, date, {
       headers: new HttpHeaders({
@@ -26,13 +27,13 @@ export class PastaSharingGroupsService {
       })
     });
   }
-  deletePastaGroupSharing(cookID: number,pastaGroupID: number):Observable<void>
+  deletePastaGroupSharing(cookID: number,pastaGroupID:  string|null):Observable<void>
   {
     return this.httpClient.delete<void>(this.startURL+'/delete/'+ cookID +'/'+ pastaGroupID);
   }
-  getPastaGroupSharing(cookID: number,pastaGroupID: number):Observable<PastaGroupSharingResponse>
+  getPastaGroupSharing(cookID: number,pastaBindID: string|null):Observable<PastaGroupSharingResponse[]>
   {
-    return this.httpClient.delete<PastaGroupSharingResponse>(this.startURL+'/get/'+ cookID +'/'+ pastaGroupID);
+    return this.httpClient.get<PastaGroupSharingResponse[]>(this.startURL+'/get/'+ pastaBindID +'/'+ cookID);
   }
 
 }

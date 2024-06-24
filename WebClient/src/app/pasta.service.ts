@@ -16,9 +16,9 @@ export class PastaService {
   {
     return this.httpClient.delete<void>(this.startURL+'/delete/'+ pastaBindID);
   }
-  getPastaHistory(pastaBindID: number):Observable<PastaHistoryResponse>
+  getPastaHistory(pastaBindID: string|null):Observable<PastaHistoryResponse[]>
   {
-    return this.httpClient.get<PastaHistoryResponse>(this.startURL+'/history/' + pastaBindID);
+    return this.httpClient.get<PastaHistoryResponse[]>(this.startURL+'/history/' + pastaBindID);
   }
 
 }

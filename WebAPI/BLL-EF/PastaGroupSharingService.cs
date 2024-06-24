@@ -14,15 +14,15 @@ namespace BLL_EF
         {
             this.context = context;
         }
-
-        public bool AddGrupSharing(int cookID, PastaGroupSharingRequest pastaGroupSharingRequest)
+        
+        public string AddGrupSharing(int cookID, PastaGroupSharingRequest pastaGroupSharingRequest)
         {
             PastaBind pastaBind = context.PastaBinds
                 .Include(pb => pb.Cook)
                 .SingleOrDefault(pb => pb.PastaBindID == pastaGroupSharingRequest.PastaBindID && pb.CookID == cookID);
 
             if (pastaBind == null)
-                return false;
+                return "";
 
             string groupKey;
             do
@@ -40,7 +40,7 @@ namespace BLL_EF
             });
 
             context.SaveChanges();
-            return true;
+            return groupKey;
         }
 
         public bool DeleteGrupSharing(int cookID, int pastaGroupSharingID)

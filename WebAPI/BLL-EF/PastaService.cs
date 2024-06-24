@@ -24,26 +24,35 @@ namespace BLL_EF
             return true;
         }
 
-        public IEnumerable<PastaHistoryResponse> PastaHistoryByKey(int BindID)
+        public IEnumerable<PastaHistoryResponse> PastaHistoryByBindID(int BindID)
         {
             var pasta = context.PastaBinds
                 .Include(p => p.Histories)
-                .ThenInclude(h => h.Cook)
-                .SingleOrDefault(p => p.PastaBindID == BindID);
+                    .ThenInclude(h => h.Cook)
+                .FirstOrDefault(p => p.PastaBindID == BindID);
 
             if (pasta == null)
             {
-                throw new KeyNotFoundException("Pasta o takim ID nie istnieje");
+                throw new KeyNotFoundException($"Pasta o ID {BindID} nie istnieje");
             }
 
-            var historyResponses = pasta.Histories.Select(h => new PastaHistoryResponse
+            var historyResponses = new List<PastaHistoryResponse>();
+
+            if (pasta.Histories != null)
             {
-                CookLogin = h.Cook.Login,
-                VisitDate = h.VisitDate
-            }).ToList();
+                historyResponses = pasta.Histories
+                    .Select(h => new PastaHistoryResponse
+                    {
+                        CookLogin = h.Cook != null ? h.Cook.Login : "Gość", // Ustawienie "Gość" gdy Login jest null
+                        VisitDate = h.VisitDate
+                    })
+                    .ToList();
+            }
 
             return historyResponses;
         }
+
+
 
     }
 

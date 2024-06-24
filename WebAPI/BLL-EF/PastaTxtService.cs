@@ -105,7 +105,7 @@ namespace BLL_EF
             {
                 context.PastaHistories.Add(new PastaHistory()
                 {
-                    CookID = CookID,
+                    CookID = CookID == 0 ? null : CookID,
                     VisitDate = DateTime.Now,
                     PastaBindID = pasta.PastaBindID
                 });

@@ -7,7 +7,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import { PastaComponent } from './pasta/pasta.component';
 import { PastaAddComponent } from './pasta-add/pasta-add.component';
 import { PastaHistoryComponent } from './pasta-history/pasta-history.component';
-import { PastaSharingComponent } from './pasta-sharing/pasta-sharing.component';
 import { PastaSharingSettingsComponent } from './pasta-sharing-settings/pasta-sharing-settings.component';
 import { PastaSharingGroupsComponent } from './pasta-sharing-groups/pasta-sharing-groups.component';
 import { SettingsComponent } from './settings/settings.component';
@@ -50,7 +49,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
     PastaComponent,
     PastaAddComponent,
     PastaHistoryComponent,
-    PastaSharingComponent,
     PastaSharingSettingsComponent,
     PastaSharingGroupsComponent,
     SettingsComponent,
@@ -58,7 +56,6 @@ import {MatExpansionModule} from '@angular/material/expansion';
     PastaTextsComponent,
     NewPastaTextComponent,
     NewPastaImageComponent,
-    PastaSettingsComponent,
     PastaImgComponent,
     PastaTxtComponent,
     PastaImgUserComponent,
@@ -66,6 +63,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
     PastaUserComponent,
     PastaImgUserFromSharingComponent,
     PastaTxtUserFromSharingComponent,
+    PastaSettingsComponent
   ],
   imports: [
     BrowserModule,
