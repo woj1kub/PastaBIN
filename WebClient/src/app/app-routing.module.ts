@@ -10,10 +10,10 @@ import { PastaUserComponent } from './pasta-user/pasta-user.component';
 const routes: Routes = [
   {path:'addPasta' , component:PastaAddComponent},
   {path:'signUp', component:RegistrationComponent},
-  {path:'settings:/pastaID', component:PastaSettingsComponent},
+  {path:'pastaSettings/:pastaID', component:PastaSettingsComponent},
   {path:'openPasta', component:PastaComponent},
   {path:'login', component:LoginComponent},
-  {path:'pasty' , component:PastaUserComponent}
+  {path:'pasty' , component:PastaUserComponent},
 ];
 
 @NgModule({

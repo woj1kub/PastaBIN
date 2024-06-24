@@ -1,1 +1,8 @@
-<p>pasta-history works!</p>
+<p>pasta-history works! {{IDBind}}</p>
+<ol>
+    <li *ngFor="let pss of data">
+        <p> {{pss.cookLogin}}</p>
+        <p> {{pss.pastaSharingID}}</p>
+        <p> {{pss.visitDate}}</p>
+    </li>
+</ol>

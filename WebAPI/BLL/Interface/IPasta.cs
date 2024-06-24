@@ -8,6 +8,6 @@ namespace BLL.Interface
         
         // Razem
         public bool DeletePasta(int BindID);
-        public IEnumerable<PastaHistoryResponse> PastaHistoryByKey(int BindID);
+        public IEnumerable<PastaHistoryResponse> PastaHistoryByBindID(int BindID);
     }
 }

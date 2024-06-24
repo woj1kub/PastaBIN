@@ -1,8 +1,18 @@
-<p>pasta-settings works!</p>
-<button> Udostępnienia | Historia </button>
-<ng-container >
-    <app-pasta-history> </app-pasta-history>
-</ng-container>
-<ng-component>
-    <app-pasta-sharing></app-pasta-sharing>
-</ng-component>
+<div class="main-container">
+    <mat-button-toggle-group [(ngModel)]="showTextComponent" (change)="toggleComponent($event.value)">
+      <mat-button-toggle value="0">Udostępnienia</mat-button-toggle>
+      <mat-button-toggle value="1">Grupy</mat-button-toggle>
+      <mat-button-toggle value="2">Historia</mat-button-toggle>
+    </mat-button-toggle-group>
+  
+    <ng-container *ngIf="showTextComponent === '0'">
+      <app-pasta-sharing-settings [IDBind]="id"></app-pasta-sharing-settings>
+    </ng-container>
+  
+    <ng-container *ngIf="showTextComponent === '1'" >
+      <app-pasta-sharing-groups [IDBind]="id"></app-pasta-sharing-groups>
+    </ng-container>
+    <ng-container *ngIf="showTextComponent === '2'" >
+        <app-pasta-history [IDBind]="id"></app-pasta-history>
+    </ng-container>
+</div>

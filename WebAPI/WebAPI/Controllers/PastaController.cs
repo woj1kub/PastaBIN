@@ -25,11 +25,11 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("history/{bindID}")]
-        public IActionResult PastaHistoryByKey(int bindID)
+        public IActionResult PastaHistoryByBindID(int bindID)
         {
             try
             {
-                var historyResponses = _pastaService.PastaHistoryByKey(bindID);
+                var historyResponses = _pastaService.PastaHistoryByBindID(bindID);
                 return Ok(historyResponses);
             }
             catch (KeyNotFoundException ex)

@@ -24,7 +24,7 @@ namespace BLL_EF
             return true;
         }
 
-        public IEnumerable<PastaHistoryResponse> PastaHistoryByKey(int BindID)
+        public IEnumerable<PastaHistoryResponse> PastaHistoryByBindID(int BindID)
         {
             var pasta = context.PastaBinds
                 .Include(p => p.Histories)

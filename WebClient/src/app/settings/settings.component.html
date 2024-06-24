@@ -1,1 +1,18 @@
-<p>settings works!</p>
+<div class="main-container">
+    <mat-button-toggle-group [(ngModel)]="showTextComponent" (change)="toggleComponent($event.value)">
+      <mat-button-toggle value="'0'">Udostępnienia</mat-button-toggle>
+      <mat-button-toggle value="'1'">Grupy</mat-button-toggle>
+      <mat-button-toggle value="'2'">Historia</mat-button-toggle>
+    </mat-button-toggle-group>
+  
+    <ng-container *ngIf="showTextComponent === '0'">
+      <app-pasta-texts></app-pasta-texts>
+    </ng-container>
+  
+    <ng-container *ngIf="showTextComponent === '1'" >
+      <app-pasta-images ></app-pasta-images>
+    </ng-container>
+    <ng-container *ngIf="showTextComponent === '1'" >
+        <app-pasta-images ></app-pasta-images>
+      </ng-container>
+</div>

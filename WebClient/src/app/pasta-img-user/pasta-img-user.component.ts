@@ -1,6 +1,8 @@
 import { ChangeDetectorRef, Component, Input } from '@angular/core';
 import { PastaImagesService } from '../pasta-images.service';
 import { PastaImageResponse } from '../model/pastaImageResponce.interface';
+import { PastaService } from '../pasta.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: '[app-pasta-img-user]',
@@ -9,12 +11,12 @@ import { PastaImageResponse } from '../model/pastaImageResponce.interface';
 })
 export class PastaImgUserComponent {
   @Input('app-pasta-img-user') pastaimg!: PastaImageResponse;
-  onSettingsClick() {
-    throw new Error('Method not implemented.');
-  }
-  onDeleteClick() {
-    throw new Error('Method not implemented.');
-  }
-  constructor(private servicePastaImage: PastaImagesService,private cdr: ChangeDetectorRef) { }
+  constructor(private router: Router , private pastaservice:PastaService) { }
 
+  public onSettingsClick():void {
+    this.router.navigate(['/pastaSettings/'+this.pastaimg.idBind])
+  }
+  public onDeleteClick():void {
+    this.pastaservice.deletePasta(this.pastaimg.idBind)
+  }
 }

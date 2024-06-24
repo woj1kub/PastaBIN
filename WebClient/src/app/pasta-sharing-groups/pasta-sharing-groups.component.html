@@ -1,1 +1,14 @@
 <p>pasta-sharing-groups works!</p>
+<form> 
+    <input type="text" value="cookLogin">
+    <input type="datetime-local" value="endSharingDate">
+    <button type="submit">Dodaj</button>
+</form>
+<ol>
+    <li *ngFor="let psg of data">
+        <p> {{psg.groupKey}}</p>
+        <p> {{psg.creationDate}}</p>
+        <p> {{psg.endSharingDate}}</p>
+        <p> {{psg.pastaGroupID}}</p>
+    </li>
+</ol>
