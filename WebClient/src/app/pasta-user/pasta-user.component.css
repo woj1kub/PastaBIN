@@ -1,0 +1,46 @@
+.main-container {
+  text-align: center;
+}
+
+.button-container {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.toggle-button {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 0 -2px 0 0;
+  border-radius: 20px 0 0 20px;
+}
+
+.toggle-button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.toggle-button:not(.active):hover {
+  background-color: #e0e0e0;
+}
+
+.toggle-button-two {
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin: 0 0 0 -2px;
+  border-radius: 0 20px 20px 0;
+}
+
+.toggle-button-two.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.toggle-button:not(.active):hover {
+  background-color: #e0e0e0;
+}

@@ -23,6 +23,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 .textarea {
@@ -81,7 +82,7 @@ body {
   border: none;
   border-radius: 20px;
   background: linear-gradient(to right, #fcffd3, #e2aaf8);
-  color: white;
+  color: black;
   cursor: pointer;
   font-weight: bold;
   font-size: 15px;

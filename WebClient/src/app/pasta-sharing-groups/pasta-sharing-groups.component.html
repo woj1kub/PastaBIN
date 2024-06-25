@@ -1,5 +1,7 @@
-<form (ngSubmit)="addGroupSharing()"> 
+<body>
+<form (ngSubmit)="addGroupSharing()">
     <input type="datetime-local" name="endSharingDate" [(ngModel)]="endSharingDate">
+    <br/>
     <button type="submit">Dodaj</button>
 </form>
 
@@ -15,3 +17,4 @@
         <p> {{psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
     </li>
 </ol>
+</body>

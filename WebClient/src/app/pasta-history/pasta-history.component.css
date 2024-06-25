@@ -1,0 +1,14 @@
+body{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: linear-gradient(to right, #b9fdff, #3ac4fa);
+  width: 60vh;
+  height: 60vh;
+  padding: 20px;
+  margin-left: 52vh;
+  margin-top: 2vh;
+}
