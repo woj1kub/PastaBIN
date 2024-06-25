@@ -1,16 +1,17 @@
-<mat-card class="container">
-    <mat-card-content class="content">
-      <mat-form-field class="textarea" appearance="fill">
-        <mat-label>Zawartość</mat-label>
-        <textarea matInput [ngModel]="text" readonly name="content"></textarea>
-      </mat-form-field>
-      <mat-card-content class="button-container">
-        <mat-form-field appearance="fill" class="key-input">
-          <mat-label>Klucz</mat-label>
-          <input type="text" matInput [(ngModel)]="key">
-        </mat-form-field>
-            <button mat-raised-button color="warn" (click)="readPasta()" [disabled]="key === ''">Odczytaj</button>
-        </mat-card-content>
-    </mat-card-content>
-  </mat-card>
-  
+<body>
+<div class="container">
+  <div class="content">
+    <div class="form-field textarea">
+      <label for="content">Zawartość</label>
+      <textarea id="content" [ngModel]="text" readonly name="content"></textarea>
+    </div>
+    <div class="button-container">
+      <div class="form-field key-input">
+        <label for="key">Klucz</label>
+        <input type="text" id="key" [(ngModel)]="key">
+      </div>
+      <button class="btn" (click)="readPasta()" [disabled]="key === ''">Odczytaj</button>
+    </div>
+  </div>
+</div>
+</body>

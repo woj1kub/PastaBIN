@@ -1,74 +1,106 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .textarea {
-    margin-bottom: 20px;
-    position: relative;
-  }
-  
-  .selected-image {
-    max-width: 100%;
-    max-height: 200px; /* maksymalna wysokość obrazu */
-    min-height: 200px; /* maksymalna wysokość obrazu */
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  .image-container {
+  border-radius: 20px;
+  background: linear-gradient(to right, #b9fdff, #3ac4fa);
+  width: 60vh;
+  height: 50vh;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  width: 60vh;
+}
+
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.textarea {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.textarea .image-container {
+    width: 60vh;
+    height: 200px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 200px; /* wysokość pustego prostokąta */
-    border: 1px dashed #ccc; /* styl obramowania pustego prostokąta */
-    border-radius: 5px;
-  }
-  
-  .image-container span {
-    font-size: 16px; /* rozmiar czcionki tekstu "Wrzuć zdjęcie" */
-    color: #999; /* kolor tekstu "Wrzuć zdjęcie" */
-  }
-  
-  .file-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  .file-input {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    cursor: pointer;
-  }
-  
-  
-  .button-container {
-    display: flex;
-    justify-content:center;
-    margin-top: 20px;
-    gap: 30px;
-  }
-  
-  .mat-form-field {
-    width: 45%; /* dostosuj szerokość pola formularza według potrzeb */
-  }
-  
-  .readonly-input {
-    width: 100%;
-  }
-  
+    border: 2px dashed #ccc;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+
+.textarea .selected-image {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 20px;
+  margin-bottom: 20px;
+}
+
+.file-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.key-input,
+.readonly-input {
+  width: 50vh;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.button-container .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #fcffd3, #e2aaf8);
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  min-width: 70px;
+}
+
+.button-container .btn:hover {
+  background: linear-gradient(to right, #e2aaf8, #fcffd3);
+}
+
+.readonly-input {
+  background-color: #f0f0f0;
+  margin-top: 20px;
+}

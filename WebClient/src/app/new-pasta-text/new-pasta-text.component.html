@@ -1,18 +1,22 @@
-<mat-card class="container">
-  <mat-card-content class="content">
+<body>
+<div class="container">
+  <div class="content">
     <form [formGroup]="formPastaText" (ngSubmit)="onSubmit()">
-      <mat-form-field class="textarea" appearance="fill">
-        <mat-label>Zawartość</mat-label>
-        <textarea matInput formControlName="content" name="content"></textarea>
-      </mat-form-field>
+      <div class="form-field textarea">
+        <label for="content">Zawartość</label>
+        <textarea id="content" formControlName="content" name="content"></textarea>
+      </div>
+      <div class="form-field">
+        <label for="date">Wybierz datę</label>
+        <input type="datetime-local" id="date" class="key-input" formControlName="date"/>
+      </div>
       <div class="button-container">
-          <mat-label>Wybierz datę</mat-label>
-          <input type="datetime-local" class="key-input" formControlName="date"/>
-        <button mat-raised-button color="warn" type="submit">Generuj</button>
+        <button class="btn" type="submit">Generuj</button>
       </div>
     </form>
-    <mat-form-field appearance="fill">
-      <input type="text" matInput [(ngModel)]="key" readonly class="readonly-input"/>
-    </mat-form-field>
-  </mat-card-content>
-</mat-card>
+    <div class="form-field">
+      <input type="text" [(ngModel)]="key" readonly class="readonly-input"/>
+    </div>
+  </div>
+</div>
+</body>

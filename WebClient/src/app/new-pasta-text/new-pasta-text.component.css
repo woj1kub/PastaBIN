@@ -1,37 +1,83 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .mat-form-field {
-    width: 100%;
-    margin-bottom: 20px;
-  }
-  
-  .textarea {
-    height: 150px;
-    width: 100%;
-    
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content:center;
-    margin-top: 20px;
-    gap: 30px;
-  }
-  
-  button {
-    width: 100px;
-  }
-  
-  .readonly-input {
-    width: 100%;
-  }
-  
+  border-radius: 20px;
+  background: linear-gradient(to right, #b9fdff, #3ac4fa);
+  width: 60vh;
+  height: 50vh;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-field {
+  margin-bottom: 20px;
+  width: 60vh;
+}
+
+.textarea label,
+.form-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.textarea textarea {
+  width: 50vh;
+  padding: 10px;
+  height: 15vh;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.key-input,
+.readonly-input {
+  width: 50vh;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.button-container {
+  margin-top: 30px;
+}
+
+.button-container .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #fcffd3, #e2aaf8);
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  min-width: 70px;
+}
+
+.button-container .btn:hover {
+  background: linear-gradient(to right, #e2aaf8, #fcffd3);
+}
+
+.readonly-input {
+  background-color: #f0f0f0;
+  margin-top: 20px;
+}

@@ -1,21 +1,21 @@
-
-<mat-card class="container">
-    <mat-card-content class="content">
-        <mat-card *ngIf="imageSrc" class="textarea">
-            <img [src]="imageSrc" alt="Obraz" class="image">
-        </mat-card>
-        <mat-card *ngIf="!imageSrc" class="textarea">
-            <mat-card-content>
-                <span>Brak obrazu</span>
-            </mat-card-content>
-        </mat-card>
-      <mat-card-content class="button-container">
-        <mat-form-field appearance="fill" class="key-input">
-          <mat-label>Klucz</mat-label>
-          <input type="text" matInput [(ngModel)]="key">
-        </mat-form-field>
-            <button mat-raised-button color="warn" (click)="readPasta()" [disabled]="key === ''">Odczytaj</button>
-        </mat-card-content>
-    </mat-card-content>
-</mat-card>
-  
+<body>
+<div class="container">
+  <div class="content">
+    <div *ngIf="imageSrc" class="textarea">
+      <img [src]="imageSrc" alt="Obraz" class="image">
+    </div>
+    <div *ngIf="!imageSrc" class="textarea">
+      <div class="no-image">
+        <span>Brak obrazu</span>
+      </div>
+    </div>
+    <div class="button-container">
+      <div class="form-field key-input">
+        <label for="key">Klucz</label>
+        <input type="text" id="key" [(ngModel)]="key">
+      </div>
+      <button class="btn" (click)="readPasta()" [disabled]="key === ''">Odczytaj</button>
+    </div>
+  </div>
+</div>
+</body>

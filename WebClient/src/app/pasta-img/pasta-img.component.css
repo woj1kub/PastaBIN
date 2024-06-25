@@ -1,29 +1,98 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
-    margin: 20px;
-  }
-  
-  .content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .textarea {
-    width: 100%;
-    height: 150px;
-    max-height: 300px;
-    max-width: 300px;
-  }
-  
-  .button-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  .key-input {
-    flex: 1;
-    margin-right: 10px;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  background: linear-gradient(to right, #b9fdff, #3ac4fa);
+  width: 60vh;
+  height: 50vh;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  margin: 20px auto;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textarea {
+  margin-bottom: 20px;
+  width: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px dashed #ccc;
+  border-radius: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.image {
+  max-width: 50vh;
+  max-height: 200px;
+  border-radius: 20px;
+}
+
+.no-image {
+  width: 50vh;
+  height: 10vh;
+  text-align: center;
+}
+
+.form-field {
+  margin-bottom: 50px;
+  width: 50vh;
+}
+
+.key-input label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.key-input input {
+  width: 50vh;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.button-container .btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(to right, #fcffd3, #e2aaf8);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+  min-width: 70px;
+}
+
+.button-container .btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.button-container .btn:hover:not(:disabled) {
+  background: linear-gradient(to right, #e2aaf8, #fcffd3);
+}

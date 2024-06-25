@@ -20,7 +20,7 @@
 
 .router-outlet-wrapper {
     flex: 5;
-    overflow-y: auto; 
+    overflow-y: auto;
     padding: 16px;
     margin-top: 10vh;
 }
@@ -30,7 +30,7 @@
     padding: 20px;
     width: 150px;
     height: 90vh;
-    
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -39,6 +39,7 @@
 .button-column {
     display: flex;
     flex-direction: column;
+    height: 85vh;
     gap: 16px;
 }
 
@@ -59,9 +60,10 @@
 }
 
 .low_buttons {
-    margin-top: 48vh ;
+
     display: flex;
     flex-direction: column;
+    height: 15vh;
     gap: 16px;
 }
 
