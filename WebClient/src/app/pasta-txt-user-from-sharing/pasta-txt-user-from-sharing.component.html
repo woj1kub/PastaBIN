@@ -1,12 +1,12 @@
 <div class="pasta-container">
     <div class="pasta-header">
       <mat-form-field appearance="outline">
-        <mat-label>User</mat-label>
+        <mat-label>Cook</mat-label>
         <input matInput type="text" readonly [(ngModel)]="pastatxt.key">
       </mat-form-field>
       <button  mat-icon-button 
       aria-hidden="false"
-      [matTooltip]="'Data udostępnienia: ' + pastatxt.creationDate + '\n Data straty dostępu: ' + pastatxt.deleteDate">
+      [matTooltip]="'Data udostępnienia: ' + (pastatxt.creationDate | date: 'dd.MM.yyyy HH:mm')  + 'Data straty dostępu: ' +( pastatxt.deleteDate | date: 'dd.MM.yyyy HH:mm')">
       <mat-icon>
         help_outline
       </mat-icon>

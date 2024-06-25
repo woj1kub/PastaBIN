@@ -6,14 +6,16 @@ import { PastaSettingsComponent } from './pasta-settings/pasta-settings.componen
 import { LoginComponent } from './login/login.component';
 import { PastaComponent } from './pasta/pasta.component';
 import { PastaUserComponent } from './pasta-user/pasta-user.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'addPasta' , component:PastaAddComponent},
   {path:'signUp', component:RegistrationComponent},
-  {path:'pastaSettings/:pastaID', component:PastaSettingsComponent},
+  {path:'pastaSettings/:pastaID', component:PastaSettingsComponent , canActivate: [AuthGuard]},
   {path:'openPasta', component:PastaComponent},
-  {path:'pasty' , component:PastaUserComponent},
+  {path:'pasty' , component:PastaUserComponent , canActivate: [AuthGuard]},
+  { path:'', redirectTo:'addPasta', pathMatch:'full' }
 ];
 
 @NgModule({

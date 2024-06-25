@@ -6,7 +6,7 @@
       </mat-form-field>
       <button mat-icon-button 
       aria-hidden="false"
-      [matTooltip]="'Data udostępnienia: ' + pastaimg.creationDate + '\n Data straty dostępu: ' + pastaimg.deleteDate">
+      [matTooltip]="'Data udostępnienia: ' +( pastaimg.creationDate | date: 'dd.MM.yyyy HH:mm' )+ '\n Data straty dostępu: ' +( pastaimg.deleteDate | date: 'dd.MM.yyyy HH:mm')">
       <mat-icon>
         help_outline
       </mat-icon>
