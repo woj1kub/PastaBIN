@@ -7,15 +7,28 @@
 
 <input type="text" name="newGroupKey" [(ngModel)]="groupKey" readonly>
 
-
-<ol>
+<table>
     <!-- Trzeba dodać usuwanie oraz edytowanie -->
-
-    <li *ngFor="let psg of data">
-        <p> {{psg.groupKey}}</p>
-        <p>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-        <p> {{psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-        <button (click)="Delete(psg.groupSharingID)">Usuń</button>
-    </li>
-</ol>
+    <tr>
+      <th>
+        Cook
+      </th>
+      <th>
+        Data utworzenia    
+      </th>
+      
+      <th>
+        Data straty dostępu    
+      </th>
+      <th>
+        Usuń
+      </th>
+    </tr>
+    <tr *ngFor="let psg of data">
+      <td>{{psg.groupKey}}</td>
+      <td>{{ psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+      <td>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+      <td><button (click)="Delete(psg.groupSharingID)">Usuń</button></td>
+    </tr>
+  </table>
 </body>

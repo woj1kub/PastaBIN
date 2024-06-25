@@ -6,14 +6,28 @@
   <br/>
   <button type="submit">Dodaj</button>
 </form>
-<ol>
+<table>
   <!-- Trzeba dodać usuwanie oraz edytowanie -->
-
-  <li *ngFor="let pss of data">
-    <p>{{ pss.cookLogin }}</p>
-    <p>{{ pss.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-    <p>{{ pss.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-    <button (click)="Delete(pss.pastaSharingID)">Usuń</button>
-  </li>
-</ol>
+  <tr>
+    <th>
+      Cook
+    </th>
+    <th>
+      Data utworzenia    
+    </th>
+    
+    <th>
+      Data straty dostępu    
+    </th>
+    <th>
+      Usuń
+    </th>
+  </tr>
+  <tr *ngFor="let pss of data">
+    <td>{{ pss.cookLogin }}</td>
+    <td>{{ pss.creationDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+    <td>{{ pss.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</td>
+    <td><button (click)="Delete(pss.pastaSharingID)">Usuń</button></td>
+  </tr>
+</table>
 </body>
