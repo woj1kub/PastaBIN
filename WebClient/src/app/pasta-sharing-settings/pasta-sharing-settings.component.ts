@@ -9,6 +9,7 @@ import { PastaSharingSettingsRequest } from '../model/pastaSharingSettingsReques
   styleUrls: ['./pasta-sharing-settings.component.css']
 })
 export class PastaSharingSettingsComponent implements OnInit {
+
   @Input() IDBind!: string | null;
   cookLogin: string = '';
   endSharingDate: string = '';
@@ -20,7 +21,10 @@ export class PastaSharingSettingsComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
   }
-
+  Delete(arg0: number) {
+    this.pss.deletePastaSharingSettings(arg0.toString()).subscribe();
+    this.getData();
+  }
   addPastaSharingSetting() {
     const dateObject = new Date(this.endSharingDate);
 
@@ -44,7 +48,7 @@ export class PastaSharingSettingsComponent implements OnInit {
   }
 
   private getData(): void {
-    this.pss.getPastaSharingSettings(1, this.IDBind).subscribe({
+    this.pss.getPastaSharingSettings(this.IDBind).subscribe({
       next: (res) => {
         this.data = res;
       },

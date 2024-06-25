@@ -20,7 +20,7 @@ export class LoginComponent {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
       })
-    }).subscribe(response => {
+    }).subscribe(response  => {
       const token = (response as any).token;
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;

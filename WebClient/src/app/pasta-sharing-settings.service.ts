@@ -20,7 +20,7 @@ export class PastaSharingSettingsService {
       })
     });
   }
-  UpdatePastaSharingSettings(date:string,cookID: number,pastaGroupID: string|null ):Observable<void>
+  UpdatePastaSharingSettings(date:string,pastaGroupID: string|null ):Observable<void>
   {
     return this.httpClient.post<void>(this.startURL +'/update/'+this.authservice.getUserID()+'/'+pastaGroupID, date, {
       headers: new HttpHeaders({
@@ -28,11 +28,11 @@ export class PastaSharingSettingsService {
       })
     });
   }
-  deletePastaSharingSettings(cookID: number,pastaGroupID: string|null):Observable<void>
+  deletePastaSharingSettings(pastaGroupID: string|null):Observable<void>
   {
     return this.httpClient.delete<void>(this.startURL+'/delete/'+ this.authservice.getUserID() +'/'+ pastaGroupID);
   }
-  getPastaSharingSettings(cookID: number,pastaBindID: string|null):Observable<PastaSharingSettingsResponse[]>
+  getPastaSharingSettings(pastaBindID: string|null):Observable<PastaSharingSettingsResponse[]>
   {
     return this.httpClient.get<PastaSharingSettingsResponse[]>(this.startURL+'/get/'+ this.authservice.getUserID() +'/'+ pastaBindID);
   }

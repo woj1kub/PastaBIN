@@ -66,12 +66,12 @@ namespace BLL_EF
             if (pastaBind == null)
                 return new List<PastaGroupSharingResponse>();
 
-            List<PastaGroupSharingResponse> pastaGroupSharings = new List<PastaGroupSharingResponse>();
+            List<PastaGroupSharingResponse> pastaGroupSharings = new();
             foreach (var item in pastaBind.GroupSharing)
             {
                 pastaGroupSharings.Add(new PastaGroupSharingResponse()
                 {
-                    PastaGroupID = item.PastaBindID,
+                    GroupSharingID = item.GroupSharingID,
                     GroupKey = item.GroupKey,
                     EndSharingDate = item.EndSharingDate,
                     CreationDate = item.CreationDate

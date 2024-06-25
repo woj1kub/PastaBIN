@@ -13,5 +13,6 @@
         <p> {{psg.groupKey}}</p>
         <p>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
         <p> {{psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+        <button (click)="Delete(psg.groupSharingID)">Usuń</button>
     </li>
 </ol>

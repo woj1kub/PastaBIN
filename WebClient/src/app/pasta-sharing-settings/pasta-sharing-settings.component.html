@@ -11,5 +11,6 @@
     <p>{{ pss.cookLogin }}</p>
     <p>{{ pss.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
     <p>{{ pss.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+    <button (click)="Delete(pss.pastaSharingID)">Usuń</button>
   </li>
 </ol>

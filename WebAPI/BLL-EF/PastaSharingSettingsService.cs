@@ -85,7 +85,6 @@ namespace BLL_EF
                 CookLogin = ps.Cook?.Login,
                 CreationDate = ps.CreationDate
             }).ToList();
-
             return sharingSettingsRequests;
         }
 

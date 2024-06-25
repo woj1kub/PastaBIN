@@ -8,7 +8,7 @@ namespace BLL.DTO
 {
     public class PastaSharingSettingsResponse
     {
-        public int PastaSharingID;
+        public int PastaSharingID { get; set; }
         public string CookLogin {  get; set; }
         public DateTime? EndSharingDate { get; set; }
         public DateTime? CreationDate { get; set; }

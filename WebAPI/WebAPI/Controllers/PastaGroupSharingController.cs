@@ -16,7 +16,6 @@ namespace WebAPI.Controllers
         {
             _pastaGroupSharingService = pastaGroupSharingService ?? throw new ArgumentNullException(nameof(pastaGroupSharingService));
         }
-        [Authorize]
         [HttpPost("add/{cookID}")]
         public IActionResult AddGroupSharing(int cookID, [FromBody] PastaGroupSharingRequest pastaGroupSharingRequest)
         {
@@ -28,7 +27,6 @@ namespace WebAPI.Controllers
 
             return NotFound("Invalid PastaBindID or user doesn't have access to it.");
         }
-        [Authorize]
         [HttpDelete("delete/{cookID}/{pastaGroupSharingID}")]
         public IActionResult DeleteGroupSharing(int cookID, int pastaGroupSharingID)
         {
@@ -37,14 +35,12 @@ namespace WebAPI.Controllers
 
             return NotFound();
         }
-        [Authorize]
         [HttpGet("get/{bindID}/{cookID}")]
         public IActionResult GetPastaGroupSharingByBindID(int bindID, int cookID)
         {
-            IEnumerable<PastaGroupSharingResponse> pastaGroupSharings = _pastaGroupSharingService.GetPastaGroupSharingByBindID(bindID, cookID);
+            var pastaGroupSharings = _pastaGroupSharingService.GetPastaGroupSharingByBindID(bindID, cookID);
             return Ok(pastaGroupSharings);
         }
-        [Authorize]
         [HttpPut("update/{cookID}/{pastaGroupSharingID}")]
         public IActionResult UpdateGroupSharing(int cookID, int pastaGroupSharingID, [FromBody] DateTime endSharingDate)
         {

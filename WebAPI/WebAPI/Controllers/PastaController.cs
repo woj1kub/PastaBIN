@@ -15,7 +15,6 @@ namespace WebAPI.Controllers
         {
             _pastaService = pastaService ?? throw new ArgumentNullException(nameof(pastaService));
         }
-        //[Authorize]
         [HttpDelete("delete/{bindID}")]
         public IActionResult DeletePasta(int bindID)
         {
@@ -24,7 +23,6 @@ namespace WebAPI.Controllers
 
             return NotFound();
         }
-        [Authorize]
         [HttpGet("history/{bindID}")]
         public IActionResult PastaHistoryByBindID(int bindID)
         {

@@ -9,14 +9,18 @@ import { PastaGroupSharingRequest } from '../model/pastaGroupSharingRequest.inte
   styleUrls: ['./pasta-sharing-groups.component.css']
 })
 export class PastaSharingGroupsComponent implements OnInit {
+
   @Input() IDBind!: string | null;
   groupKey: string = '';
   endSharingDate: string = '';
 
   data: PastaGroupSharingResponse[] = [];
-
+ 
   constructor(private pss: PastaSharingGroupsService) {}
-
+  Delete(arg0: number) {
+    this.pss.deletePastaGroupSharing(arg0.toString()).subscribe();
+    this.getData();
+  }
   ngOnInit(): void {
     this.getData();
   }
