@@ -1,22 +1,23 @@
 <body>
-<div class="container">
-  <div class="content">
-    <form [formGroup]="formPastaText" (ngSubmit)="onSubmit()">
-      <div class="form-field textarea">
-        <label for="content">Zawartość</label>
-        <textarea id="content" formControlName="content" name="content"></textarea>
-      </div>
+  <div class="container">
+    <div class="content">
+      <form [formGroup]="formPastaText" (ngSubmit)="onSubmit()">
+        <div class="form-field textarea">
+          <label for="content">Zawartość</label>
+          <textarea id="content" formControlName="content" name="content"></textarea>
+        </div>
+        <div class="form-field">
+          <label for="date">Wybierz datę</label>
+          <input type="datetime-local" id="date" class="key-input" formControlName="date" [min]="minDate"/>
+        </div>
+        <div class="button-container">
+          <button class="btn" type="submit">Generuj</button>
+        </div>
+      </form>
       <div class="form-field">
-        <label for="date">Wybierz datę</label>
-        <input type="datetime-local" id="date" class="key-input" formControlName="date"/>
+        <input type="text" [(ngModel)]="key" readonly class="readonly-input"/>
       </div>
-      <div class="button-container">
-        <button class="btn" type="submit">Generuj</button>
-      </div>
-    </form>
-    <div class="form-field">
-      <input type="text" [(ngModel)]="key" readonly class="readonly-input"/>
     </div>
   </div>
-</div>
-</body>
+  </body>
+  

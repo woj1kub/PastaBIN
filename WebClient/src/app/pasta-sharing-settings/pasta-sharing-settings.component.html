@@ -4,7 +4,7 @@
       <form (ngSubmit)="addPastaSharingSetting()">
         <input type="text" [(ngModel)]="cookLogin" name="cookLogin" placeholder="Cook Login">
         <br/>
-        <input type="datetime-local" [(ngModel)]="endSharingDate" name="endSharingDate" required="false">
+        <input type="datetime-local" [(ngModel)]="endSharingDate" name="endSharingDate" required="false" [min]="minDate">
         <br/>
         <button type="submit">Dodaj</button>
       </form>

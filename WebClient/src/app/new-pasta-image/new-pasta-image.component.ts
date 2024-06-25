@@ -3,30 +3,35 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { PastaImagesService } from '../pasta-images.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { PastaImageRequest } from '../model/pastaImageRequst.interface';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-new-pasta-image',
   templateUrl: './new-pasta-image.component.html',
-  styleUrls: ['./new-pasta-image.component.css']
+  styleUrls: ['./new-pasta-image.component.css'],
+  providers: [DatePipe]
 })
-export class NewPastaImageComponent implements OnInit  {
+export class NewPastaImageComponent {
   imageSrc: SafeUrl | undefined;
   key: string = '';
   formPastaImage: FormGroup;
+  minDate: string;
 
   constructor(
     private servicePastaImage: PastaImagesService, 
     private fb: FormBuilder, 
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private datePipe: DatePipe
+
   ) {
+    const now = new Date();
+    this.minDate = this.datePipe.transform(now, 'yyyy-MM-ddTHH:mm') || '';
+
     this.formPastaImage = this.fb.group({
       content: [null, Validators.required],
-      date: ['', Validators.required]
+      date: [this.minDate, Validators.required]
     });
   }
-  
-  ngOnInit(): void {}
-
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
     if (file) {

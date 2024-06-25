@@ -1,27 +1,28 @@
 <body>
-<div class="container">
-  <div class="content">
-    <form [formGroup]="formPastaImage" (ngSubmit)="onSubmit()">
-      <div class="form-field textarea">
-        <div class="image-container" *ngIf="!imageSrc">
-          <span>Wrzuć zdjęcie</span>
+  <div class="container">
+    <div class="content">
+      <form [formGroup]="formPastaImage" (ngSubmit)="onSubmit()">
+        <div class="form-field textarea">
+          <div class="image-container" *ngIf="!imageSrc">
+            <span>Wrzuć zdjęcie</span>
+          </div>
+          <img [src]="imageSrc" alt="Selected Image" *ngIf="imageSrc" class="selected-image" />
+          <input type="file" (change)="onFileSelected($event)" accept="image/*" class="file-input" />
         </div>
-        <img [src]="imageSrc" alt="Selected Image" *ngIf="imageSrc" class="selected-image" />
-        <input type="file" (change)="onFileSelected($event)" accept="image/*" class="file-input" />
-      </div>
-
+  
+        <div class="form-field">
+          <label for="date">Wybierz datę</label>
+          <input type="datetime-local" id="date" class="key-input" placeholder="start date" formControlName="date" [min]="minDate"/>
+        </div>
+  
+        <div class="button-container">
+          <button class="btn" type="submit" [disabled]="!formPastaImage.valid">Generuj</button>
+        </div>
+      </form>
       <div class="form-field">
-        <label for="date">Wybierz datę</label>
-        <input type="datetime-local" id="date" class="key-input" placeholder="start date" formControlName="date"/>
+        <input type="text" [(ngModel)]="key" readonly class="readonly-input"/>
       </div>
-
-      <div class="button-container">
-        <button class="btn" type="submit" [disabled]="!formPastaImage.valid">Generuj</button>
-      </div>
-    </form>
-    <div class="form-field">
-      <input type="text" [(ngModel)]="key" readonly class="readonly-input"/>
     </div>
   </div>
-</div>
-</body>
+  </body>
+  

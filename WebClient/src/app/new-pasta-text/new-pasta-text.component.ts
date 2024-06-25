@@ -8,28 +8,32 @@ import { DatePipe } from '@angular/common';
   selector: 'app-new-pasta-text',
   templateUrl: './new-pasta-text.component.html',
   styleUrls: ['./new-pasta-text.component.css'],
-  providers: [DatePipe] // Dodaj DatePipe do listy dostawców komponentu
-
+  providers: [DatePipe]
 })
 export class NewPastaTextComponent implements OnInit {
   formPastaText!: FormGroup;
   key: string = '';
+  minDate: string;
 
-  constructor(private fb: FormBuilder
-    , private servicePastaText: PastaTextsService,
-    private datePipe: DatePipe // Dodaj DatePipe do wstrzykiwania zależności
-  ) { }
+  constructor(
+    private fb: FormBuilder,
+    private servicePastaText: PastaTextsService,
+    private datePipe: DatePipe
+  ) { 
+    const now = new Date();
+    this.minDate = this.datePipe.transform(now, 'yyyy-MM-ddTHH:mm') || '';
+  }
 
   ngOnInit(): void {
     this.formPastaText = this.fb.group({
       content: ['', Validators.required],
-      date: ['', Validators.required]
+      date: [this.minDate, Validators.required]
     });
   }
   
   onSubmit(): void {
-      if (this.formPastaText.valid) {
-        const formData = this.formPastaText.value;
+    if (this.formPastaText.valid) {
+      const formData = this.formPastaText.value;
 
       const dateObject = new Date(formData.date);
       if (isNaN(dateObject.getTime())) {

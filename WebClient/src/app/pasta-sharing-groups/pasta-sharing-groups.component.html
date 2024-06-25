@@ -2,11 +2,12 @@
   <div class="main-container">
     <div class="container form-container">
       <form (ngSubmit)="addGroupSharing()">
-        <input type="datetime-local" name="endSharingDate" [(ngModel)]="endSharingDate">
+        <input type="text" name="newGroupKey" [(ngModel)]="groupKey" readonly>
+        <br/>
+          <input type="datetime-local" name="endSharingDate" [(ngModel)]="endSharingDate" [min]="minDate">
         <br/>
         <button type="submit">Dodaj</button>
-        <br/>
-        <input type="text" name="newGroupKey" [(ngModel)]="groupKey" readonly>
+        
       </form>
     </div>
     <div class="container list-container">
@@ -14,7 +15,7 @@
     <!-- Trzeba dodać usuwanie oraz edytowanie -->
     <tr>
       <th>
-        Cook
+        Klucz grupy
       </th>
       <th>
         Data utworzenia    
