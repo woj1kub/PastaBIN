@@ -1,21 +1,23 @@
 <body>
-<form (ngSubmit)="addGroupSharing()">
-    <input type="datetime-local" name="endSharingDate" [(ngModel)]="endSharingDate">
-    <br/>
-    <button type="submit">Dodaj</button>
-</form>
-
-<input type="text" name="newGroupKey" [(ngModel)]="groupKey" readonly>
-
-
-<ol>
-    <!-- Trzeba dodać usuwanie oraz edytowanie -->
-
-    <li *ngFor="let psg of data">
-        <p> {{psg.groupKey}}</p>
-        <p>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-        <p> {{psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-        <button (click)="Delete(psg.groupSharingID)">Usuń</button>
-    </li>
-</ol>
+  <div class="main-container">
+    <div class="container form-container">
+      <form (ngSubmit)="addGroupSharing()">
+        <input type="datetime-local" name="endSharingDate" [(ngModel)]="endSharingDate">
+        <br/>
+        <button type="submit">Dodaj</button>
+        <br/>
+        <input type="text" name="newGroupKey" [(ngModel)]="groupKey" readonly>
+      </form>
+    </div>
+    <div class="container list-container">
+      <ol>
+        <li *ngFor="let psg of data">
+          <p>{{ psg.groupKey }}</p>
+          <p>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+          <p>{{ psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
+          <button (click)="Delete(psg.groupSharingID)">Usuń</button>
+        </li>
+      </ol>
+    </div>
+  </div>
 </body>
