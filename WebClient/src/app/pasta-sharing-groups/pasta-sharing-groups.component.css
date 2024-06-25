@@ -1,0 +1,38 @@
+body{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  background: linear-gradient(to right, #b9fdff, #3ac4fa);
+  width: 60vh;
+  height: 60vh;
+  padding: 20px;
+  margin-left: 52vh;
+  margin-top: 2vh;
+}
+
+input {
+  margin: 40px;
+  width: 50vh;
+  text-align: center;
+  height: 3vh;
+  border-radius: 20px;
+}
+
+button {
+  font-weight: bold;
+  font-size: 16px;
+  margin: 40px;
+  width: 50vh;
+  text-align: center;
+  height: 3vh;
+  border-radius: 20px;
+  background: linear-gradient(to right, #fcffd3, #e2aaf8);
+  cursor: pointer;
+}
+
+button:hover {
+  background: linear-gradient(to right, #e2aaf8, #fcffd3);
+}

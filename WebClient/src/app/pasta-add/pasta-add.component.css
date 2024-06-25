@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.button-toggle-group {
+.button-container {
   display: inline-block;
   margin-bottom: 20px;
 }
@@ -41,6 +41,6 @@
   color: #fff;
 }
 
-.toggle-button:not(.active):hover {
+.toggle-button-two:not(.active):hover {
   background-color: #e0e0e0;
 }

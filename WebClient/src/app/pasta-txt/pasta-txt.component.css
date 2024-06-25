@@ -16,7 +16,6 @@ body {
   padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-  margin: 20px auto;
 }
 
 .content {
@@ -67,7 +66,7 @@ body {
   border: none;
   border-radius: 20px;
   background: linear-gradient(to right, #fcffd3, #e2aaf8);
-  color: white;
+  color: black;
   cursor: pointer;
   font-weight: bold;
   font-size: 15px;
