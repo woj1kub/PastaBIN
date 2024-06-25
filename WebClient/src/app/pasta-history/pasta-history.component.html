@@ -1,8 +1,9 @@
 <body>
-<ol>
-    <li *ngFor="let pss of data">
-        <p> {{pss.cookLogin}}</p>
-        <p> {{pss.visitDate | date: 'dd.MM.yyyy HH:mm'}}</p>
-    </li>
-</ol>
+<div class="container list-container">
+    <ul>
+        <li *ngFor="let pss of data">
+            <p> {{pss.cookLogin}} {{pss.visitDate | date: 'dd.MM.yyyy HH:mm'}}</p>
+        </li>
+    </ul>
+</div>
 </body>

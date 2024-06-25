@@ -12,3 +12,17 @@ body{
   margin-left: 52vh;
   margin-top: 2vh;
 }
+
+.list-container {
+  overflow-y: auto;
+}
+.container {
+  border-radius: 20px;
+  width: 60vh;
+  height: 60vh;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
