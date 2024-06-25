@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PastaSharingSettingsService } from '../pasta-sharing-settings.service';
 import { PastaSharingSettingsResponse } from '../model/pastaSharingSettingsResponce.interface';
-import { PastaSharingSettingsRequest } from '../model/pastaSharingSettingsRequest';
+import { PastaSharingSettingsRequest } from '../model/pastaSharingSettingsRequest.interface';
 import { DatePipe } from '@angular/common';
 
 @Component({

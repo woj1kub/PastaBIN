@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { PastaSharingSettingsRequest } from './model/pastaSharingSettingsRequest';
+import { PastaSharingSettingsRequest } from './model/pastaSharingSettingsRequest.interface';
 import { PastaSharingSettingsResponse } from './model/pastaSharingSettingsResponce.interface';
 import { AuthService } from './auth.service';
 
