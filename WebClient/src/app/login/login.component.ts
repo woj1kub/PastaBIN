@@ -24,9 +24,7 @@ export class LoginComponent {
       const token = (response as any).token;
       localStorage.setItem("jwt", token);
       this.invalidLogin = false;
-      
-    console.log(this.authService.getUserID());   
-    console.log(this.authService.getUserName());
+      this.router.navigate(["/pasty"]);
     }, err => {
       this.invalidLogin = true;
     });
