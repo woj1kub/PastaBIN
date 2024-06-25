@@ -12,11 +12,15 @@
       </button>
       <button mat-icon-button 
       aria-hidden="false"
-      [matTooltip]="'Data utworzenia: ' + (pastaimg.creationDate | date: 'dd.MM.yyyy HH:mm') + '\n Data usunięcia: ' + (pastaimg.deleteDate | date: 'dd.MM.yyyy HH:mm')">
+      [matTooltip]="'Data utworzenia: ' + ( pastaimg.creationDate | date: 'dd.MM.yyyy HH:mm' ) + '\n Data usunięcia: ' + (pastaimg.deleteDate | date: 'dd.MM.yyyy HH:mm')">
       <mat-icon>
         help_outline
       </mat-icon>
     </button>
+    <button mat-icon-button (click)="downloadImage()" [disabled]="!pastaimg.image" matTooltip="Pobierz zdjęcie">
+      <mat-icon>file_download</mat-icon>
+    </button>
+
     </div>
     <div class="pasta-content">
         <img [src]="pastaimg.image" alt="Obraz" class="image">

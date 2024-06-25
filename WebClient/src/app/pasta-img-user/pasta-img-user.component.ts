@@ -22,12 +22,24 @@ export class PastaImgUserComponent {
     this.pastaservice.deletePasta(this.pastaimg.idBind).subscribe(
       () => {
         console.log('Pasta została pomyślnie usunięta.');
-        this.pastaDeleted.emit(); // Emit event on successful deletion
-        this.router.navigate(['/pasty']); // Navigate to the list page
+        this.pastaDeleted.emit(); 
+        this.router.navigate(['/pasty']);
       },
       error => {
         console.error('Wystąpił błąd podczas usuwania pasty:', error);
       }
     );
+  }
+  downloadImage() {
+    if (this.pastaimg.image) {
+      const link = document.createElement('a');
+      link.href = this.pastaimg.image;
+      link.download = 'pobrane_zdjecie.jpg';
+  
+      document.body.appendChild(link);
+      link.click();
+  
+      document.body.removeChild(link);
+    }
   }
 }

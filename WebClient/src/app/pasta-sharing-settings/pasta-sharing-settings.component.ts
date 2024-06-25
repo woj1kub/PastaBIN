@@ -58,7 +58,6 @@ export class PastaSharingSettingsComponent implements OnInit {
     this.pss.addPastaSharingSettings(newPastaSharingSetting).subscribe({
       next: () => {
           this.cookLogin = '';
-          this.endSharingDate = '';
           this.getData();
       },
       error: (err) => console.error('Error occurred:', err)
@@ -69,10 +68,6 @@ export class PastaSharingSettingsComponent implements OnInit {
     this.pss.getPastaSharingSettings(this.IDBind).subscribe({
       next: (res) => {
         this.data = res;
-        const now = new Date();
-        const future = new Date(now.getTime() + 2 * 60000);
-        this.minDate = this.datePipe.transform(future, 'yyyy-MM-ddTHH:mm') || '';
-        this.endSharingDate = this.datePipe.transform(future, 'yyyy-MM-ddTHH:mm') || '';
       },
       error: (err) => console.error(err),
       complete: () => console.log('complete')

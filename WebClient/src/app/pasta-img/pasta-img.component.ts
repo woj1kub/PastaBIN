@@ -25,7 +25,19 @@ export class PastaImgComponent {
       console.warn('Klucz nie może być pusty.');
     }
   }
-
+  downloadImage() {
+    if (this.imageSrc) {
+      const link = document.createElement('a');
+      link.href = this.imageSrc;
+      link.download = 'pobrane_zdjecie.jpg';
+  
+      document.body.appendChild(link);
+      link.click();
+  
+      document.body.removeChild(link);
+    }
+  }
+  
   key: string = '';
 
 

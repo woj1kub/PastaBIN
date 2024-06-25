@@ -15,6 +15,9 @@
         <input type="text" id="key" [(ngModel)]="key">
       </div>
       <button class="btn" (click)="readPasta()" [disabled]="key === ''">Odczytaj</button>
+      
+      <button class="btn" (click)="downloadImage()" [disabled]="!imageSrc">Pobierz Zdjęcie</button>
+
     </div>
   </div>
 </div>

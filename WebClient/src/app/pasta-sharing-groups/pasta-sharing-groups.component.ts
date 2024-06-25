@@ -61,17 +61,12 @@ export class PastaSharingGroupsComponent implements OnInit {
       }
     });
 
-    this.endSharingDate = '';
   }
 
   private getData(): void {
     this.pss.getPastaGroupSharing(this.IDBind).subscribe({
       next: (res) => {
         this.data = res;
-        const now = new Date();
-        const future = new Date(now.getTime() + 2 * 60000);
-        this.minDate = this.datePipe.transform(future, 'yyyy-MM-ddTHH:mm') || '';
-        this.endSharingDate = this.datePipe.transform(future, 'yyyy-MM-ddTHH:mm') || '';
       },
       error: (err) => console.error(err),
       complete: () => console.log('complete')

@@ -164,8 +164,8 @@ namespace BLL_EF
                 .Select(item => new PastaImageResponse
                 {
                     IDBind = item.PastaBind.PastaBindID,
-                    DeleteDate = item.PastaBind.Image.DeleteDate,
-                    CreationDate = item.PastaBind.Image.CreateDate,
+                    DeleteDate = item.EndSharingDate,
+                    CreationDate = item.CreationDate,
                     Key = item.PastaBind.Cook.Login
                 })
                 .ToList();

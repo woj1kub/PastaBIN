@@ -79,7 +79,6 @@ export class PastaImagesComponent {
   }
   
   public handlePastaDeleted(): void {
-    // Re-fetch data after deletion
     this.getData();
     this.getDataFromSharing();
   }
