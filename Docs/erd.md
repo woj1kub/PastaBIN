@@ -1,68 +1,72 @@
 ```mermaid
 erDiagram
-    Cooks {
-        int CookID PK "Identity"
+    Cook {
+        int CookID PK
         string Login
         string Password
         string Email
     }
 
-    PastaImage {
-        int ImageID PK "Identity"
-        int PastaBindID FK "PastaBinds"
-        byte[] ImageData
-        string GlobalKey
-        bool IsActive
-        DateTime CreateDate
-        DateTime DeleteDate
-    }
-
     PastaTxt {
-        int PastaTxtID PK "Identity"
+        int PastaTxtID PK
+        int PastaBindID FK
         string Content
-        string GlobalKey
         bool IsActive
         DateTime CreateDate
-        DateTime DeleteDate
-    }
-
-    PastaBinds {
-        int PastaBindID PK "Identity"
-        int PastaID
-        int CookID FK
-        int SharingSettingsID
-    }
-
-    PastaGroupSharing {
-        int GroupSharingID PK "Identity"
-        string GroupKey
-        DateTime CreationDate
-        DateTime EndSharingDate
-        int PastaBindID FK "PastaBinds"
-    }
-
-    PastaHistory {
-        int HistoryID PK "Identity"
-        int CookID FK "Cooks"
-        int PastaBindID FK "PastaBinds"
-        DateTime VisitDate
+        DateTime DeleteDate "nullable"
     }
 
     PastaSharingSettings {
-        int SharingSettingsID PK "Identity"
-        int CookID FK "Cooks"
-        int PastaBindID FK "PastaBinds"
-        DateTime EndSharingDate
+        int SharingSettingsID PK
+        int CookID FK
+        int PastaBindID FK
+        DateTime EndSharingDate "nullable"
+        DateTime CreationDate
     }
 
-    Cooks ||--o{ PastaBinds : "has"
-    PastaBinds ||--o{ PastaGroupSharing : "shares"
-    PastaBinds ||--|| PastaHistory : "is viewed by"
-    PastaBinds ||--o{ PastaSharingSettings : "has sharing settings"
-    PastaImage |o--|| PastaBinds : "belongs to"
-    PastaTxt |o--|| PastaBinds : "belongs to"
-    PastaHistory ||--O{ Cooks : "is viewed by"
-    PastaSharingSettings ||--O{ Cooks : ""
+    PastaImage {
+        int ImageID PK
+        int PastaBindID FK
+        byte[] ImageData
+        bool IsActive
+        DateTime CreateDate
+        DateTime DeleteDate "nullable"
+    }
 
+    PastaHistory {
+        int HistoryID PK
+        int CookID FK "nullable"
+        int PastaBindID FK
+        DateTime VisitDate
+    }
+
+    PastaGroupSharing {
+        int GroupSharingID PK
+        string GroupKey
+        DateTime CreationDate
+        DateTime EndSharingDate "nullable"
+        int PastaBindID FK
+    }
+
+    PastaBind {
+        int PastaBindID PK
+        int TxtID FK "nullable"
+        int ImgID FK "nullable"
+        int CookID FK "nullable"
+        string GlobalKey
+    }
+
+
+
+    PastaTxt |o--|| PastaBind : ""
+    PastaImage |o--|| PastaBind : ""
+    PastaBind }o--|| Cook : ""
+
+    PastaSharingSettings }o--|| PastaBind : ""
+    PastaGroupSharing }o--|| PastaBind : ""
+    PastaHistory }o--|| PastaBind : ""
+
+    PastaSharingSettings }o--|| Cook : ""
+    PastaHistory }o--|| Cook : ""
 
 ```

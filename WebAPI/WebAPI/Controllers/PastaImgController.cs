@@ -49,6 +49,7 @@ namespace WebAPI.Controllers
                 return StatusCode(500, ex.Message); // Zwróć kod odpowiedzi "500 Internal Server Error"
             }
         }
+        [Authorize]
         [HttpGet("getByBindID/{bindID}")]
         public async Task<IActionResult> GetPastaImgByBindID(int bindID)
         {
@@ -69,6 +70,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpGet("getByUser/{cookID}")]
+        [Authorize]
         public IActionResult GetPastaImgByUser(int cookID)
         {
             try
@@ -86,6 +88,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpGet("getByUserFromPastaSharing/{cookID}")]
+        [Authorize]
         public IActionResult GetPastaImgByUserFromPastaSharing(int cookID)
         {
             try

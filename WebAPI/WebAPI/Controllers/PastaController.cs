@@ -7,6 +7,7 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
     public class PastaController : ControllerBase
     {
         private readonly IPasta _pastaService;

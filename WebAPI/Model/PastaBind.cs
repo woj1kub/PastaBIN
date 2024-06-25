@@ -11,7 +11,6 @@ namespace Model
         public int? TxtID { get; set; }
         public int? ImgID { get; set; }
         public int? CookID { get; set; }
-        public int? SharingSettingsID { get; set; }
         [Required]
         public string GlobalKey { get; set; }
 

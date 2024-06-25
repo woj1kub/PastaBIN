@@ -12,7 +12,7 @@ import { PastaSharingGroupsComponent } from './pasta-sharing-groups/pasta-sharin
 import { SettingsComponent } from './settings/settings.component';
 import { PastaImagesComponent } from './pasta-images/pasta-images.component';
 import { PastaTextsComponent } from './pasta-texts/pasta-texts.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpRequest } from '@angular/common/http';
 import { NewPastaTextComponent } from './new-pasta-text/new-pasta-text.component';
 import { NewPastaImageComponent } from './new-pasta-image/new-pasta-image.component';
 import { PastaSettingsComponent } from './pasta-settings/pasta-settings.component';
@@ -90,8 +90,12 @@ import { AuthInterceptor } from './auth.interceptor';
     MatButtonToggleModule,
     MatTooltipModule,
     MatExpansionModule,
-    JwtModule,
-    
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ["localhost:7154"]
+      }
+    })
   ],
   providers: [
     {
@@ -107,3 +111,7 @@ import { AuthInterceptor } from './auth.interceptor';
   ],  bootstrap: [AppComponent]
 })
 export class AppModule { }
+export function tokenGetter(){
+  return localStorage.getItem("jwt");
+}
+

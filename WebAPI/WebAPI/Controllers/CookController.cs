@@ -29,6 +29,7 @@ namespace WebAPI.Controllers
 
             return Conflict("User with the same login already exists.");
         }
+        [Authorize]
         [HttpDelete("delete/{id}")]
         public IActionResult DeleteUser(int id)
         {
@@ -37,6 +38,7 @@ namespace WebAPI.Controllers
 
             return NotFound();
         }
+        [Authorize]
         [HttpPut("update/{id}")]
         public IActionResult UpdateUser(int id, [FromBody] CookRequest cookRequest)
         {

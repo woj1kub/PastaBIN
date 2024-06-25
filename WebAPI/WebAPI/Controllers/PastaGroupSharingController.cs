@@ -8,6 +8,8 @@ namespace WebAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+    [Authorize]
+
     public class PastaGroupSharingController : ControllerBase
     {
         private readonly IPastaGroupSharing _pastaGroupSharingService;

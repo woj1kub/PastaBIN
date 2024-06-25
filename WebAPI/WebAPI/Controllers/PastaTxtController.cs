@@ -44,8 +44,8 @@ namespace WebAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
-
         [HttpGet("getByUser/{cookID}")]
+        [Authorize]
         public IActionResult GetPastaTxtByUser(int cookID)
         {
             try
@@ -63,6 +63,7 @@ namespace WebAPI.Controllers
             }
         }
         [HttpGet("getByUserFromSharing/{cookID}")]
+        [Authorize]
         public IActionResult GetPastaTxtByUserFromSharing(int cookID)
         {
             try
