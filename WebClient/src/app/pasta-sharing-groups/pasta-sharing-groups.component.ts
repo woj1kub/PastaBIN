@@ -23,10 +23,6 @@ export class PastaSharingGroupsComponent implements OnInit {
 
   addGroupSharing() {
     const dateObject = new Date(this.endSharingDate);
-    if (isNaN(dateObject.getTime())) {
-      console.error('Invalid date format');
-      return;
-    }
 
     const newPastagroup: PastaGroupSharingRequest = {
       endSharingDate: dateObject,

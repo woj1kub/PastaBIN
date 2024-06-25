@@ -23,22 +23,24 @@ export class PastaSharingSettingsComponent implements OnInit {
 
   addPastaSharingSetting() {
     const dateObject = new Date(this.endSharingDate);
-    if (isNaN(dateObject.getTime())) {
-      console.error('Invalid date format');
-      return;
-    }
 
     const newPastaSharingSetting: PastaSharingSettingsRequest = {
       cookLogin: this.cookLogin,
       endSharingDate: dateObject,
       pastaBindID: Number(this.IDBind)
     };
-
-    this.pss.addPastaSharingSettings(newPastaSharingSetting).subscribe(() => {
-      this.cookLogin = '';
-      this.endSharingDate = '';
-      this.getData();
-    });
+    
+    console.log(newPastaSharingSetting.cookLogin);
+    console.log(newPastaSharingSetting.endSharingDate);
+    console.log(newPastaSharingSetting.pastaBindID);
+    this.pss.addPastaSharingSettings(newPastaSharingSetting).subscribe({
+      next: () => {
+          this.cookLogin = '';
+          this.endSharingDate = '';
+          this.getData();
+      },
+      error: (err) => console.error('Error occurred:', err)
+  });
   }
 
   private getData(): void {

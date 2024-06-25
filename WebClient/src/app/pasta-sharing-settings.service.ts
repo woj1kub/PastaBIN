@@ -14,7 +14,7 @@ export class PastaSharingSettingsService {
   private startURL:string='https://localhost:7023/PastaSharingSettings';
   addPastaSharingSettings(pastasharing : PastaSharingSettingsRequest ):Observable<void>
   {
-    return this.httpClient.post<void>(this.startURL +'/add/', pastasharing, {
+    return this.httpClient.post<void>(this.startURL +'/add/' +this.authservice.getUserID() , pastasharing, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })

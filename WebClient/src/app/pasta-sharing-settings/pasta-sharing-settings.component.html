@@ -1,13 +1,15 @@
 <p>pasta-sharing-settings works! {{ IDBind }}</p>
 <form (ngSubmit)="addPastaSharingSetting()">
   <input type="text" [(ngModel)]="cookLogin" name="cookLogin" placeholder="Cook Login">
-  <input type="datetime-local" [(ngModel)]="endSharingDate" name="endSharingDate">
+  <input type="datetime-local" [(ngModel)]="endSharingDate" name="endSharingDate" required="false">
   <button type="submit">Dodaj</button>
 </form>
 <ol>
+  <!-- Trzeba dodać usuwanie oraz edytowanie -->
+
   <li *ngFor="let pss of data">
     <p>{{ pss.cookLogin }}</p>
     <p>{{ pss.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-    <p>{{ pss.pastaSharingID }}</p>
+    <p>{{ pss.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
   </li>
 </ol>

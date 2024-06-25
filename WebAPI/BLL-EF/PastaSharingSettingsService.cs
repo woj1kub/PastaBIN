@@ -25,7 +25,7 @@ namespace BLL_EF
 
             Cook cook = context.Cooks
                 .SingleOrDefault(c => c.Login == pastaSharingSettingsRequest.CookLogin);
-            if (cook == null) 
+            if (cook == null || cook.CookID == cookID) 
                 return false;
 
             context.PastaSharingSettings.Add(new PastaSharingSettings()
@@ -68,7 +68,7 @@ namespace BLL_EF
             return true;
         }
 
-        public IEnumerable<PastaSharingSettingsRequest> GetPastaSharingSettingsByBindID(int cookID, int bindID)
+        public IEnumerable<PastaSharingSettingsResponse> GetPastaSharingSettingsByBindID(int cookID, int bindID)
         {
             PastaBind pastaBind = context.PastaBinds
                 .Include(pb => pb.SharingSettings)
@@ -76,14 +76,14 @@ namespace BLL_EF
                 .SingleOrDefault(pb => pb.PastaBindID == bindID && pb.CookID == cookID);
 
             if (pastaBind == null)
-                return Enumerable.Empty<PastaSharingSettingsRequest>();
+                return Enumerable.Empty<PastaSharingSettingsResponse>();
 
-            var sharingSettingsRequests = pastaBind.SharingSettings.Select(ps => new PastaSharingSettingsRequest()
+            var sharingSettingsRequests = pastaBind.SharingSettings.Select(ps => new PastaSharingSettingsResponse()
             {
-                PastaBindID = ps.PastaBindID,
+                PastaSharingID = ps.SharingSettingsID,
                 EndSharingDate = ps.EndSharingDate,
                 CookLogin = ps.Cook?.Login,
-                CookID = ps.CookID
+                CreationDate = ps.CreationDate
             }).ToList();
 
             return sharingSettingsRequests;

@@ -11,6 +11,6 @@ namespace BLL.Interface
         public bool UpdateSharingSettings(int cookID, int pastaSharingSettingsID, DateTime EndSharinDate);
         public bool DeleteSharingSettings(int cookID, int pastaSharingSettingsID);
         // trzeba dawać CookID bo to może robić tylko właściciel - edycja
-        public IEnumerable<PastaSharingSettingsRequest> GetPastaSharingSettingsByBindID(int cookID, int BindID);
+        public IEnumerable<PastaSharingSettingsResponse> GetPastaSharingSettingsByBindID(int cookID, int BindID);
     }
 }

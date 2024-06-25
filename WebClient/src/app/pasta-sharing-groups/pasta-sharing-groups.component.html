@@ -7,10 +7,11 @@
 
 
 <ol>
+    <!-- Trzeba dodać usuwanie oraz edytowanie -->
+
     <li *ngFor="let psg of data">
         <p> {{psg.groupKey}}</p>
         <p>{{ psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-        <p> {{psg.endSharingDate | date: 'dd.MM.yyyy HH:mm' }}</p>
-        <p> {{psg.pastaGroupID}}</p>
+        <p> {{psg.creationDate | date: 'dd.MM.yyyy HH:mm' }}</p>
     </li>
 </ol>
