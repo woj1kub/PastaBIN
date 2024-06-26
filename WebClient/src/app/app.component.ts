@@ -5,20 +5,19 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'WebClient';
-  constructor(private authServiece:AuthService , private router:Router){
-  };
-  logOut():void{
+  constructor(private authServiece: AuthService, private router: Router) {}
+  logOut(): void {
     this.authServiece.logOut();
-    this.router.navigate(["/"]);
+    this.router.navigate(['/']);
   }
   IsUserAuthenticated(): any {
     return this.authServiece.IsUserAuthenticated();
   }
-  username():string{
+  username(): string {
     return this.authServiece.getUserName();
   }
 }

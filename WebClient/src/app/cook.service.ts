@@ -5,34 +5,38 @@ import { cookRequest } from './model/cookRequest.interface';
 import { AuthService } from './auth.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CookService {
+  constructor(
+    private httpClient: HttpClient,
+    private authservice: AuthService
+  ) {}
+  private startURL: string = 'https://localhost:7023/Cook';
 
-  constructor(private httpClient:HttpClient, private authservice:AuthService) { }
-  private startURL:string='https://localhost:7023/Cook';
-
-  deleteCook():Observable<void>
-  {
-    return this.httpClient.delete<void>(this.startURL+'/delete/' + this.authservice.getUserID());
+  deleteCook(): Observable<void> {
+    return this.httpClient.delete<void>(
+      this.startURL + '/delete/' + this.authservice.getUserID()
+    );
   }
 
-  addCook(cook : cookRequest):Observable<void>
-  {
-    return this.httpClient.post<void>(this.startURL +'/add/' , cook, {
+  addCook(cook: cookRequest): Observable<void> {
+    return this.httpClient.post<void>(this.startURL + '/add/', cook, {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
+        'Content-Type': 'application/json',
+      }),
     });
   }
 
-  updateCook(cook : cookRequest):Observable<void>
-  {
-    return this.httpClient.put<void>(this.startURL +'/update/'+this.authservice.getUserID() , cook, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
+  updateCook(cook: cookRequest): Observable<void> {
+    return this.httpClient.put<void>(
+      this.startURL + '/update/' + this.authservice.getUserID(),
+      cook,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+      }
+    );
   }
-  
 }

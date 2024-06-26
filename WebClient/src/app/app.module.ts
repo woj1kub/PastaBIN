@@ -21,12 +21,12 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
@@ -36,11 +36,11 @@ import { PastaTxtComponent } from './pasta-txt/pasta-txt.component';
 import { PastaImgUserComponent } from './pasta-img-user/pasta-img-user.component';
 import { PastaTxtUserComponent } from './pasta-txt-user/pasta-txt-user.component';
 import { PastaUserComponent } from './pasta-user/pasta-user.component';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { PastaImgUserFromSharingComponent } from './pasta-img-user-from-sharing/pasta-img-user-from-sharing.component';
 import { PastaTxtUserFromSharingComponent } from './pasta-txt-user-from-sharing/pasta-txt-user-from-sharing.component';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule, JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AuthInterceptor } from './auth.interceptor';
 
@@ -93,25 +93,25 @@ import { AuthInterceptor } from './auth.interceptor';
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
-        allowedDomains: ["localhost:7154"]
-      }
-    })
+        allowedDomains: ['localhost:7154'],
+      },
+    }),
   ],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
-      multi: true
+      multi: true,
     },
     JwtHelperService,
     {
       provide: JWT_OPTIONS,
-      useValue: JWT_OPTIONS
-    }
-  ],  bootstrap: [AppComponent]
+      useValue: JWT_OPTIONS,
+    },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
-export function tokenGetter(){
-  return localStorage.getItem("jwt");
+export class AppModule {}
+export function tokenGetter() {
+  return localStorage.getItem('jwt');
 }
-

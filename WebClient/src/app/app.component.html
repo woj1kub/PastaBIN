@@ -1,34 +1,36 @@
-
-
 <div class="header">
   <h1>PastaBin</h1>
 </div>
 <div class="wrapper">
+  <div class="buttons_banner">
+    <p>
+      <label>Witaj 🙋‍♀️</label>
+      <br />
+      <label> {{ username() }}</label>
+    </p>
 
-    <div class="buttons_banner">
-      <p>
-        <label >Witaj 🙋‍♀️</label>
-        <br />
-        <label > {{username()}}</label>
-      </p>
-
-      <div class="button-column">
-        <button mat-raised-button routerLink="/openPasta">Otwórz pastę</button>
-        <button mat-raised-button routerLink="/addPasta">Nowa Pasta</button>
-        <button mat-raised-button routerLink="/pasty" *ngIf="IsUserAuthenticated()">Moje pasty</button>
-      </div>
-
-      <div class="low_buttons" *ngIf="!IsUserAuthenticated()">
-        <button mat-raised-button routerLink="/login">Zaloguj</button>
-        <button mat-raised-button routerLink="/signUp">Utwórz Konto</button>
-      </div>
-      
-      <div class="low_buttons" *ngIf="IsUserAuthenticated()">
-        <button mat-raised-button routerLink="/ustawienia">Ustawienia</button>
-        <button mat-raised-button (click)="logOut()">Wyloguj</button>
-      </div>
-     
+    <div class="button-column">
+      <button mat-raised-button routerLink="/openPasta">Otwórz pastę</button>
+      <button mat-raised-button routerLink="/addPasta">Nowa Pasta</button>
+      <button
+        mat-raised-button
+        routerLink="/pasty"
+        *ngIf="IsUserAuthenticated()"
+      >
+        Moje pasty
+      </button>
     </div>
+
+    <div class="low_buttons" *ngIf="!IsUserAuthenticated()">
+      <button mat-raised-button routerLink="/login">Zaloguj</button>
+      <button mat-raised-button routerLink="/signUp">Utwórz Konto</button>
+    </div>
+
+    <div class="low_buttons" *ngIf="IsUserAuthenticated()">
+      <button mat-raised-button routerLink="/ustawienia">Ustawienia</button>
+      <button mat-raised-button (click)="logOut()">Wyloguj</button>
+    </div>
+  </div>
 
   <div class="router-outlet-wrapper">
     <div class="router-outlet-content">

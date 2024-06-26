@@ -7,14 +7,13 @@ export interface DecodeToken {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
-
-  constructor(private jwtHelper: JwtHelperService) { }
+  constructor(private jwtHelper: JwtHelperService) {}
 
   IsUserAuthenticated(): boolean {
-    const token = localStorage.getItem("jwt");
+    const token = localStorage.getItem('jwt');
     return !!token && !this.jwtHelper.isTokenExpired(token);
   }
 
@@ -33,19 +32,27 @@ export class AuthService {
 
   getUserID(): string {
     const decodedToken = this.getDecodedToken();
-    return decodedToken && decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']
-      ? decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier']!
+    return decodedToken &&
+      decodedToken[
+        'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+      ]
+      ? decodedToken[
+          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier'
+        ]!
       : '0';
   }
 
   getUserName(): string {
     const decodedToken = this.getDecodedToken();
-    return decodedToken && decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
-      ? decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']!
+    return decodedToken &&
+      decodedToken['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name']
+      ? decodedToken[
+          'http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'
+        ]!
       : '';
   }
 
   logOut() {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem('jwt');
   }
 }

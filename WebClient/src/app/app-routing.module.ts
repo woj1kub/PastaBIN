@@ -9,17 +9,21 @@ import { PastaUserComponent } from './pasta-user/pasta-user.component';
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent},
-  {path:'addPasta' , component:PastaAddComponent},
-  {path:'signUp', component:RegistrationComponent},
-  {path:'pastaSettings/:pastaID', component:PastaSettingsComponent , canActivate: [AuthGuard]},
-  {path:'openPasta', component:PastaComponent},
-  {path:'pasty' , component:PastaUserComponent , canActivate: [AuthGuard]},
-  { path:'', redirectTo:'addPasta', pathMatch:'full' }
+  { path: 'login', component: LoginComponent },
+  { path: 'addPasta', component: PastaAddComponent },
+  { path: 'signUp', component: RegistrationComponent },
+  {
+    path: 'pastaSettings/:pastaID',
+    component: PastaSettingsComponent,
+    canActivate: [AuthGuard],
+  },
+  { path: 'openPasta', component: PastaComponent },
+  { path: 'pasty', component: PastaUserComponent, canActivate: [AuthGuard] },
+  { path: '', redirectTo: 'addPasta', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
