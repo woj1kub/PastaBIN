@@ -1,4 +1,4 @@
 export interface PastaTextRequest {
-    content: string;
-    deleteDate: Date | null;
+  content: string;
+  deleteDate: Date | null;
 }

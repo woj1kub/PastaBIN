@@ -1,4 +1,4 @@
 export interface PastaHistoryResponse {
-    cookLogin: string;
-    visitDate: string;
+  cookLogin: string;
+  visitDate: string;
 }

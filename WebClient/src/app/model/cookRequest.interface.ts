@@ -1,5 +1,5 @@
 export interface cookRequest {
-    login: string;
-    email: string;
-    password: string;
+  login: string;
+  email: string;
+  password: string;
 }
