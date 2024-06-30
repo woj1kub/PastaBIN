@@ -68,9 +68,6 @@ namespace DAL.Migrations
                     b.Property<int?>("ImgID")
                         .HasColumnType("int");
 
-                    b.Property<int?>("SharingSettingsID")
-                        .HasColumnType("int");
-
                     b.Property<int?>("TxtID")
                         .HasColumnType("int");
 
@@ -260,12 +257,12 @@ namespace DAL.Migrations
                     b.HasOne("Model.Cook", "Cook")
                         .WithMany("Histories")
                         .HasForeignKey("CookID")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithMany("Histories")
                         .HasForeignKey("PastaBindID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Cook");
@@ -289,13 +286,13 @@ namespace DAL.Migrations
                     b.HasOne("Model.Cook", "Cook")
                         .WithMany("SharingSettings")
                         .HasForeignKey("CookID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithMany("SharingSettings")
                         .HasForeignKey("PastaBindID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Cook");

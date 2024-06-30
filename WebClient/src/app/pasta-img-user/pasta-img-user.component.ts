@@ -22,11 +22,13 @@ export class PastaImgUserComponent {
     this.pastaservice.deletePasta(this.pastaimg.idBind).subscribe(
       () => {
         console.log('Pasta została pomyślnie usunięta.');
-        this.pastaDeleted.emit(); 
         this.router.navigate(['/pasty']);
+        this.pastaDeleted.emit(); 
       },
       error => {
         console.error('Wystąpił błąd podczas usuwania pasty:', error);
+        this.pastaDeleted.emit(); 
+
       }
     );
   }

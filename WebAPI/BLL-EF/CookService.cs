@@ -44,21 +44,19 @@ namespace BLL_EF
             return true;
         }
 
-        public bool UpdateUser(int cookID, CookRequest cookRequest)
+        public bool UpdateUser(int cookID, CookRequestChangePassword cookRequest)
         {
-            if (cookRequest == null || string.IsNullOrEmpty(cookRequest.Login) || string.IsNullOrEmpty(cookRequest.Password) || string.IsNullOrEmpty(cookRequest.Email))
+            if (cookRequest == null ||  string.IsNullOrEmpty(cookRequest.Password))
                 return false;
 
-            if (context.Cooks.Any(c => c.Login == cookRequest.Login && c.CookID != cookID))
+            if (context.Cooks.Any(c => c.CookID != cookID))
                 return false;
 
             Cook cook = context.Cooks.SingleOrDefault(c => c.CookID == cookID);
             if (cook == null)
                 return false;
 
-            cook.Login = cookRequest.Login;
             cook.Password = cookRequest.Password;
-            cook.Email = cookRequest.Email;
 
             context.SaveChanges();
             return true;

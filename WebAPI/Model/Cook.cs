@@ -21,26 +21,25 @@ namespace Model
         public ICollection<PastaBind>? PastaBinds { get; set; }
         public ICollection<PastaSharingSettings>? SharingSettings { get; set; }
         public ICollection<PastaHistory>? Histories { get; set; }
+
         public void Configure(EntityTypeBuilder<Cook> builder)
         {
             builder.HasIndex(c => c.Login).IsUnique();
-            // Relationships
+
             builder.HasMany(c => c.PastaBinds)
-             .WithOne(pb => pb.Cook)
-             .HasForeignKey(pb => pb.CookID)
-             .OnDelete(DeleteBehavior.Cascade);
+                   .WithOne(pb => pb.Cook)
+                   .HasForeignKey(pb => pb.CookID)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.SharingSettings)
-                .WithOne(pss => pss.Cook)
-                .HasForeignKey(pss => pss.CookID)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
+                   .WithOne(ss => ss.Cook)
+                   .HasForeignKey(ss => ss.CookID)
+                   .OnDelete(DeleteBehavior.Cascade);
 
             builder.HasMany(c => c.Histories)
-                .WithOne(ph => ph.Cook)
-                .HasForeignKey(ph => ph.CookID)
-                .OnDelete(DeleteBehavior.SetNull);
+                   .WithOne(h => h.Cook)
+                   .HasForeignKey(h => h.CookID)
+                   .OnDelete(DeleteBehavior.SetNull);
         }
     }
-
 }

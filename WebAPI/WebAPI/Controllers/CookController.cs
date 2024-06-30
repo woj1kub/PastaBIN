@@ -40,7 +40,7 @@ namespace WebAPI.Controllers
         }
         [Authorize]
         [HttpPut("update/{id}")]
-        public IActionResult UpdateUser(int id, [FromBody] CookRequest cookRequest)
+        public IActionResult UpdateUser(int id, [FromBody] CookRequestChangePassword cookRequest)
         {
             if (cookRequest == null)
                 return BadRequest();

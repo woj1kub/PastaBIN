@@ -35,7 +35,6 @@ namespace DAL.Migrations
                     TxtID = table.Column<int>(type: "int", nullable: true),
                     ImgID = table.Column<int>(type: "int", nullable: true),
                     CookID = table.Column<int>(type: "int", nullable: true),
-                    SharingSettingsID = table.Column<int>(type: "int", nullable: true),
                     GlobalKey = table.Column<string>(type: "nvarchar(450)", nullable: false)
                 },
                 constraints: table =>
@@ -77,7 +76,7 @@ namespace DAL.Migrations
                 {
                     HistoryID = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CookID = table.Column<int>(type: "int", nullable: false),
+                    CookID = table.Column<int>(type: "int", nullable: true),
                     PastaBindID = table.Column<int>(type: "int", nullable: false),
                     VisitDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
@@ -88,14 +87,12 @@ namespace DAL.Migrations
                         name: "FK_PastaHistory_Cooks_CookID",
                         column: x => x.CookID,
                         principalTable: "Cooks",
-                        principalColumn: "CookID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "CookID");
                     table.ForeignKey(
                         name: "FK_PastaHistory_PastaBinds_PastaBindID",
                         column: x => x.PastaBindID,
                         principalTable: "PastaBinds",
-                        principalColumn: "PastaBindID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "PastaBindID");
                 });
 
             migrationBuilder.CreateTable(
@@ -118,7 +115,7 @@ namespace DAL.Migrations
                         column: x => x.PastaBindID,
                         principalTable: "PastaBinds",
                         principalColumn: "PastaBindID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -140,13 +137,12 @@ namespace DAL.Migrations
                         column: x => x.CookID,
                         principalTable: "Cooks",
                         principalColumn: "CookID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PastaSharingSettings_PastaBinds_PastaBindID",
                         column: x => x.PastaBindID,
                         principalTable: "PastaBinds",
-                        principalColumn: "PastaBindID",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "PastaBindID");
                 });
 
             migrationBuilder.CreateTable(
@@ -169,7 +165,7 @@ namespace DAL.Migrations
                         column: x => x.PastaBindID,
                         principalTable: "PastaBinds",
                         principalColumn: "PastaBindID",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

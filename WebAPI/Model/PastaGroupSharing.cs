@@ -24,12 +24,12 @@ namespace Model
         public void Configure(EntityTypeBuilder<PastaGroupSharing> builder)
         {
             builder.HasIndex(pb => pb.GroupKey)
-                .IsUnique();
+                   .IsUnique();
 
-            builder.HasOne(pgs => pgs.PastaBind)
-               .WithMany(pb => pb.GroupSharing)
-               .HasForeignKey(pgs => pgs.PastaBindID)
-               .OnDelete(DeleteBehavior.Cascade);
+            builder.HasOne(gs => gs.PastaBind)
+                   .WithMany(pb => pb.GroupSharing)
+                   .HasForeignKey(gs => gs.PastaBindID)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

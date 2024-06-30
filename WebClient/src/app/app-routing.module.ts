@@ -7,11 +7,13 @@ import { LoginComponent } from './login/login.component';
 import { PastaComponent } from './pasta/pasta.component';
 import { PastaUserComponent } from './pasta-user/pasta-user.component';
 import { AuthGuard } from './auth.guard';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'addPasta', component: PastaAddComponent },
   { path: 'signUp', component: RegistrationComponent },
+  { path: 'ustawienia', component: SettingsComponent },
   {
     path: 'pastaSettings/:pastaID',
     component: PastaSettingsComponent,

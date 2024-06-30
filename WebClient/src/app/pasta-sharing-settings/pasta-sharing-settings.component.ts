@@ -52,9 +52,6 @@ export class PastaSharingSettingsComponent implements OnInit {
       pastaBindID: Number(this.IDBind)
     };
     
-    console.log(newPastaSharingSetting.cookLogin);
-    console.log(newPastaSharingSetting.endSharingDate);
-    console.log(newPastaSharingSetting.pastaBindID);
     this.pss.addPastaSharingSettings(newPastaSharingSetting).subscribe({
       next: () => {
           this.cookLogin = '';

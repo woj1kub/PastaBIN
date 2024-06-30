@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { cookRequest } from './model/cookRequest.interface';
+import { cookRequest, cookRequestPassChange } from './model/cookRequest.interface';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -28,7 +28,7 @@ export class CookService {
     });
   }
 
-  updateCook(cook: cookRequest): Observable<void> {
+  updateCook(cook: cookRequestPassChange): Observable<void> {
     return this.httpClient.put<void>(
       this.startURL + '/update/' + this.authservice.getUserID(),
       cook,

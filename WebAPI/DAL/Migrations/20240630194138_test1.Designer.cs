@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(PastaBINContext))]
-    [Migration("20240530184154_test1")]
+    [Migration("20240630194138_test1")]
     partial class test1
     {
         /// <inheritdoc />
@@ -20,7 +20,7 @@ namespace DAL.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "8.0.4")
+                .HasAnnotation("ProductVersion", "8.0.6")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -69,9 +69,6 @@ namespace DAL.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<int?>("ImgID")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("SharingSettingsID")
                         .HasColumnType("int");
 
                     b.Property<int?>("TxtID")
@@ -127,7 +124,6 @@ namespace DAL.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HistoryID"));
 
                     b.Property<int?>("CookID")
-                        .IsRequired()
                         .HasColumnType("int");
 
                     b.Property<int>("PastaBindID")
@@ -264,13 +260,12 @@ namespace DAL.Migrations
                     b.HasOne("Model.Cook", "Cook")
                         .WithMany("Histories")
                         .HasForeignKey("CookID")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithMany("Histories")
                         .HasForeignKey("PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Cook");
@@ -283,7 +278,7 @@ namespace DAL.Migrations
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithOne("Image")
                         .HasForeignKey("Model.PastaImage", "PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PastaBind");
@@ -294,13 +289,13 @@ namespace DAL.Migrations
                     b.HasOne("Model.Cook", "Cook")
                         .WithMany("SharingSettings")
                         .HasForeignKey("CookID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithMany("SharingSettings")
                         .HasForeignKey("PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("Cook");
@@ -313,7 +308,7 @@ namespace DAL.Migrations
                     b.HasOne("Model.PastaBind", "PastaBind")
                         .WithOne("Txt")
                         .HasForeignKey("Model.PastaTxt", "PastaBindID")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("PastaBind");

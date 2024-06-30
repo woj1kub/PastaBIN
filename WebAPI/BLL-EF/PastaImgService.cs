@@ -124,7 +124,7 @@ namespace BLL_EF
 
             if (!cook.PastaBinds.Any())
             {
-                throw new Exception("Cook nie ma powiązanych PastaBinds.");
+               return [];
             }
 
             var imageResponses = new List<PastaImageResponse>();

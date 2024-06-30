@@ -3,3 +3,6 @@ export interface cookRequest {
   email: string;
   password: string;
 }
+export interface cookRequestPassChange {
+  password: string;
+}

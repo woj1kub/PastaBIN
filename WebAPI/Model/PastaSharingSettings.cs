@@ -22,18 +22,18 @@ namespace Model
         public Cook Cook { get; set; }
         [ForeignKey(nameof(PastaBindID))]
         public PastaBind PastaBind { get; set; }
+
         public void Configure(EntityTypeBuilder<PastaSharingSettings> builder)
         {
-            builder.HasOne(pss => pss.Cook)
-                .WithMany(c => c.SharingSettings)
-                .HasForeignKey(pss => pss.CookID)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Restrict);  // Ensure Restrict deletion for Cook
-
-            builder.HasOne(pss => pss.PastaBind)
-                   .WithMany(pb => pb.SharingSettings)
-                   .HasForeignKey(pss => pss.PastaBindID)
+            builder.HasOne(ss => ss.Cook)
+                   .WithMany(c => c.SharingSettings)
+                   .HasForeignKey(ss => ss.CookID)
                    .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasOne(ph => ph.PastaBind)
+                  .WithMany(pb => pb.SharingSettings)
+                  .HasForeignKey(ph => ph.PastaBindID)
+                  .OnDelete(DeleteBehavior.NoAction); // or DeleteBehavior.Restrict depending on your needs
         }
     }
 }
